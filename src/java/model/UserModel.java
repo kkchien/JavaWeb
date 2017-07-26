@@ -56,7 +56,7 @@ public class UserModel extends AbstractModel<Users> {
     }
 
     public void delete(Users e) throws SQLException {
-        String sql = "DELETE users WHERE id = ?";
+        String sql = "DELETE FROM users WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setInt(1, e.getId());
         int affectedRows = stmt.executeUpdate();

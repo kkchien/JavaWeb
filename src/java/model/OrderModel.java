@@ -33,7 +33,7 @@ public class OrderModel extends AbstractModel<Orders> {
     }
 
     public void delete(Orders e) throws SQLException {
-        String sql = "DELETE orders WHERE id = ?";
+        String sql = "DELETE FROM orders WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setInt(1, e.getId());
         int affectedRows = stmt.executeUpdate();
