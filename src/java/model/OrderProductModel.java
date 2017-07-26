@@ -5,8 +5,8 @@
  */
 package model;
 
-import domain.OrderProducts;
-import domain.Orders;
+import persistence.OrderProducts;
+import persistence.Orders;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;

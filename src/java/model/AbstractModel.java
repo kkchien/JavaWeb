@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,6 +22,7 @@ public abstract class AbstractModel<E> {
     protected Connection connection;
     protected PreparedStatement stmt;
     protected ResultSet rs;
+    public static final int ITEM_PER_PAGE = 5;
 
     protected Connection getConnection() {
         return DatabaseUtil.connectSqlite("db\\", "database", null, null);

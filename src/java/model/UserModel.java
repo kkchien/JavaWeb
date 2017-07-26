@@ -5,7 +5,7 @@
  */
 package model;
 
-import domain.Users;
+import persistence.Users;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
