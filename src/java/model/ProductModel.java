@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import persistence.Categories;
 
 /**
  *
@@ -34,12 +35,13 @@ public class ProductModel extends AbstractModel<Products> {
         stmt.setInt(3, e.getCategorie().getId());
         stmt.setString(4, e.getInfo());
         int affectedRows = stmt.executeUpdate();
-        closeConnection();
         if (affectedRows == 0) {
+            closeConnection();
             throw new SQLException("Creating failed, no rows affected.");
         } else {
             e.setId(getGeneratedId());
         }
+        closeConnection();
     }
 
     public void edit(Products e) throws SQLException {
@@ -58,7 +60,7 @@ public class ProductModel extends AbstractModel<Products> {
     }
 
     public void delete(Products e) throws SQLException {
-        String sql = "DELETE products WHERE id = ?";
+        String sql = "DELETE FROM products WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setInt(1, e.getId());
         int affectedRows = stmt.executeUpdate();
@@ -136,13 +138,5 @@ public class ProductModel extends AbstractModel<Products> {
     private static class ProductModelHolder {
 
         private static final ProductModel INSTANCE = new ProductModel();
-    }
-
-    public static void main(String[] args) {
-        try {
-            ProductModel.getInstance().search(new ProductSearch());
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 }

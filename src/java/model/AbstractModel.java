@@ -55,9 +55,9 @@ public abstract class AbstractModel<E> {
     protected int getGeneratedId() throws SQLException {
         rs = stmt.getGeneratedKeys();
         if (rs.next()) {
-            return rs.getInt(rs.findColumn("id"));
+            return rs.getInt(1);
         } else {
-            throw new SQLException("Creating user failed, no ID obtained.");
+            throw new SQLException("Creating failed, no ID obtained.");
         }
     }
 }

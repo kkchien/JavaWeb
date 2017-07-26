@@ -31,12 +31,13 @@ public class UserModel extends AbstractModel<Users> {
         stmt.setString(3, e.getPhone());
         stmt.setString(4, e.getAddress());
         int affectedRows = stmt.executeUpdate();
-        closeConnection();
         if (affectedRows == 0) {
-            throw new SQLException("Creating user failed, no rows affected.");
+            closeConnection();
+            throw new SQLException("Creating failed, no rows affected.");
         } else {
             e.setId(getGeneratedId());
         }
+        closeConnection();
     }
 
     public void edit(Users e) throws SQLException {

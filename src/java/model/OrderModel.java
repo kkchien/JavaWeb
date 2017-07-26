@@ -23,12 +23,13 @@ public class OrderModel extends AbstractModel<Orders> {
         UserModel.getInstance().add(order.getUser());
         stmt.setInt(1, order.getUser().getId());
         int affectedRows = stmt.executeUpdate();
-        closeConnection();
         if (affectedRows == 0) {
-            throw new SQLException("Creating user failed, no rows affected.");
+            closeConnection();
+            throw new SQLException("Creating failed, no rows affected.");
         } else {
             order.setId(getGeneratedId());
         }
+        closeConnection();
     }
 
     public void delete(Orders e) throws SQLException {
