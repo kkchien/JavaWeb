@@ -19,13 +19,13 @@ public class DatabaseUtil {
 
     private static Connection connection = null;
 
-    public static Connection connectSQL() {
+    public static Connection connectSQL(String databaseUrl, String databaseName, String username, String password) {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String dbURL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=java_web";
-//            String dbURL = "jdbc:sqlserver:" + databaseUrl + ";databaseName=" + databaseName;
-            String username = "sa";
-            String password = "1234$";
+//            String dbURL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=java_web";
+            String dbURL = "jdbc:sqlserver:" + databaseUrl + ";databaseName=" + databaseName;
+//            String username = "sa";
+//            String password = "1234$";
             connection = DriverManager.getConnection(dbURL, username, password);
             if (connection != null) {
                 DatabaseMetaData dm = (DatabaseMetaData) connection.getMetaData();
@@ -56,6 +56,6 @@ public class DatabaseUtil {
     }
     
     public static void main(String[] args) {
-        connectSQL();
+//        connectSQL();
     }
 }
