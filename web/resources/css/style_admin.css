@@ -1,0 +1,135 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+
+}
+body{
+    font-size: 14px;
+    font-family: Tahoma, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", Times New Roman, "Helvetica CE", sans-serif;
+    color: #000000; 
+}
+.main_web{
+    width: 100%;
+    height: 1500px;
+}
+.header{
+    width: 100%;
+    height: 50px;
+    background-color: #080808;
+}
+.header .logo{
+    width: 25%;
+    height:100%;
+    line-height: 50px;
+    text-align: center;
+    float: left;
+}
+.header .account{
+    width: 71%;
+    height: 100%;
+    line-height: 50px;
+    text-align: right;
+    float:left;
+    
+}
+.account .function_user{
+   width: 150px;
+   height:100%;
+   text-align: center;
+   margin-right: 50px;
+   
+}
+.header .account a{
+   color: #fff;
+   height:40px;
+   text-decoration: none;
+   text-align: center;
+   line-height: 40px;
+   
+}
+.ui-menubar{
+    width:200px !important;
+    height:50px !important;
+    background-color: #080808;
+    
+}
+.ui-menu{
+    background: #080808 !important;
+   border: 0;
+   padding: 0 !important;
+   float:right;
+}
+.account .ui-icon{
+    line-height: 50px !important;
+}
+.account table span{
+    color:#333;
+}
+.account ul {
+    list-style: none;
+    width: 200px;
+    height:150px;
+    color: #000000;
+}/*
+
+.account ul li{
+    width: 100%;
+    height:50px;
+    line-height: 50px;
+}*/
+/*.header .account .function_user:hover{
+    background-color: #1C2B36;
+}
+.header .account img{
+    padding: 0 5px 0 5px;
+}*/
+
+.center{
+    width: 100%;
+    height: 1200px;
+    background-color: red;
+}
+.left{
+    border-top: 1px solid #444444; 
+    width: 12%;
+    height:100%;
+    float: left;
+    background-color:#1C2B36; 
+
+
+}
+.right{
+    width: 88%;
+    height:100%;
+    float:left;
+    background-color:#fff; 
+}
+.left ul{
+    list-style: none;
+
+}
+.left ul a{
+    text-decoration: none;
+    width: 100%;
+    height:55px; 
+    line-height: 55px;
+    color: #fff;
+}
+
+.left ul li{
+    height:100%;
+    line-height: 55px;
+    padding-left: 15px;
+}
+.left img{
+    margin-right: 10px;
+}
+.left ul li:hover{
+    background-color: #080808;
+}
+.footer{
+    width: 100%;
+    height: 50px;
+    background-color: #1C2B36;
+}
+
