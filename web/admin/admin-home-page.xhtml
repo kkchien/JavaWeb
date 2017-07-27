@@ -1,13 +1,128 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Manager Admin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="style_admin.css"/>
     </h:head>
     <h:body>
-
+        <h:form>  
+            <p:growl id="messages"/>
+            <p:menubar class="bg_color" style="padding: 1%">
+                <p:menuitem  icon="/image/image_logo/logo.png">
+                    <h:graphicImage url="/image/image_logo/logo.png" width="50%" alt="logo"/>
+                </p:menuitem>
+                <p:submenu  label="Tài khoản" class="item-right">
+                    <p:menuitem actionListener="#{adminHomeBean.logout()}" value="Đăng xuất"/>
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+        <p:layout class="main">
+            <p:layoutUnit position="west" class="left_menu">
+                <h:form>
+                    <p:panelMenu class="bg_color">
+                        <p:menuitem>
+                            <h:graphicImage value="/image/icon/home.png" width="20" />
+                        </p:menuitem>
+                        <p:submenu label="Quản lý sách" class="bg_color">
+                            <p:menuitem value="List sách" actionListener="#{menuView.save}" icon="ui-icon-list" />
+                            <p:menuitem value="Thêm sách" actionListener="#{menuView.update}"  icon="ui-icon-plus" />
+                        </p:submenu>
+                        <p:submenu label="Quản lý sách">
+                            <p:menuitem value="List sách" actionListener="#{menuView.save}" icon="ui-icon-list" />
+                        </p:submenu>
+                        <p:submenu label="Quản lý tác giả">
+                            <p:menuitem value="List tác giả" actionListener="#{menuView.save}" icon="ui-icon-list" />
+                            <p:menuitem value="Thêm tác giả" actionListener="#{menuView.update}"  icon="ui-icon-plus" />
+                        </p:submenu>
+                        <p:submenu label="Quản lý thể loại">
+                            <p:menuitem value="List thể loại" actionListener="#{menuView.save}" icon="ui-icon-list" />
+                            <p:menuitem value="Thêm thể loại" actionListener="#{menuView.update}"  icon="ui-icon-plus" />
+                        </p:submenu>
+                    </p:panelMenu>
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                <h:dataTable>
+                    
+                </h:dataTable>
+            </p:layoutUnit>
+        </p:layout>
+        <!--            <div class = "center">
+                        <div class = "left">
+                            <ul>
+                                <p:commandLink>
+                                    <li>
+                                        <f:view>
+                                            <h:graphicImage value="/image/icon/home.png" width="20" />
+                                        </f:view>
+                                        <h:outputText value="Trang chủ" /></li>
+                                </p:commandLink>
+                                <p:commandLink>
+                                    <li> <f:view>
+                                            <h:graphicImage value="/image/icon/books.png" width="20" />
+                                        </f:view><h:outputText value="Quản lý sách" /></li>
+                                </p:commandLink>
+                                <p:commandLink>
+                                    <li> <f:view>
+                                            <h:graphicImage value="/image/icon/author.png" width="20" />
+                                        </f:view><h:outputText value="Quản lý tác giả" /></li>
+                                </p:commandLink>
+                                <p:commandLink>
+                                    <li><f:view>
+                                            <h:graphicImage value="/image/icon/factory.png" width="20" />
+                                        </f:view> <h:outputText value="Quản lý nhà xuất bản" /></li>
+                                </p:commandLink>
+                                <p:commandLink>
+                                    <li> <f:view>
+                                            <h:graphicImage value="/image/icon/user1.png" width="20"/>
+                                        </f:view><h:outputText value="Quản lý người dùng" /></li>
+                                </p:commandLink>
+                                <p:commandLink>
+                                    <li> <f:view>
+                                            <h:graphicImage value="/image/icon/receipt.png" width="20"/>
+                                        </f:view><h:outputText value="Quản lý đơn hàng" /></li>
+                                </p:commandLink>
+                                <p:commandLink>
+                                    <li> <f:view>
+                                            <h:graphicImage value="/image/icon/supplier.png" width="20"/>
+                                        </f:view><h:outputText value="Quản lý nhà cung cấp" /></li>
+                                </p:commandLink>
+                                <p:commandLink>
+                                    <li> <f:view>
+                                            <h:graphicImage value="/image/icon/tax.png" width="20"/>
+                                        </f:view><h:outputText value="Quản lý phiếu nhập" /></li>
+                                </p:commandLink>
+                                <p:commandLink>
+                                    <li> <f:view>
+                                            <h:graphicImage value="/image/icon/settings.png" width="20"/>
+                                        </f:view><h:outputText value="Quản lý chung" /></li>
+                                </p:commandLink>
+                                <p:commandLink>
+                                    <li> <f:view>
+                                            <h:graphicImage value="/image/icon/report.png" width="20"/>
+                                        </f:view><h:outputText value="Báo cáo"/></li>
+                                </p:commandLink>
+                                <p:commandLink>
+                                    <li> <f:view>
+                                            <h:graphicImage value="/image/icon/accountant.png" width="20"/>
+                                        </f:view><h:outputText value="Tài khoản"/></li>
+                                </p:commandLink>
+                            </ul>
+                        </div>
+                        <div class="right">
+                            <ui:insert name="content">
+                                content
+                            </ui:insert>
+                        </div>
+                    </div>
+                    <div class = "footer">
+                        footer
+                    </div>-->
     </h:body>
 </html>
-
