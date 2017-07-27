@@ -5,17 +5,16 @@
  */
 package controller;
 
-import javafx.event.ActionEvent;
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import org.primefaces.context.RequestContext;
 
 /**
  *
  * @author Administrator
  */
-public class LoginManagedBean {
+public class LoginManagedBean implements Serializable {
 
     private String username;
 
@@ -44,7 +43,7 @@ public class LoginManagedBean {
             session.setAttribute("login", true);
             return "admin/admin-home-page.xhtml?faces-redirect=true";
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, 
+            FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Đăng nhập thất bại"));
             return "";
         }
