@@ -101,7 +101,7 @@ public class AdminFilter implements Filter {
             throws IOException, ServletException {
         HttpSession session = ((HttpServletRequest) request).getSession();
         Boolean login = (Boolean) session.getAttribute("login");
-        if (login != null && login) {
+        if (login != null && login.booleanValue()) {
             chain.doFilter(request, response);//pass the request along the filter chain
         }
         else{

@@ -9,17 +9,14 @@
     </h:head>
     <h:body>
         <h:form>            
-            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+            <h:messages id="msg" showSummary="true" style="color: red"/>
             <h:panelGrid columns="2" cellpadding="5">
                 <h:outputLabel for="username" value="Tên đăng nhập:" />
                 <p:inputText id="username" value="#{loginManagedBean.username}" required="true" label="username" />
-
                 <h:outputLabel for="password" value="Mật khẩu:" />
                 <p:password id="password" value="#{loginManagedBean.password}" required="true" label="password" />
-
                 <f:facet name="footer">
-                    <p:commandButton value="Đăng nhập" update="growl" actionListener="#{loginManagedBean.login}"
-                                     oncomplete="handleLoginRequest(xhr, status, args)" />
+                    <p:commandButton value="Đăng nhập" action="#{loginManagedBean.login()}" />
                 </f:facet>  
             </h:panelGrid>
         </h:form>
