@@ -5,7 +5,6 @@
  */
 package controller;
 
-import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -14,7 +13,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Administrator
  */
-public class LoginManagedBean implements Serializable {
+public class LoginController {
 
     private String username;
 
@@ -47,5 +46,12 @@ public class LoginManagedBean implements Serializable {
                     new FacesMessage("Đăng nhập thất bại"));
             return "";
         }
+    }
+
+    public String logout() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+                .getExternalContext().getSession(true);
+        session.removeAttribute("login");
+        return "admin/login";
     }
 }

@@ -5,23 +5,18 @@
  */
 package controller;
 
-import java.io.Serializable;
-
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Administrator
  */
-public class AdminHomeBean implements Serializable{
+public class AdminController {
 
     /**
-     * Creates a new instance of AdminHomeBean
+     * Creates a new instance of AdminController
      */
-    public AdminHomeBean() {
-        
-    }
-    
-    public String logout(){
-        return "admin/login";
-    }
+
 }

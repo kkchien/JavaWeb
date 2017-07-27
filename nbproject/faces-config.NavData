@@ -2,10 +2,12 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="admin/admin-home-page.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="admin/admin-home-page.xhtml" x="370" y="75" zoom="true"/>
         <Node id="index.xhtml" x="150" y="300" zoom="true"/>
-        <Node id="admin/login.xhtml" x="257" y="151" zoom="true"/>
         <Node id="welcomePrimefaces.xhtml" x="391" y="233" zoom="true"/>
+        <Node id="admin/add-book.xhtml" x="73" y="96" zoom="true"/>
+        <Node id="newTemplate.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="admin/login.xhtml" x="79" y="164" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
