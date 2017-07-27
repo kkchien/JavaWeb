@@ -21,4 +21,7 @@ public class AdminHomeBean implements Serializable{
         
     }
     
+    public String logout(){
+        return "admin/login";
+    }
 }
