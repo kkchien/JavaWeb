@@ -5,17 +5,16 @@
  */
 package controller;
 
-import javafx.event.ActionEvent;
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import org.primefaces.context.RequestContext;
 
 /**
  *
  * @author Administrator
  */
-public class LoginManagedBean {
+public class LoginManagedBean implements Serializable {
 
     private String username;
 
@@ -37,20 +36,16 @@ public class LoginManagedBean {
         this.password = password;
     }
 
-    public void login(ActionEvent event) {
-        RequestContext context = RequestContext.getCurrentInstance();
-        FacesMessage message = null;
-        boolean loggedIn = false;
+    public String login() {
         if (username != null && username.equals("admin") && password != null && password.equals("admin")) {
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
                     .getExternalContext().getSession(true);
             session.setAttribute("login", true);
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", username);
+            return "admin/admin-home-page.xhtml?faces-redirect=true";
         } else {
-            loggedIn = false;
-            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Đăng nhập thất bại"));
+            return "";
         }
-        FacesContext.getCurrentInstance().addMessage(null, message);
-        context.addCallbackParam("loggedIn", loggedIn);
     }
 }

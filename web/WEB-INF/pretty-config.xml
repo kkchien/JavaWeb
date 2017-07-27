@@ -15,5 +15,8 @@ and open the template in the editor.
         <pattern value="/admin/login" />
         <view-id value="/faces/admin/login.xhtml" />
     </url-mapping>
-
+    <url-mapping id="login">
+        <pattern value="/admin/home" />
+        <view-id value="/faces/admin/admin-home-page.xhtml" />
+    </url-mapping>
 </pretty-config>

@@ -8,4 +8,9 @@
         <managed-bean-class>controller.LoginManagedBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>adminHomeBean</managed-bean-name>
+        <managed-bean-class>controller.AdminHomeBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 </faces-config>
