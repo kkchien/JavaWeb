@@ -17,8 +17,9 @@ public class Products implements Serializable {
     protected Integer id;
     protected String name;
     protected int price;
-    protected Categories categorie;
+    protected Categories category;
     protected String info;
+    private Authors author;
 
     public Products() {
     }
@@ -47,13 +48,15 @@ public class Products implements Serializable {
         this.price = price;
     }
 
-    public Categories getCategorie() {
-        return categorie;
+    public Categories getCategory() {
+        return category;
     }
 
-    public void setCategorie(Categories categorie) {
-        this.categorie = categorie;
+    public void setCategory(Categories category) {
+        this.category = category;
     }
+
+  
 
     public String getInfo() {
         return info;
@@ -61,6 +64,14 @@ public class Products implements Serializable {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public Authors getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Authors author) {
+        this.author = author;
     }
 
 }

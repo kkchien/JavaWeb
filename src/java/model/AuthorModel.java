@@ -7,20 +7,23 @@ package model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import persistence.Categories;
+import persistence.Authors;
 
 /**
  *
  * @author Administrator
  */
-public class CategoryModel extends AbstractModel<Categories> {
+public class AuthorModel extends AbstractModel<Authors> {
 
-    public Categories find(int id) throws SQLException {
-        String sql = "SELECT * FROM categories WHERE id = ?";
+    private AuthorModel() {
+    }
+
+    public Authors find(int id) throws SQLException {
+        String sql = "SELECT * FROM authors WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setInt(1, id);
         rs = stmt.executeQuery();
-        Categories p = new Categories();
+        Authors p = new Authors();
         while (rs.next()) {
             p.setId(rs.getInt(rs.findColumn("id")));
             p.setName(rs.getString(rs.findColumn("name")));
@@ -28,15 +31,15 @@ public class CategoryModel extends AbstractModel<Categories> {
         closeConnection();
         return p;
     }
-    
-    public ArrayList<Categories> findAll() throws SQLException {
+
+    public ArrayList<Authors> findAll() throws SQLException {
         String sql = "SELECT * FROM categories";
         stmt = getConnection().prepareStatement(sql);
         rs = stmt.executeQuery();
-        ArrayList<Categories> arr = new ArrayList<>();
-        Categories p;
+        ArrayList<Authors> arr = new ArrayList<>();
+        Authors p;
         while (rs.next()) {
-            p = new Categories();
+            p = new Authors();
             p.setId(rs.getInt(rs.findColumn("id")));
             p.setName(rs.getString(rs.findColumn("name")));
             arr.add(p);
@@ -45,15 +48,12 @@ public class CategoryModel extends AbstractModel<Categories> {
         return arr;
     }
 
-    private CategoryModel() {
+    public static AuthorModel getInstance() {
+        return AuthorModelHolder.INSTANCE;
     }
 
-    public static CategoryModel getInstance() {
-        return CategoryModelHolder.INSTANCE;
-    }
+    private static class AuthorModelHolder {
 
-    private static class CategoryModelHolder {
-
-        private static final CategoryModel INSTANCE = new CategoryModel();
+        private static final AuthorModel INSTANCE = new AuthorModel();
     }
 }

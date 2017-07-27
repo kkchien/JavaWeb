@@ -25,12 +25,13 @@ public class ProductModel extends AbstractModel<Products> {
     }
 
     public void add(Products e) throws SQLException {
-        String sql = "INSERT INTO products (name, price, category_id, info) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO products (name, price, category_id, info, author_id) VALUES (?, ?, ?, ?, ?)";
         stmt = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, e.getName());
         stmt.setInt(2, e.getPrice());
-        stmt.setInt(3, e.getCategorie().getId());
+        stmt.setInt(3, e.getCategory().getId());
         stmt.setString(4, e.getInfo());
+        stmt.setInt(5, e.getAuthor().getId());
         int affectedRows = stmt.executeUpdate();
         if (affectedRows == 0) {
             closeConnection();
@@ -42,13 +43,14 @@ public class ProductModel extends AbstractModel<Products> {
     }
 
     public void edit(Products e) throws SQLException {
-        String sql = "UPDATE products  SET name = ?, price = ?, category_id = ?, info = ? WHERE id = ?";
+        String sql = "UPDATE products  SET name = ?, price = ?, category_id = ?, info = ?, author_id = ? WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setString(1, e.getName());
         stmt.setInt(2, e.getPrice());
-        stmt.setInt(3, e.getCategorie().getId());
+        stmt.setInt(3, e.getCategory().getId());
         stmt.setString(4, e.getInfo());
-        stmt.setInt(5, e.getId());
+        stmt.setInt(5, e.getAuthor().getId());
+        stmt.setInt(6, e.getId());
         int affectedRows = stmt.executeUpdate();
         closeConnection();
         if (affectedRows == 0) {
@@ -79,7 +81,8 @@ public class ProductModel extends AbstractModel<Products> {
             p.setInfo(rs.getString(rs.findColumn("info")));
             p.setName(rs.getString(rs.findColumn("name")));
             p.setPrice(rs.getInt(rs.findColumn("price")));
-            p.setCategorie(CategoryModel.getInstance().find(rs.getInt(rs.findColumn("category_id"))));
+            p.setCategory(CategoryModel.getInstance().find(rs.getInt(rs.findColumn("category_id"))));
+            p.setAuthor(AuthorModel.getInstance().find(rs.getInt(rs.findColumn("author_id"))));
             arr.add(p);
         }
         closeConnection();
@@ -97,25 +100,34 @@ public class ProductModel extends AbstractModel<Products> {
             p.setInfo(rs.getString(rs.findColumn("info")));
             p.setName(rs.getString(rs.findColumn("name")));
             p.setPrice(rs.getInt(rs.findColumn("price")));
-            p.setCategorie(CategoryModel.getInstance().find(rs.getInt(rs.findColumn("category_id"))));
+            p.setCategory(CategoryModel.getInstance().find(rs.getInt(rs.findColumn("category_id"))));
+            p.setAuthor(AuthorModel.getInstance().find(rs.getInt(rs.findColumn("author_id"))));
         }
         closeConnection();
         return p;
     }
 
     public ArrayList<Products> search(ProductSearch productSearch) throws SQLException {
-        String sql = "SELECT * FROM products WHERE name LIKE ? AND (category_id = ? OR 0 = ?) LIMIT ? OFFSET ?";
+        String sql = "SELECT * FROM products WHERE name LIKE ? AND (category_id = ? OR 0 = ?) "
+                + "AND (author_id = ? OR 0 = ?) LIMIT ? OFFSET ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setString(1, "%" + productSearch.getName() + "%");
-        if (productSearch.getCategorie() != null) {
-            stmt.setInt(2, productSearch.getCategorie().getId());
-            stmt.setInt(3, productSearch.getCategorie().getId());
+        if (productSearch.getCategory() != null) {
+            stmt.setInt(2, productSearch.getCategory().getId());
+            stmt.setInt(3, productSearch.getCategory().getId());
         } else {
             stmt.setInt(2, 0);
             stmt.setInt(3, 0);
         }
-        stmt.setInt(4, productSearch.getItemPerPage());
-        stmt.setInt(5, productSearch.getPage());
+        if (productSearch.getAuthor()!= null) {
+            stmt.setInt(4, productSearch.getAuthor().getId());
+            stmt.setInt(5, productSearch.getAuthor().getId());
+        } else {
+            stmt.setInt(2, 0);
+            stmt.setInt(3, 0);
+        }
+        stmt.setInt(6, productSearch.getItemPerPage());
+        stmt.setInt(7, productSearch.getPage());
         rs = stmt.executeQuery();
         ArrayList<Products> arr = new ArrayList<>();
         Products p;
@@ -125,7 +137,8 @@ public class ProductModel extends AbstractModel<Products> {
             p.setInfo(rs.getString(rs.findColumn("info")));
             p.setName(rs.getString(rs.findColumn("name")));
             p.setPrice(rs.getInt(rs.findColumn("price")));
-            p.setCategorie(CategoryModel.getInstance().find(rs.getInt(rs.findColumn("category_id"))));
+            p.setCategory(CategoryModel.getInstance().find(rs.getInt(rs.findColumn("category_id"))));
+            p.setAuthor(AuthorModel.getInstance().find(rs.getInt(rs.findColumn("author_id"))));
             arr.add(p);
         }
         closeConnection();
