@@ -38,7 +38,7 @@ public class AdminFilter implements Filter {
         if (login != null && login) {
             chain.doFilter(request, response);//pass the request along the filter chain
         } else {
-            request.getRequestDispatcher("/admin/login.jsf").forward(request, response);
+            request.getRequestDispatcher("/admin/login").forward(request, response);
         }
     }
 
