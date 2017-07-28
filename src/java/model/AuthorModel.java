@@ -7,23 +7,23 @@ package model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import persistence.Authors;
+import persistence.Author;
 
 /**
  *
  * @author Administrator
  */
-public class AuthorModel extends AbstractModel<Authors> {
+public class AuthorModel extends AbstractModel<Author> {
 
     private AuthorModel() {
     }
 
-    public Authors find(int id) throws SQLException {
+    public Author find(int id) throws SQLException {
         String sql = "SELECT * FROM authors WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setInt(1, id);
         rs = stmt.executeQuery();
-        Authors p = new Authors();
+        Author p = new Author();
         while (rs.next()) {
             p.setId(rs.getInt(rs.findColumn("id")));
             p.setName(rs.getString(rs.findColumn("name")));
@@ -32,14 +32,14 @@ public class AuthorModel extends AbstractModel<Authors> {
         return p;
     }
 
-    public ArrayList<Authors> findAll() throws SQLException {
+    public ArrayList<Author> findAll() throws SQLException {
         String sql = "SELECT * FROM categories";
         stmt = getConnection().prepareStatement(sql);
         rs = stmt.executeQuery();
-        ArrayList<Authors> arr = new ArrayList<>();
-        Authors p;
+        ArrayList<Author> arr = new ArrayList<>();
+        Author p;
         while (rs.next()) {
-            p = new Authors();
+            p = new Author();
             p.setId(rs.getInt(rs.findColumn("id")));
             p.setName(rs.getString(rs.findColumn("name")));
             arr.add(p);

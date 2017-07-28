@@ -6,7 +6,7 @@
 package model;
 
 import domain.ProductSearch;
-import persistence.Products;
+import persistence.Product;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Administrator
  */
-public class ProductModel extends AbstractModel<Products> {
+public class ProductModel extends AbstractModel<Product> {
 
     private ProductModel() {
     }
@@ -24,7 +24,7 @@ public class ProductModel extends AbstractModel<Products> {
         return ProductModelHolder.INSTANCE;
     }
 
-    public void add(Products e) throws SQLException {
+    public void add(Product e) throws SQLException {
         String sql = "INSERT INTO products (name, price, category_id, info, author_id) VALUES (?, ?, ?, ?, ?)";
         stmt = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, e.getName());
@@ -42,7 +42,7 @@ public class ProductModel extends AbstractModel<Products> {
         closeConnection();
     }
 
-    public void edit(Products e) throws SQLException {
+    public void edit(Product e) throws SQLException {
         String sql = "UPDATE products  SET name = ?, price = ?, category_id = ?, info = ?, author_id = ? WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setString(1, e.getName());
@@ -58,7 +58,7 @@ public class ProductModel extends AbstractModel<Products> {
         }
     }
 
-    public void delete(Products e) throws SQLException {
+    public void delete(Product e) throws SQLException {
         String sql = "DELETE FROM products WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setInt(1, e.getId());
@@ -69,14 +69,14 @@ public class ProductModel extends AbstractModel<Products> {
         }
     }
 
-    public ArrayList<Products> findAll() throws SQLException {
+    public ArrayList<Product> findAll() throws SQLException {
         String sql = "SELECT * FROM products";
         stmt = getConnection().prepareStatement(sql);
         rs = stmt.executeQuery();
-        ArrayList<Products> arr = new ArrayList<>();
-        Products p;
+        ArrayList<Product> arr = new ArrayList<>();
+        Product p;
         while (rs.next()) {
-            p = new Products();
+            p = new Product();
             p.setId(rs.getInt(rs.findColumn("id")));
             p.setInfo(rs.getString(rs.findColumn("info")));
             p.setName(rs.getString(rs.findColumn("name")));
@@ -89,12 +89,12 @@ public class ProductModel extends AbstractModel<Products> {
         return arr;
     }
 
-    public Products find(int id) throws SQLException {
+    public Product find(int id) throws SQLException {
         String sql = "SELECT * FROM products WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setInt(1, id);
         rs = stmt.executeQuery();
-        Products p = new Products();
+        Product p = new Product();
         while (rs.next()) {
             p.setId(rs.getInt(rs.findColumn("id")));
             p.setInfo(rs.getString(rs.findColumn("info")));
@@ -107,7 +107,7 @@ public class ProductModel extends AbstractModel<Products> {
         return p;
     }
 
-    public ArrayList<Products> search(ProductSearch productSearch) throws SQLException {
+    public ArrayList<Product> search(ProductSearch productSearch) throws SQLException {
         String sql = "SELECT * FROM products WHERE name LIKE ? AND (category_id = ? OR 0 = ?) "
                 + "AND (author_id = ? OR 0 = ?) LIMIT ? OFFSET ?";
         stmt = getConnection().prepareStatement(sql);
@@ -129,10 +129,10 @@ public class ProductModel extends AbstractModel<Products> {
         stmt.setInt(6, productSearch.getItemPerPage());
         stmt.setInt(7, productSearch.getPage());
         rs = stmt.executeQuery();
-        ArrayList<Products> arr = new ArrayList<>();
-        Products p;
+        ArrayList<Product> arr = new ArrayList<>();
+        Product p;
         while (rs.next()) {
-            p = new Products();
+            p = new Product();
             p.setId(rs.getInt(rs.findColumn("id")));
             p.setInfo(rs.getString(rs.findColumn("info")));
             p.setName(rs.getString(rs.findColumn("name")));

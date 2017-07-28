@@ -7,20 +7,20 @@ package model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import persistence.Categories;
+import persistence.Category;
 
 /**
  *
  * @author Administrator
  */
-public class CategoryModel extends AbstractModel<Categories> {
+public class CategoryModel extends AbstractModel<Category> {
 
-    public Categories find(int id) throws SQLException {
+    public Category find(int id) throws SQLException {
         String sql = "SELECT * FROM categories WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setInt(1, id);
         rs = stmt.executeQuery();
-        Categories p = new Categories();
+        Category p = new Category();
         while (rs.next()) {
             p.setId(rs.getInt(rs.findColumn("id")));
             p.setName(rs.getString(rs.findColumn("name")));
@@ -29,15 +29,15 @@ public class CategoryModel extends AbstractModel<Categories> {
         return p;
     }
     
-    public ArrayList<Categories> findAll() throws SQLException {
+    public ArrayList<Category> findAll() throws SQLException {
         String sql = "SELECT * FROM categories";
         connection = getConnection();
         stmt = getConnection().prepareStatement(sql);
         rs = stmt.executeQuery();
-        ArrayList<Categories> arr = new ArrayList<>();
-        Categories p;
+        ArrayList<Category> arr = new ArrayList<>();
+        Category p;
         while (rs.next()) {
-            p = new Categories();
+            p = new Category();
             p.setId(rs.getInt(rs.findColumn("id")));
             p.setName(rs.getString(rs.findColumn("name")));
             arr.add(p);

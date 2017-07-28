@@ -12,18 +12,18 @@ import java.util.ArrayList;
  *
  * @author Administrator
  */
-public class Orders implements Serializable {
+public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Integer id;
-    private Users user;
-    private ArrayList<OrderProducts> orderProducts;
+    private User user;
+    private ArrayList<OrderProduct> orderProducts;
     private String date;
 
-    public Orders() {
+    public Order() {
     }
 
-    public Orders(Integer id) {
+    public Order(Integer id) {
         this.id = id;
     }
 
@@ -35,19 +35,19 @@ public class Orders implements Serializable {
         this.id = id;
     }
 
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public ArrayList<OrderProducts> getOrderProducts() {
+    public ArrayList<OrderProduct> getOrderProducts() {
         return orderProducts;
     }
 
-    public void setOrderProducts(ArrayList<OrderProducts> orderProducts) {
+    public void setOrderProducts(ArrayList<OrderProduct> orderProducts) {
         this.orderProducts = orderProducts;
     }
 

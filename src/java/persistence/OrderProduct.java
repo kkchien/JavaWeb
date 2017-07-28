@@ -11,24 +11,24 @@ import java.io.Serializable;
  *
  * @author Administrator
  */
-public class OrderProducts implements Serializable {
+public class OrderProduct implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Products product;
+    private Product product;
     private Integer orderId;
     private int quantity;
 
-    public OrderProducts() {
+    public OrderProduct() {
     }
 
-    public OrderProducts(Integer orderId) {
+    public OrderProduct(Integer orderId) {
         this.orderId = orderId;
     }
 
-    public Products getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(Products product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 

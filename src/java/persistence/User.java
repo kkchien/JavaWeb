@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @author Administrator
  */
-public class Users implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Integer id;
@@ -19,14 +19,14 @@ public class Users implements Serializable {
     private String address;
     private String email;
 
-    public Users() {
+    public User() {
     }
 
-    public Users(Integer id) {
+    public User(Integer id) {
         this.id = id;
     }
 
-    public Users(Integer id, String name) {
+    public User(Integer id, String name) {
         this.id = id;
         this.name = name;
     }

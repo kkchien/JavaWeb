@@ -5,7 +5,7 @@
  */
 package model;
 
-import persistence.Users;
+import persistence.User;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Administrator
  */
-public class UserModel extends AbstractModel<Users> {
+public class UserModel extends AbstractModel<User> {
 
     private UserModel() {
     }
@@ -23,7 +23,7 @@ public class UserModel extends AbstractModel<Users> {
         return UserModelHolder.INSTANCE;
     }
 
-    public void add(Users e) throws SQLException {
+    public void add(User e) throws SQLException {
         String sql = "INSERT INTO users (name, email, phone, address) VALUES (?, ?, ?, ?)";
         stmt = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, e.getName());
@@ -40,7 +40,7 @@ public class UserModel extends AbstractModel<Users> {
         closeConnection();
     }
 
-    public void edit(Users e) throws SQLException {
+    public void edit(User e) throws SQLException {
         String sql = "UPDATE users  SET name = ?, email = ?, phone = ?, address = ? WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setString(1, e.getName());
@@ -55,7 +55,7 @@ public class UserModel extends AbstractModel<Users> {
         }
     }
 
-    public void delete(Users e) throws SQLException {
+    public void delete(User e) throws SQLException {
         String sql = "DELETE FROM users WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setInt(1, e.getId());
@@ -66,14 +66,14 @@ public class UserModel extends AbstractModel<Users> {
         }
     }
 
-    public ArrayList<Users> findAll() throws SQLException {
+    public ArrayList<User> findAll() throws SQLException {
         String sql = "SELECT * FROM users";
         stmt = getConnection().prepareStatement(sql);
         rs = stmt.executeQuery();
-        ArrayList<Users> arr = new ArrayList<>();
-        Users u;
+        ArrayList<User> arr = new ArrayList<>();
+        User u;
         while (rs.next()) {
-            u = new Users();
+            u = new User();
             u.setId(rs.getInt(rs.findColumn("id")));
             u.setAddress(rs.getString(rs.findColumn("address")));
             u.setEmail(rs.getString(rs.findColumn("email")));
@@ -85,12 +85,12 @@ public class UserModel extends AbstractModel<Users> {
         return arr;
     }
 
-    public Users find(int id) throws SQLException {
+    public User find(int id) throws SQLException {
         String sql = "SELECT * FROM users WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setInt(1, id);
         rs = stmt.executeQuery();
-        Users u = new Users();
+        User u = new User();
         while (rs.next()) {
             u.setId(rs.getInt(rs.findColumn("id")));
             u.setAddress(rs.getString(rs.findColumn("address")));

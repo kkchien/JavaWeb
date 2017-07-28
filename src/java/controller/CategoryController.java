@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import model.CategoryModel;
-import persistence.Categories;
+import persistence.Category;
 
 /**
  *
@@ -22,11 +22,11 @@ public class CategoryController {
     /**
      * Creates a new instance of CategoryController
      */
-    private Categories category;
-    private ArrayList<Categories> categories;
+    private Category category;
+    private ArrayList<Category> categories;
 
     public CategoryController() {
-        category = new Categories();
+        category = new Category();
         try {
             //        categories = new ArrayList<>();
             categories = CategoryModel.getInstance().findAll();
@@ -36,19 +36,19 @@ public class CategoryController {
 
     }
 
-    public Categories getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Categories category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
-    public ArrayList<Categories> getCategories() {
+    public ArrayList<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(ArrayList<Categories> categories) {
+    public void setCategories(ArrayList<Category> categories) {
         this.categories = categories;
     }
 

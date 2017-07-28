@@ -6,13 +6,13 @@
 package domain;
 
 import model.AbstractModel;
-import persistence.Products;
+import persistence.Product;
 
 /**
  *
  * @author Administrator
  */
-public class ProductSearch extends Products {
+public class ProductSearch extends Product {
 
     int page = 0;
     int itemPerPage = AbstractModel.ITEM_PER_PAGE;

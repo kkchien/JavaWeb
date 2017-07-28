@@ -5,19 +5,25 @@
  */
 package persistence;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Administrator
  */
-public class Authors {
-
+public class Category implements Serializable{
+    private static final long serialVersionUID = 1L;
     private Integer id;
     private String name;
 
-    public Authors() {
+    public Category() {
     }
 
-    public Authors(Integer id, String name) {
+    public Category(Integer id) {
+        this.id = id;
+    }
+
+    public Category(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -37,5 +43,4 @@ public class Authors {
     public void setName(String name) {
         this.name = name;
     }
-
 }

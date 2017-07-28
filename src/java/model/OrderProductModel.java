@@ -5,8 +5,8 @@
  */
 package model;
 
-import persistence.OrderProducts;
-import persistence.Orders;
+import persistence.OrderProduct;
+import persistence.Order;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Administrator
  */
-public class OrderProductModel extends AbstractModel<OrderProducts> {
+public class OrderProductModel extends AbstractModel<OrderProduct> {
 
     private OrderProductModel() {
     }
@@ -24,7 +24,7 @@ public class OrderProductModel extends AbstractModel<OrderProducts> {
         return OrderProductModelHolder.INSTANCE;
     }
 
-    public void add(OrderProducts e) throws SQLException {
+    public void add(OrderProduct e) throws SQLException {
         connection = getConnection();
         String sql = "INSERT INTO order_products (order_id, product_id, quantity) VALUES(?, ?, ?)";
         stmt = connection.prepareStatement(sql);
@@ -49,15 +49,15 @@ public class OrderProductModel extends AbstractModel<OrderProducts> {
         }
     }
 
-    public ArrayList<OrderProducts> findByOrderId(int id) throws SQLException {
+    public ArrayList<OrderProduct> findByOrderId(int id) throws SQLException {
         String sql = "SELECT * FROM order_products WHERE order_id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setInt(1, id);
         rs = stmt.executeQuery();
-        ArrayList<OrderProducts> arr = new ArrayList<>();
-        OrderProducts o;
+        ArrayList<OrderProduct> arr = new ArrayList<>();
+        OrderProduct o;
         while (rs.next()) {
-            o = new OrderProducts();
+            o = new OrderProduct();
             o.setOrderId(id);
             o.setProduct(ProductModel.getInstance().find(rs.getInt(rs.findColumn("product_id"))));
             o.setQuantity(rs.getInt(rs.findColumn("quantity")));

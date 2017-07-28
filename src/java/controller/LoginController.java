@@ -42,7 +42,7 @@ public class LoginController implements Serializable{
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
                     .getExternalContext().getSession(true);
             session.setAttribute("login", true);
-            return "/admin/admin-home-page.jsf";
+            return "/admin/admin-home-page.jsf?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Đăng nhập thất bại"));

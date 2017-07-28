@@ -11,17 +11,17 @@ import java.io.Serializable;
  *
  * @author Administrator
  */
-public class Products implements Serializable {
+public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
     protected Integer id;
     protected String name;
     protected int price;
-    protected Categories category;
+    protected Category category;
     protected String info;
-    private Authors author;
+    private Author author;
 
-    public Products() {
+    public Product() {
     }
 
     public Integer getId() {
@@ -48,11 +48,11 @@ public class Products implements Serializable {
         this.price = price;
     }
 
-    public Categories getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Categories category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -66,11 +66,11 @@ public class Products implements Serializable {
         this.info = info;
     }
 
-    public Authors getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(Authors author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
