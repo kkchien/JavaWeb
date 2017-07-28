@@ -13,22 +13,25 @@
 
             <p:panel header="Select a Location" style="margin-bottom:10px;">
                 <h:panelGrid columns="2" cellpadding="5">
-                    <p:outputLabel for="country" value="Country: " />
-                    <p:selectOneMenu id="country" value="#{categoryController.category.id}" style="width:150px">
-                        <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{categoryController.categories}" var="item" itemLabel="#{item.name}" itemValue="#{item.id}" />
+                    <h:outputLabel for="name" value="Tên sách:" />
+                    <p:inputText id="name" value="#{bookController.book.name}" required="true" style="width:250px"/>
+                    <p:outputLabel for="category" value="Thể loại " />
+                    <p:selectOneMenu id="category" value="#{bookController.book.category.id}" style="width:250px">
+                        <f:selectItem itemLabel="Chọn thể loại" noSelectionOption="true" />
+                        <f:selectItems value="#{categoryController.categories}" var="category" itemLabel="#{category.name}" itemValue="#{category.id}" />
                     </p:selectOneMenu>
-
-                    <p:outputLabel for="city" value="City: " />
-                    <p:selectOneMenu id="city" value="#{dropdownView.city}" style="width:150px">
-                        <f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{dropdownView.cities}" />
+                    <p:outputLabel for="author" value="Tác giả: " />
+                    <p:selectOneMenu id="author" value="#{bookController.book.author.id}" style="width:250px">
+                        <f:selectItem itemLabel="Chọn tác giả" noSelectionOption="true" />
+                        <f:selectItems value="#{authorController.authors}" var="author" itemLabel="#{author.name}" itemValue="#{author.id}" />
                     </p:selectOneMenu>
+                    <p:outputLabel for="price" value="Giá: " />
+                    <p:inputText id="price" value="#{bookController.book.price}" required="true" style="width:250px" />
+                    <p:outputLabel for="info" value="Thông tin chi tiết " />
+                    <p:inputTextarea id="info" value="#{bookController.book.info}" required="true" style="width:250px"/>
                 </h:panelGrid>
-
                 <p:separator />
-
-                <p:commandButton value="Submit" update="msgs" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" />
+                <p:commandButton value="Thêm" update="msgs" action="#{bookController.addBook()}" icon="ui-icon-check" />
             </p:panel>
         </h:form>
     </h:body>

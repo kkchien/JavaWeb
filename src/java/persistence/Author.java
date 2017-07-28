@@ -10,7 +10,7 @@ package persistence;
  * @author Administrator
  */
 public class Author {
-
+    private static final long serialVersionUID = 1L;
     private Integer id;
     private String name;
 

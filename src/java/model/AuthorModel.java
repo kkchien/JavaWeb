@@ -32,8 +32,8 @@ public class AuthorModel extends AbstractModel<Author> {
         return p;
     }
 
-    public ArrayList<Author> findAll() throws SQLException {
-        String sql = "SELECT * FROM categories";
+    public ArrayList<Author> findAll() throws Exception {
+        String sql = "SELECT * FROM authors";
         stmt = getConnection().prepareStatement(sql);
         rs = stmt.executeQuery();
         ArrayList<Author> arr = new ArrayList<>();

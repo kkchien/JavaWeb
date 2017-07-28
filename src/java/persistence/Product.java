@@ -19,7 +19,7 @@ public class Product implements Serializable {
     protected int price;
     protected Category category;
     protected String info;
-    private Author author;
+    protected Author author;
 
     public Product() {
     }
@@ -55,9 +55,7 @@ public class Product implements Serializable {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-  
-
+    
     public String getInfo() {
         return info;
     }

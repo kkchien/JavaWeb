@@ -25,7 +25,7 @@ public abstract class AbstractModel<E> {
     public static final int ITEM_PER_PAGE = 5;
 
     protected Connection getConnection() {
-        return DatabaseUtil.connectSqlite("\\db\\", "database", null, null);
+        return DatabaseUtil.connectSqlite("E:\\IT\\JAVA\\JavaWeb\\web\\resources\\db\\", "database", null, null);
     }
 
     protected void closeConnection() {

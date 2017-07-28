@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -17,31 +18,20 @@ import persistence.Category;
  */
 @ManagedBean(name = "categoryController")
 @ViewScoped
-public class CategoryController {
+public class CategoryController implements Serializable {
 
     /**
      * Creates a new instance of CategoryController
      */
-    private Category category;
     private ArrayList<Category> categories;
 
     public CategoryController() {
-        category = new Category();
         try {
             //        categories = new ArrayList<>();
             categories = CategoryModel.getInstance().findAll();
         } catch (Exception ex) {
             categories = new ArrayList<>();
         }
-
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public ArrayList<Category> getCategories() {
