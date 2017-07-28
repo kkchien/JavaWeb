@@ -37,9 +37,9 @@ public class LoginController {
 
     public String login() {
         if (username != null && username.equals("admin") && password != null && password.equals("admin")) {
-            HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-                    .getExternalContext().getSession(true);
-            session.setAttribute("login", true);
+//            HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+//                    .getExternalContext().getSession(true);
+//            session.setAttribute("login", true);
             return "admin/admin-home-page.xhtml?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().addMessage(null,

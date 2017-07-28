@@ -16,9 +16,7 @@ import org.sqlite.SQLiteConfig;
  * @author Administrator
  */
 public class DatabaseUtil {
-
     private static Connection connection = null;
-
     public static Connection connectSQL(String databaseUrl, String databaseName, String username, String password) {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
