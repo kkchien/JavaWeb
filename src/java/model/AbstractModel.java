@@ -25,7 +25,7 @@ public abstract class AbstractModel<E> {
     public static final int ITEM_PER_PAGE = 5;
 
     protected Connection getConnection() {
-        return DatabaseUtil.connectSqlite("db\\", "database", null, null);
+        return DatabaseUtil.connectSqlite("\\db\\", "database", null, null);
     }
 
     protected void closeConnection() {
@@ -60,4 +60,13 @@ public abstract class AbstractModel<E> {
             throw new SQLException("Creating failed, no ID obtained.");
         }
     }
+    
+//    public static void main(String[] args) {
+//        try {
+//            DatabaseUtil.connectSqlite("db\\", "database", null, null).prepareStatement("SELECT * FROM products");
+//        } catch (SQLException ex) {
+//            Logger.getLogger(AbstractModel.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+    
 }

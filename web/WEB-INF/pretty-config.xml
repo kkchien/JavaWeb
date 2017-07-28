@@ -1,22 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
-
-<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-               xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
-                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
-
+<pretty-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns="http://ocpsoft.com/prettyfaces/3.3.0"
+               xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.0
+                                   		http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.0.xsd" >
+    
+    <rewrite match="^(.*)\?TARGE.+$" substitute="$1" redirect="301"/>
+    <rewrite match="(?i)^(.*);jsessionid=\w+(.*)" substitute="$1$2" redirect="chain" />
     <url-mapping id="login">
         <pattern value="/admin/login" />
-        <view-id value="/faces/admin/login.xhtml" />
+        <view-id value="/admin/login.jsf" />
     </url-mapping>
     <url-mapping id="login">
         <pattern value="/admin/home" />
-        <view-id value="/faces/admin/admin-home-page.xhtml" />
+        <view-id value="/admin/admin-home-page.jsf" />
     </url-mapping>
 </pretty-config>
