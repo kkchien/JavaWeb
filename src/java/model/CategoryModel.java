@@ -31,6 +31,7 @@ public class CategoryModel extends AbstractModel<Categories> {
     
     public ArrayList<Categories> findAll() throws SQLException {
         String sql = "SELECT * FROM categories";
+        connection = getConnection();
         stmt = getConnection().prepareStatement(sql);
         rs = stmt.executeQuery();
         ArrayList<Categories> arr = new ArrayList<>();
@@ -56,4 +57,5 @@ public class CategoryModel extends AbstractModel<Categories> {
 
         private static final CategoryModel INSTANCE = new CategoryModel();
     }
+    
 }

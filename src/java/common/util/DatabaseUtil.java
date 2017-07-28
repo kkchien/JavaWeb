@@ -51,10 +51,11 @@ public class DatabaseUtil {
             connection = DriverManager.getConnection("jdbc:sqlite:" + databaseUrl + databaseName + ".db", config.toProperties());
         } catch (Exception ex) {
             ex.printStackTrace();
+            throw new RuntimeException();
         }
         return connection;
     }
-    
+
     public static void main(String[] args) {
 //        connectSQL();
     }

@@ -18,6 +18,13 @@
     <managed-bean>
         <managed-bean-name>loginController</managed-bean-name>
         <managed-bean-class>controller.LoginController</managed-bean-class>
-        <managed-bean-scope>view</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <navigation-rule>
+        <from-view-id>/admin/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/admin/admin-home-page.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
