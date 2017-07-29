@@ -5,6 +5,7 @@
  */
 package model.table;
 
+import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -52,7 +53,9 @@ public class ProductDataModel extends LazyDataModel<Product> {
                     try {
                         String filterProperty = it.next();
                         Object filterValue = filters.get(filterProperty);
-                        String fieldValue = String.valueOf(item.getClass().getField(filterProperty).get(item));
+                        Field f = item.getClass().getDeclaredField(filterProperty);
+                        f.setAccessible(true);
+                        String fieldValue = String.valueOf(f.get(item));
                         if (filterValue == null || fieldValue.contains(filterValue.toString())) {
                             match = true;
                         } else {
