@@ -9,6 +9,8 @@ import common.util.StringUtil;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -30,15 +32,18 @@ public class BookController implements Serializable {
 
     private Product book;
     private ArrayList<Product> arr;
-        private LazyDataModel<Product> books;
+    private LazyDataModel<Product> books;
+    private ArrayList<Product> arrLimit;
 
     public BookController() {
-        pmd = new ProductModel();
+        
         try {
-            arr = pmd.findAll();
+           
+            arr = ProductModel.getInstance().findAll();
         } catch (SQLException ex) {
             Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         book = new Product();
         book.setCategory(new Category());
         book.setAuthor(new Author());
@@ -48,7 +53,7 @@ public class BookController implements Serializable {
             books = new ProductDataModel(new ArrayList<>());
         }
     }
-
+   
     public ArrayList<Product> getArr() {
         return arr;
     }

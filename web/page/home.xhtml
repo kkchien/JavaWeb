@@ -12,6 +12,7 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
         <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet library="css" name="stylehome.css" />
     </head>
@@ -19,17 +20,16 @@ and open the template in the editor.
         <h2>trang chu</h2>
         <ui:composition template="../newTemplate.xhtml">
             <ui:define name="content">
-                <h:form id="form">
-                    <p:dataGrid var="arbook" value="#{bookController.arr}" columns="4" layout="grid" rows="4">
-                        <f:facet name="header" >
-                            <h:outputText value="deo biet cai gi ca"/>
-                        </f:facet>
+               <h:form id="form">
+                    <p:dataGrid var="arbook" value="#{bookController.arr}" columns="4" layout="grid" rows="16" paginator="true" id="book"
+                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                rowsPerPageTemplate="6,12,16">
                         <p:panel class ="display_book" style="text-align: center">
                             <h:panelGrid columns="1" style="width:100%">
                                 <p:commandLink>
                                     <p:graphicImage width="240" height="380" class="display_image" value="../image/image_produce/#{arbook.image}"/> 
                                 </p:commandLink>
-                                <h:outputText value="#{arbook.price} đ" />
+                                <h:outputText value="#{arbook.price} d" />
                                 <p:commandLink >
                                     <h:outputText  value="#{arbook.name}" style="margin:0 auto;" />
                                     <f:setPropertyActionListener value="#{arbook}" target="#{dataGridView.book}" />

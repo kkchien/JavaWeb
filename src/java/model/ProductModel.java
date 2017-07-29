@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class ProductModel extends AbstractModel<Product> {
 
-    public ProductModel() {
+    private ProductModel() {
     }
 
     public static ProductModel getInstance() {
@@ -91,6 +91,7 @@ public class ProductModel extends AbstractModel<Product> {
         closeConnection();
         return arr;
     }
+    
 
     public Product find(int id) throws SQLException {
         String sql = "SELECT * FROM products WHERE id = ?";
