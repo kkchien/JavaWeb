@@ -21,11 +21,9 @@ import javax.servlet.http.HttpSession;
  */
 public class AdminFilter implements Filter {
 
-
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
     // configured. 
-
     public AdminFilter() {
     }
 
@@ -34,9 +32,13 @@ public class AdminFilter implements Filter {
             FilterChain chain)
             throws IOException, ServletException {
         HttpSession session = ((HttpServletRequest) request).getSession();
-        Boolean login = (Boolean) session.getAttribute("login");
-        if (login != null && login) {
-            chain.doFilter(request, response);//pass the request along the filter chain
+        if (session != null) {
+            Boolean login = (Boolean) session.getAttribute("login");
+            if (login != null && login) {
+                chain.doFilter(request, response);//pass the request along the filter chain
+            } else {
+                request.getRequestDispatcher("/admin/login").forward(request, response);
+            }
         } else {
             request.getRequestDispatcher("/admin/login").forward(request, response);
         }
@@ -44,11 +46,11 @@ public class AdminFilter implements Filter {
 
     @Override
     public void destroy() {
-        
+
     }
 
     @Override
     public void init(FilterConfig filterConfig) {
-        
+
     }
 }

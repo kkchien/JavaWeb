@@ -22,7 +22,7 @@ import persistence.Product;
  */
 public class ProductDataModel extends LazyDataModel<Product> {
 
-    private List<Product> books;
+    private final List<Product> books;
 
     public ProductDataModel(List<Product> books) {
         this.books = books;
@@ -71,11 +71,8 @@ public class ProductDataModel extends LazyDataModel<Product> {
                 data.add(item);
             }
         }
-        //rowCount
         int dataSize = data.size();
         this.setRowCount(dataSize);
-
-        //paginate
         if (dataSize > pageSize) {
             try {
                 return data.subList(first, first + pageSize);
@@ -86,4 +83,14 @@ public class ProductDataModel extends LazyDataModel<Product> {
             return data;
         }
     }
+
+    public void removeBook(Product book) {
+        for(int i=0;i<books.size();i++){
+            if(books.get(i).getId().equals(book.getId())){
+                books.remove(i);
+                break;
+            }
+        }
+    }
+
 }
