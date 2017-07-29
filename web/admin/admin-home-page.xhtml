@@ -48,9 +48,53 @@
                 </h:form>
             </p:layoutUnit>
             <p:layoutUnit position="center" class="container">
-                <h:dataTable>
+                <h:form id="form">
+                    <p:dataTable id="book" value = "#{bookController.books}" var = "book" binding="#{table}" 
+                                 rows="15"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
+                                 selectionMode="single"
+                                 selection="#{bookController.book}"
+                                 lazy="true"
+                                 >
 
-                </h:dataTable>
+                        <p:ajax event="rowSelect"  update=":form:action" oncomplete="PF('actionDialog').show()"/>
+                        <p:column> 
+                            <f:facet name = "header">STT</f:facet>
+                                #{table.rowIndex+1}
+                        </p:column>
+                        <p:column filterBy="#{book.name}">    				
+                            <f:facet name = "header" >Tên sách</f:facet>    				
+                                #{book.name}
+                        </p:column>
+                        <p:column>
+                            <f:facet name = "header">Thể loại</f:facet>
+                                #{book.category.name}
+                        </p:column>
+                        <p:column>
+                            <f:facet name = "header">Tác giả</f:facet>
+                                #{book.author.name}
+                        </p:column>
+                        <p:column>
+                            <f:facet name = "header">Giá</f:facet>
+                                #{book.price}
+                        </p:column>
+                        <p:column>
+                            <f:facet name = "header">Thông tin chi tiết</f:facet>
+                                #{book.info}
+                        </p:column>
+                    </p:dataTable>
+                    <p:dialog header="Thao tác" widgetVar="actionDialog" modal="false" 
+                              showEffect="fade" rendered="#{not empty bookController.book}" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="action" style="text-align:center;">
+                            <p:panelGrid  columns="3">
+                                <h:button value="Xem chi tiết"/>
+                                <h:button value="Sửa"/>
+                                <h:button value="Xóa"/>
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </p:dialog>
+                </h:form>
             </p:layoutUnit>
         </p:layout>
     </h:body>
