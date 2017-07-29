@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import model.ProductModel;
@@ -105,8 +106,19 @@ public class BookController implements Serializable {
         return "";
     }
 
-//    public void onRowSelect(SelectEvent event) {
-//        FacesMessage msg = new FacesMessage("Car Selected");
-//        FacesContext.getCurrentInstance().addMessage(null, msg);
-//    }
+    public void viewBook() {
+        book = books.getRowData();
+    }
+
+    public void deleteBook() {
+        try {
+            ProductModel.getInstance().delete(book);
+            ((ProductDataModel) books).removeBook(book);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Xóa thành công"));
+        } catch (SQLException ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Không thể xóa được"));
+        }
+    }
+
 }

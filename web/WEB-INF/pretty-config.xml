@@ -9,8 +9,12 @@
         <pattern value="/admin/login" />
         <view-id value="/admin/login.jsf" />
     </url-mapping>
-    <url-mapping id="login">
+    <url-mapping>
         <pattern value="/admin/home" />
         <view-id value="/admin/admin-home-page.jsf" />
     </url-mapping>
+<!--    <url-mapping>
+        <pattern value="/admin/book/#{id}" />
+        <view-id value="/admin/admin-view-book.jsf" />
+    </url-mapping>-->
 </pretty-config>

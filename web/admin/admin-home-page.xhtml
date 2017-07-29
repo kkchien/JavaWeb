@@ -33,8 +33,8 @@
                             <p:menuitem value="List sách" icon="ui-icon-list" />
                             <p:menuitem value="Thêm sách" outcome="add-book"  icon="ui-icon-plus" />
                         </p:submenu>
-                        <p:submenu label="Quản lý sách">
-                            <p:menuitem value="List sách" actionListener="#{menuView.save}" icon="ui-icon-list" />
+                        <p:submenu label="Quản lý đơn hàng">
+                            <p:menuitem value="List đơn hàng" actionListener="#{menuView.save}" icon="ui-icon-list" />
                         </p:submenu>
                         <p:submenu label="Quản lý tác giả">
                             <p:menuitem value="List tác giả" actionListener="#{menuView.save}" icon="ui-icon-list" />
@@ -49,16 +49,13 @@
             </p:layoutUnit>
             <p:layoutUnit position="center" class="container">
                 <h:form id="form">
+                    <p:growl id="message" showDetail="true" />
                     <p:dataTable id="book" value = "#{bookController.books}" var = "book" binding="#{table}" 
                                  rows="15"
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
-                                 selectionMode="single"
-                                 selection="#{bookController.book}"
                                  lazy="true"
                                  >
-
-                        <p:ajax event="rowSelect"  update=":form:action" oncomplete="PF('actionDialog').show()"/>
                         <p:column> 
                             <f:facet name = "header">STT</f:facet>
                                 #{table.rowIndex+1}
@@ -76,21 +73,36 @@
                                 #{book.author.name}
                         </p:column>
                         <p:column>
-                            <f:facet name = "header">Giá</f:facet>
-                                #{book.price}
-                        </p:column>
-                        <p:column>
-                            <f:facet name = "header">Thông tin chi tiết</f:facet>
-                                #{book.info}
+                            <f:facet name = "header">Thao tác</f:facet>
+                            <p:commandButton value="Xem chi tiết" actionListener="#{bookController.viewBook()}" update=":form:bookDetail" oncomplete="PF('bookDialog').show()"/>
+                            <h:button value="Sửa"/>
+                            <p:commandButton value="Xóa" actionListener="#{bookController.deleteBook()}" update=":form:book">
+                                <p:confirm header="Xác nhận" message="Bạn có chắc muốn xóa " />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Xóa" type="button" styleClass="ui-confirmdialog-yes"/>
+                                <p:commandButton value="Hủy" type="button" styleClass="ui-confirmdialog-no"/>
+                            </p:confirmDialog>
                         </p:column>
                     </p:dataTable>
-                    <p:dialog header="Thao tác" widgetVar="actionDialog" modal="false" 
-                              showEffect="fade" rendered="#{not empty bookController.book}" hideEffect="fade" resizable="false">
-                        <p:outputPanel id="action" style="text-align:center;">
-                            <p:panelGrid  columns="3">
-                                <h:button value="Xem chi tiết"/>
-                                <h:button value="Sửa"/>
-                                <h:button value="Xóa"/>
+                    <p:dialog header="Chi tiết sách" widgetVar="bookDialog" modal="false" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="bookDetail" style="text-align:center;">
+                            <p:panelGrid  columns="2" rendered="#{not empty bookController.book}" columnClasses="label,value">
+                                <f:facet name="header">
+                                    <p:graphicImage name="demo/images/car/#{bookController.book}-big.gif"/> 
+                                </f:facet>
+                                <h:outputText value="Mã sách:" />
+                                <h:outputText value="#{bookController.book.id}" />
+                                <h:outputText value="Tên: " />
+                                <h:outputText value="#{bookController.book.name}" />
+                                <h:outputText value="Thể loại: " />
+                                <h:outputText value="#{bookController.book.category.name}"/>
+                                <h:outputText value="Tác giả: " />
+                                <h:outputText value="#{bookController.book.author.name}"/>
+                                <h:outputText value="Giá: " />
+                                <h:outputText value="#{bookController.book.price}"/>
+                                <h:outputText value="Thông tin chi tiết" />
+                                <h:outputText value="#{bookController.book.info}"/>
                             </p:panelGrid>
                         </p:outputPanel>
                     </p:dialog>
