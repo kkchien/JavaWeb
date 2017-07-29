@@ -5,13 +5,13 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Trang thêm sách</title>
     </h:head>
     <h:body>
         <h:form>
             <p:growl id="msgs" showDetail="true" />
 
-            <p:panel header="Select a Location" style="margin-bottom:10px;">
+            <p:panel header="Thêm sách" style="margin-bottom:10px;">
                 <h:panelGrid columns="2" cellpadding="5">
                     <h:outputLabel for="name" value="Tên sách:" />
                     <p:inputText id="name" value="#{bookController.book.name}" required="true" style="width:250px"/>

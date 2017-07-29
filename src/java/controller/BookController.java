@@ -8,13 +8,15 @@ package controller;
 import common.util.StringUtil;
 import java.io.Serializable;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import model.ProductModel;
+import model.table.ProductDataModel;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.model.LazyDataModel;
 import persistence.Author;
 import persistence.Category;
 import persistence.Product;
@@ -28,11 +30,17 @@ import persistence.Product;
 public class BookController implements Serializable {
 
     private Product book;
+    private LazyDataModel<Product> books;
 
     public BookController() {
         book = new Product();
         book.setCategory(new Category());
         book.setAuthor(new Author());
+        try {
+            books = new ProductDataModel(ProductModel.getInstance().findAll());
+        } catch (SQLException ex) {
+            books = new ProductDataModel(new ArrayList<>());
+        }
     }
 
     public Product getBook() {
@@ -41,6 +49,14 @@ public class BookController implements Serializable {
 
     public void setBook(Product book) {
         this.book = book;
+    }
+
+    public LazyDataModel<Product> getBooks() {
+        return books;
+    }
+
+    public void setBooks(LazyDataModel<Product> books) {
+        this.books = books;
     }
 
     public String addBook() {
@@ -65,9 +81,14 @@ public class BookController implements Serializable {
                 return "/admin/admin-home-page.jsf?faces-redirect=true";
             } catch (SQLException ex) {
                 FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Không thể thêm sách, vui lòng thử lại sau"));
+                        new FacesMessage("Không thể thêm sách, vui lòng thử lại sau"));
             }
         }
         return "";
     }
+
+//    public void onRowSelect(SelectEvent event) {
+//        FacesMessage msg = new FacesMessage("Car Selected");
+//        FacesContext.getCurrentInstance().addMessage(null, msg);
+//    }
 }
