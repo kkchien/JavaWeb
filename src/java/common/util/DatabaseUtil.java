@@ -18,6 +18,7 @@ import org.sqlite.SQLiteConfig;
 public class DatabaseUtil {
     private static Connection connection = null;
     public static Connection connectSQL(String databaseUrl, String databaseName, String username, String password) {
+        
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 //            String dbURL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=java_web";
@@ -55,6 +56,6 @@ public class DatabaseUtil {
     }
 
     public static void main(String[] args) {
-//        connectSQL();
+      //  connectSQL("//localhost\\SQLEXPRESS", "java_web", "sa", "1234$");
     }
 }

@@ -8,14 +8,14 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <h:outputStylesheet library="css" name="default.css"/>
+        <h:outputStylesheet library="css" name="cssLayout.css"/>
         <title>Facelets Template</title>
     </h:head>
     <h:body>
         <div id="top">
             <div class="banner">
-                <p:commandLink >
+                <p:commandLink>
                     <f:view>
                         <h:graphicImage url="/image/image_logo/logo.png" width="200" alt="vinabook"></h:graphicImage>
                     </f:view>
@@ -44,61 +44,65 @@
             </div>
         </div>
         <div id =" center">
-            <ui:insert name="content">
-                <div id="center_top">
-                    <div id="left">
-                        <ul><h3>DANH MỤC SẢN PHẨM</h3>
-                            <li><p:commandLink>
-                                    <h:outputText value="Sách Văn Học" />
-                                </p:commandLink>
-                            </li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Sách Kỹ Năng - Sống Đẹp" />
-                                </p:commandLink>
-                            </li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Sách Thiếu Nhi" />
-                                </p:commandLink>
-                            </li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Sách Giáo Khoa" />
-                                </p:commandLink>
-                            </li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Sách Kinh Tế" />
-                                </p:commandLink>
-                            </li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Sách Lịch Sử" />
-                                </p:commandLink>
-                            </li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Sách Khoa Học - Kỹ Thuật" />
-                                </p:commandLink>
-                            </li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Sách Tổng Hợp" />
-                                </p:commandLink>
-                            </li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Sách Quân Sự" />
-                                </p:commandLink>
-                            </li>
 
-                        </ul>
-                    </div>
+            <div id="center_top">
+                <div id="left">
+                    <ul><h3>DANH MỤC SẢN PHẨM</h3>
+                        <li><p:commandLink>
+                                <h:outputText value="Sách Văn Học" />
+                            </p:commandLink>
+                        </li>
+                        <li><p:commandLink>
+                                <h:outputText value="Sách Kỹ Năng - Sống Đẹp" />
+                            </p:commandLink>
+                        </li>
+                        <li><p:commandLink>
+                                <h:outputText value="Sách Thiếu Nhi" />
+                            </p:commandLink>
+                        </li>
+                        <li><p:commandLink>
+                                <h:outputText value="Sách Giáo Khoa" />
+                            </p:commandLink>
+                        </li>
+                        <li><p:commandLink>
+                                <h:outputText value="Sách Kinh Tế" />
+                            </p:commandLink>
+                        </li>
+                        <li><p:commandLink>
+                                <h:outputText value="Sách Lịch Sử" />
+                            </p:commandLink>
+                        </li>
+                        <li><p:commandLink>
+                                <h:outputText value="Sách Khoa Học - Kỹ Thuật" />
+                            </p:commandLink>
+                        </li>
+                        <li><p:commandLink>
+                                <h:outputText value="Sách Tổng Hợp" />
+                            </p:commandLink>
+                        </li>
+                        <li><p:commandLink>
+                                <h:outputText value="Sách Quân Sự" />
+                            </p:commandLink>
+                        </li>
 
-                    <div id="right" class="left_content">
-                        <p:galleria class="slide" value="#{imageManagedBean.images}" var="image" showCaption="true">
-                            <p:graphicImage name="image/image_slide/#{image}" alt="Image Description for #{image}" title="#{image}"/>
-                        </p:galleria>
-                    </div>
+                    </ul>
                 </div>
-                <div id ="center_bottom">
 
-
+                <div id="right" class="left_content">
+                    <p:galleria class="slide" value="#{slideControlle.images}"  var="image" showCaption="true">
+                        <p:commandLink>
+                            <p:graphicImage value="image/image_slide/#{image}" alt="Image Description for #{image}" title="#{image}"/>          
+                        </p:commandLink>
+                    </p:galleria>
                 </div>
-            </ui:insert>
+            </div>
+
+            <div id ="center_bottom">
+                <ui:insert name="content">
+
+                </ui:insert>
+            </div>
+
         </div>
         <div id="bottom">
             <div class ="about">

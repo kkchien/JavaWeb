@@ -20,6 +20,7 @@ public class Product implements Serializable {
     protected Category category;
     protected String info;
     protected Author author;
+    protected String image;
 
     public Product() {
     }
@@ -70,6 +71,14 @@ public class Product implements Serializable {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

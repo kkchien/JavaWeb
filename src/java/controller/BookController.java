@@ -8,6 +8,7 @@ package controller;
 import common.util.StringUtil;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
@@ -28,13 +29,28 @@ import persistence.Product;
 public class BookController implements Serializable {
 
     private Product book;
-
+    private ArrayList<Product> arr;
+    
+    public ProductModel pmd ;
     public BookController() {
+        pmd = new ProductModel();
+        try {
+            arr = pmd.findAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         book = new Product();
         book.setCategory(new Category());
         book.setAuthor(new Author());
     }
 
+    public ArrayList<Product> getArr() {
+        return arr;
+    }
+
+    public void setArr(ArrayList<Product> arr) {
+        this.arr = arr;
+    }
     public Product getBook() {
         return book;
     }

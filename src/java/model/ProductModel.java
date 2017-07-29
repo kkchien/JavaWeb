@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class ProductModel extends AbstractModel<Product> {
 
-    private ProductModel() {
+    public ProductModel() {
     }
 
     public static ProductModel getInstance() {
@@ -25,13 +25,14 @@ public class ProductModel extends AbstractModel<Product> {
     }
 
     public void add(Product e) throws SQLException {
-        String sql = "INSERT INTO products (name, price, category_id, info, author_id) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO products (name, price, category_id, info, author_id, image) VALUES (?, ?, ?, ?, ?, ?)";
         stmt = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, e.getName());
         stmt.setInt(2, e.getPrice());
         stmt.setInt(3, e.getCategory().getId());
         stmt.setString(4, e.getInfo());
         stmt.setInt(5, e.getAuthor().getId());
+        stmt.setString(6, e.getImage());
         int affectedRows = stmt.executeUpdate();
         if (affectedRows == 0) {
             closeConnection();
@@ -43,14 +44,15 @@ public class ProductModel extends AbstractModel<Product> {
     }
 
     public void edit(Product e) throws SQLException {
-        String sql = "UPDATE products  SET name = ?, price = ?, category_id = ?, info = ?, author_id = ? WHERE id = ?";
+        String sql = "UPDATE products  SET name = ?, price = ?, category_id = ?, info = ?, author_id = ?, image=? WHERE id = ?";
         stmt = getConnection().prepareStatement(sql);
         stmt.setString(1, e.getName());
         stmt.setInt(2, e.getPrice());
         stmt.setInt(3, e.getCategory().getId());
         stmt.setString(4, e.getInfo());
         stmt.setInt(5, e.getAuthor().getId());
-        stmt.setInt(6, e.getId());
+        stmt.setString(6, e.getImage());
+        stmt.setInt(7, e.getId());
         int affectedRows = stmt.executeUpdate();
         closeConnection();
         if (affectedRows == 0) {
@@ -81,6 +83,7 @@ public class ProductModel extends AbstractModel<Product> {
             p.setInfo(rs.getString(rs.findColumn("info")));
             p.setName(rs.getString(rs.findColumn("name")));
             p.setPrice(rs.getInt(rs.findColumn("price")));
+            p.setImage(rs.getString(rs.findColumn("image")));
             p.setCategory(CategoryModel.getInstance().find(rs.getInt(rs.findColumn("category_id"))));
             p.setAuthor(AuthorModel.getInstance().find(rs.getInt(rs.findColumn("author_id"))));
             arr.add(p);
@@ -100,6 +103,7 @@ public class ProductModel extends AbstractModel<Product> {
             p.setInfo(rs.getString(rs.findColumn("info")));
             p.setName(rs.getString(rs.findColumn("name")));
             p.setPrice(rs.getInt(rs.findColumn("price")));
+            p.setImage(rs.getString(rs.findColumn("image")));
             p.setCategory(CategoryModel.getInstance().find(rs.getInt(rs.findColumn("category_id"))));
             p.setAuthor(AuthorModel.getInstance().find(rs.getInt(rs.findColumn("author_id"))));
         }
@@ -137,6 +141,7 @@ public class ProductModel extends AbstractModel<Product> {
             p.setInfo(rs.getString(rs.findColumn("info")));
             p.setName(rs.getString(rs.findColumn("name")));
             p.setPrice(rs.getInt(rs.findColumn("price")));
+            p.setImage(rs.getString(rs.findColumn("image")));
             p.setCategory(CategoryModel.getInstance().find(rs.getInt(rs.findColumn("category_id"))));
             p.setAuthor(AuthorModel.getInstance().find(rs.getInt(rs.findColumn("author_id"))));
             arr.add(p);
