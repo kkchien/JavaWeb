@@ -34,6 +34,7 @@ public class BookController implements Serializable {
 
     private Product book;
     private ArrayList<Product> arr;
+    private ArrayList<Product> arrBuyBook;
     private LazyDataModel<Product> books;
 
     public BookController() {
@@ -44,7 +45,7 @@ public class BookController implements Serializable {
         } catch (SQLException ex) {
             Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        arrBuyBook = new ArrayList<>();
         book = new Product();
         book.setCategory(new Category());
         book.setAuthor(new Author());
@@ -62,6 +63,12 @@ public class BookController implements Serializable {
         this.book.setAuthor(book.getAuthor());
        return "detailProduct.xhtml?faces-redirect=true";
     }
+    public String ProductListCart()
+    {
+        //this.arrBuyBook.add(book);
+        return "cartProduct.xhtml?faces-redirect=true";
+    }
+    
    
     public ArrayList<Product> getArr() {
         return arr;
@@ -84,6 +91,14 @@ public class BookController implements Serializable {
 
     public void setBooks(LazyDataModel<Product> books) {
         this.books = books;
+    }
+
+    public ArrayList<Product> getArrBuyBook() {
+        return arrBuyBook;
+    }
+
+    public void setArrBuyBook(ArrayList<Product> arrBuyBook) {
+        this.arrBuyBook = arrBuyBook;
     }
 
     public String addBook() {

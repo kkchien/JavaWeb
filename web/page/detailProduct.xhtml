@@ -20,16 +20,13 @@ and open the template in the editor.
         <ui:composition template="../newTemplate.xhtml">
             <ui:define name="content">
                 <p:breadCrumb>
-                    <p:menuitem value="Categories" url="#" />
-                    <p:menuitem value="Sports" url="#" />
-                    <p:menuitem value="Basketball" url="#" />
-                    <p:menuitem value="NBA" url="#" />
-                    <p:menuitem value="Teams" url="#" />
-                    <p:menuitem value="L.A. Lakers" url="#" />
-                    <p:menuitem value="Roster" url="#" />
-                    <p:menuitem value="Kobe Bryant" url="#" />
+                    <p:menuitem value="Categories" url="" />
+                    <p:menuitem value="#{bookController.book.category.name}" url="#" />
+                    <p:menuitem value="#{bookController.book.name}" url="#" />
+
                 </p:breadCrumb>
                 <div class="chiacot" >
+
                     <div class="cot" >
                         <p:panelGrid columns="1" style="background-color: #fff">
                             <f:facet name="header">
@@ -42,11 +39,11 @@ and open the template in the editor.
                             <h:outputText value="#{bookController.book.author.name}" /></p>
                         <p><h:outputText value="Giá: " />
                             <h:outputText value="#{bookController.book.price} đ" /></p>
-                        <p>                            <h:outputText value="Thể loại: " />
+                        <p> <h:outputText value="Thể loại: " />
                             <h:outputText value="#{bookController.book.category.name}" /></p>
                     </div>
                     <div class="cot" >
-                        <p:panel id="basic" header="Thông tin kèm theo." style="margin-bottom:20px; background-color: #e6ffe6">
+                        <p:panel id="basic" header="Thông tin kèm theo." style="margin-bottom:20px;border: 0; background-color: #e6ffe6">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <h:outputText
                                     value="  -Có dịch vụ bọc sách plastic cao cấp cho sách này " />
@@ -56,29 +53,28 @@ and open the template in the editor.
                         </p:panel>
                     </div>
                     <div class="cot">
-                        <p:panel id="basic" header="Thông tin thanh toán."  style="margin-bottom:20px; background-color: #e6ffe6; font-size: 16px;">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <h:outputText value="Giá bán: "/>
-                                <h:outputText
-                                    value="#{bookController.book.price} đ" />
-                                <h:outputText value="Tình trạng: "/>
-                                <h:outputText style="color: green"
-                                              value="Còn hàng" />
-                                <p:commandButton value="Mua hàng"/>
-                            </h:panelGrid>
+
+                        <p:panel id="basic" header="Thông tin thanh toán." style="margin-bottom:20px; border: 0; background-color: #e6ffe6; font-size: 16px;">
+                            <h:form id="formbuyproduct">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <h:outputText value="Giá bán: "/>
+                                    <h:outputText
+                                        value="#{bookController.book.price} đ" />
+                                    <h:outputText value="Tình trạng: "/>
+                                    <h:outputText style="color: green" value="Còn hàng" />
+                                    <h:commandButton  action ="#{bookController.ProductListCart}" value="Mua ngay" id="btna"/>
+                                </h:panelGrid>
+                            </h:form>
                         </p:panel>
-
                     </div> 
+
                 </div>
-                <!--<div class="info-sach">-->
-                    <p:panel id="basic" header="Giới thiệu sách" footer="Mời bạn đón đọc" style="margin-bottom:20px">
-                        <h:panelGrid columns="1" cellpadding="10">
-                            <h:outputText value="#{bookController.book.info}" />
-                        </h:panelGrid>
-                    </p:panel>
-                <!--</div>-->
 
-
+                <p:panel id="basic" header="Giới thiệu sách" footer="Mời bạn đón đọc" style="margin-bottom:20px">
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <h:outputText value="#{bookController.book.info}" />
+                    </h:panelGrid>
+                </p:panel>
             </ui:define>
         </ui:composition>
     </body>
