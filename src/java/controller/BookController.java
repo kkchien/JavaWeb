@@ -28,13 +28,13 @@ import persistence.Product;
  * @author Administrator
  */
 @ManagedBean
-@ViewScoped
+//@ViewScoped
+@SessionScoped
 public class BookController implements Serializable {
 
     private Product book;
     private ArrayList<Product> arr;
     private LazyDataModel<Product> books;
-    private ArrayList<Product> arrLimit;
 
     public BookController() {
         
@@ -53,6 +53,14 @@ public class BookController implements Serializable {
         } catch (SQLException ex) {
             books = new ProductDataModel(new ArrayList<>());
         }
+    }
+    
+    public String ProductDetail(Product book)
+    {
+        this.book= book;
+        this.book.setCategory(book.getCategory());
+        this.book.setAuthor(book.getAuthor());
+       return "detailProduct.xhtml?faces-redirect=true";
     }
    
     public ArrayList<Product> getArr() {

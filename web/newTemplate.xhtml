@@ -10,6 +10,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="css" name="default.css"/>
         <h:outputStylesheet library="css" name="cssLayout.css"/>
+        <h:outputStylesheet library="css" name="styledetail.css"/>
         <title>Facelets Template</title>
     </h:head>
     <h:body>
@@ -29,7 +30,18 @@
                 </div>
                 <div class ="cart_login">
                     <div class="cart">
-                        <h:outputText  value="Giỏ hàng 0"/>
+
+                        <!--<h:outputText  value="Giỏ hàng 0"/>-->
+                        <h:form>
+                            <p:menuButton style="background: #fff" class="giohang" value="Giỏ hàng 0">
+                                <p:menuitem value="Save" />
+                                <p:menuitem value="Update" />
+                                <p:menuitem value="Delete" />
+                                <p:separator />
+                                <p:menuitem style="font-size: 15px; color: #ff661a" value="Thanh toán" url="http://www.primefaces.org" icon="ui-icon-extlink"/>
+                            </p:menuButton>
+                        </h:form>
+
                     </div>
                     <div class="login">
                         <p:commandLink>
@@ -91,7 +103,7 @@
                 <div id="right" class="left_content">
                     <p:galleria class="slide" value="#{slideControlle.images}"  var="image" showCaption="true">
                         <p:commandLink>
-                            <p:graphicImage value="image/image_slide/#{image}" alt="Image Description for #{image}" title="#{image}"/>          
+                            <p:graphicImage value="../image/image_slide/#{image}" alt="Image Description for #{image}" title="#{image}"/>          
                         </p:commandLink>
                     </p:galleria>
                 </div>
