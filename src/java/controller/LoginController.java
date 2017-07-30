@@ -54,6 +54,6 @@ public class LoginController implements Serializable{
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
                 .getExternalContext().getSession(true);
         session.removeAttribute("login");
-        return "admin/login";
+        return "/admin/login.jsf?faces-redirect=true";
     }
 }

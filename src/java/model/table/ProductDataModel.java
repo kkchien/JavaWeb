@@ -85,9 +85,22 @@ public class ProductDataModel extends LazyDataModel<Product> {
     }
 
     public void removeBook(Product book) {
-        for(int i=0;i<books.size();i++){
-            if(books.get(i).getId().equals(book.getId())){
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i).getId().equals(book.getId())) {
                 books.remove(i);
+                break;
+            }
+        }
+    }
+
+    public void addBook(Product book) {
+        books.add(book);
+    }
+
+    public void editBook(Product book) {
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i).getId().equals(book.getId())) {
+                books.set(i, book);
                 break;
             }
         }

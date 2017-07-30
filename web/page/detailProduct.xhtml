@@ -53,7 +53,6 @@ and open the template in the editor.
                         </p:panel>
                     </div>
                     <div class="cot">
-
                         <p:panel id="basic" header="Thông tin thanh toán." style="margin-bottom:20px; border: 0; background-color: #e6ffe6; font-size: 16px;">
                             <h:form id="formbuyproduct">
                                 <h:panelGrid columns="2" cellpadding="10">
@@ -62,14 +61,12 @@ and open the template in the editor.
                                         value="#{bookController.book.price} đ" />
                                     <h:outputText value="Tình trạng: "/>
                                     <h:outputText style="color: green" value="Còn hàng" />
-                                    <h:commandButton  action ="#{bookController.ProductListCart}" value="Mua ngay" id="btna"/>
+                                    <h:commandButton  action="#{bookController.ProductListCart()}" value="Mua ngay" id="btna"/>
                                 </h:panelGrid>
                             </h:form>
                         </p:panel>
                     </div> 
-
                 </div>
-
                 <p:panel id="basic" header="Giới thiệu sách" footer="Mời bạn đón đọc" style="margin-bottom:20px">
                     <h:panelGrid columns="1" cellpadding="10">
                         <h:outputText value="#{bookController.book.info}" />

@@ -29,7 +29,6 @@ and open the template in the editor.
                                 <p:commandLink action="#{bookController.ProductDetail(arbook)}">
                                     <p:graphicImage width="240" height="380" class="display_image" value="../image/image_produce/#{arbook.image}"/> 
                                 </p:commandLink>
-                            
                                 <h:outputText style="color: red" value="#{arbook.price} đ" />
                                 <p:commandLink action="#{bookController.ProductDetail(arbook)}">
                                     <h:outputText  value="#{arbook.name}" style="margin:0 auto; font-size: 18px" />

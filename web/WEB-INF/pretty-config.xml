@@ -13,8 +13,4 @@
         <pattern value="/admin/home" />
         <view-id value="/admin/admin-home-page.jsf" />
     </url-mapping>
-<!--    <url-mapping>
-        <pattern value="/admin/book/#{id}" />
-        <view-id value="/admin/admin-view-book.jsf" />
-    </url-mapping>-->
 </pretty-config>
