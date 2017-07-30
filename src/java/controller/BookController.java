@@ -63,10 +63,20 @@ public class BookController implements Serializable {
         this.book.setAuthor(book.getAuthor());
        return "detailProduct.xhtml?faces-redirect=true";
     }
-    public String ProductListCart()
+    public String ProductListCart(Product book)
     {
-        //this.arrBuyBook.add(book);
+        this.arrBuyBook.add(book);
         return "cartProduct.xhtml?faces-redirect=true";
+    }
+    public String ChuyenTrangTheoLoai(int loaisach)
+    {
+        try {
+            this.arr = ProductModel.getInstance().findAllCategory(loaisach);
+            this.book = arr.get(0);
+        } catch (SQLException ex) {
+            Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "home.xhtml?faces-redirect=true";
     }
     
    

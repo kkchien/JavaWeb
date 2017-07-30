@@ -91,6 +91,26 @@ public class ProductModel extends AbstractModel<Product> {
         closeConnection();
         return arr;
     }
+     public ArrayList<Product> findAllCategory(int ls) throws SQLException {
+        String sql = "SELECT * FROM products where category_id="+ls;
+        stmt = getConnection().prepareStatement(sql);
+        rs = stmt.executeQuery();
+        ArrayList<Product> arr = new ArrayList<>();
+        Product p;
+        while (rs.next()) {
+            p = new Product();
+            p.setId(rs.getInt(rs.findColumn("id")));
+            p.setInfo(rs.getString(rs.findColumn("info")));
+            p.setName(rs.getString(rs.findColumn("name")));
+            p.setPrice(rs.getInt(rs.findColumn("price")));
+            p.setImage(rs.getString(rs.findColumn("image")));
+            p.setCategory(CategoryModel.getInstance().find(rs.getInt(rs.findColumn("category_id"))));
+            p.setAuthor(AuthorModel.getInstance().find(rs.getInt(rs.findColumn("author_id"))));
+            arr.add(p);
+        }
+        closeConnection();
+        return arr;
+    }
     
 
     public Product find(int id) throws SQLException {

@@ -55,16 +55,16 @@ and open the template in the editor.
                     <div class="cot">
 
                         <p:panel id="basic" header="Thông tin thanh toán." style="margin-bottom:20px; border: 0; background-color: #e6ffe6; font-size: 16px;">
-                            <h:form id="formbuyproduct">
+                            <!--<h:form id="formbuyproduct">-->
                                 <h:panelGrid columns="2" cellpadding="10">
                                     <h:outputText value="Giá bán: "/>
                                     <h:outputText
                                         value="#{bookController.book.price} đ" />
                                     <h:outputText value="Tình trạng: "/>
                                     <h:outputText style="color: green" value="Còn hàng" />
-                                    <h:commandButton  action ="#{bookController.ProductListCart}" value="Mua ngay" id="btna"/>
+                                    <p:commandButton  action ="#{bookController.ProductListCart(book)}" value="Mua ngay" id="btna"/>
                                 </h:panelGrid>
-                            </h:form>
+                            <!--</h:form>-->
                         </p:panel>
                     </div> 
 
