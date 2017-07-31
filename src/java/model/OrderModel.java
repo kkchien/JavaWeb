@@ -5,12 +5,14 @@
  */
 package model;
 
+import common.util.DateTimeUtil;
 import persistence.Order;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import persistence.User;
 
 /**
  *
@@ -25,6 +27,7 @@ public class OrderModel extends AbstractModel<Order> {
             stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             UserModel.getInstance().add(order.getUser());
             stmt.setInt(1, order.getUser().getId());
+//            stmt.setDate(2, DateTimeUtil.getCurrentSqlDay());
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
                 closeConnection();
@@ -89,4 +92,5 @@ public class OrderModel extends AbstractModel<Order> {
     public static OrderModel getInstance() {
         return OrdeModelHolder.INSTANCE;
     }
+
 }

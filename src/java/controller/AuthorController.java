@@ -21,6 +21,7 @@ import persistence.Author;
 public class AuthorController implements Serializable  {
 
     private ArrayList<Author> authors;
+    private Author author;
 
     public AuthorController() {
         try {
@@ -28,6 +29,7 @@ public class AuthorController implements Serializable  {
         } catch (Exception ex) {
             authors = new ArrayList();
         }
+        author = new Author();
     }
 
     public ArrayList<Author> getAuthors() {
@@ -36,6 +38,10 @@ public class AuthorController implements Serializable  {
 
     public void setAuthors(ArrayList<Author> authors) {
         this.authors = authors;
+    }
+    
+    public void delete(){
+//        AuthorModel.getInstance().
     }
 
 }

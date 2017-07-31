@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import model.ProductModel;
@@ -25,8 +26,8 @@ import persistence.Product;
  * @author Administrator
  */
 @ManagedBean
-@ViewScoped
-//@SessionScoped
+//@ViewScoped
+@SessionScoped
 public class BookController implements Serializable {
 
     private Product book;
@@ -113,6 +114,10 @@ public class BookController implements Serializable {
         }
         return false;
     }
+    
+    public void newBook(){
+        book = new Product();
+    }
 
     public void addBook() {
         if (validate()) {
@@ -145,12 +150,13 @@ public class BookController implements Serializable {
 
     public void deleteBook() {
         try {
+            book = books.getRowData();
             ProductModel.getInstance().delete(book);
             ((ProductDataModel) books).removeBook(book);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Xóa thành công"));
         } catch (SQLException ex) {
+            ex.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Không thể xóa được"));
         }
     }
-
 }
