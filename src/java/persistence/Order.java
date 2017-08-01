@@ -19,6 +19,7 @@ public class Order implements Serializable {
     private User user;
     private ArrayList<OrderProduct> orderProducts;
     private String date;
+    private int status;
 
     public Order() {
     }
@@ -57,6 +58,14 @@ public class Order implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
     
 }

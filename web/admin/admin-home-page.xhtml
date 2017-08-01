@@ -23,137 +23,198 @@
             </p:menubar>
         </h:form>
         <p:layout class="main">
-            <p:layoutUnit position="west" class="left_menu">
+            <p:layoutUnit position="west" class="left_menu" >
                 <h:form id="left-form">
                     <p:panelMenu class="bg_color">
                         <p:menuitem>
                             <h:graphicImage value="/image/icon/home.png" width="20" />
                         </p:menuitem>
-                        <p:submenu label="Quản lý sách" class="bg_color">
-                            <p:menuitem value="List sách" icon="ui-icon-list" />
-                            <p:menuitem value="Thêm sách"
+                        <p:submenu label="Quản lý sách">
+                            <p:menuitem value="List sách" icon="ui-icon-list" actionListener="#{adminController.setView(adminController.BOOK)}" update="optionPanel" />
+                            <p:menuitem value="Thêm sách" actionListener="#{bookController.newBook()}"
                                         oncomplete="PF('addBookDialog').show()"  icon="ui-icon-plus" />
                         </p:submenu>
                         <p:submenu label="Quản lý đơn hàng">
-                            <p:menuitem value="List đơn hàng" actionListener="#{menuView.save}" icon="ui-icon-list" />
+                            <p:menuitem value="List đơn hàng"  actionListener="#{adminController.setView(adminController.ORDER)}" update="optionPanel" icon="ui-icon-list" />
                         </p:submenu>
                         <p:submenu label="Quản lý tác giả">
-                            <p:menuitem value="List tác giả" actionListener="#{menuView.save}" icon="ui-icon-list" />
-                            <p:menuitem value="Thêm tác giả" actionListener="#{menuView.update}"  icon="ui-icon-plus" />
+                            <p:menuitem value="List tác giả" actionListener="#{adminController.setView(adminController.AUTHOR)}" update="optionPanel"  icon="ui-icon-list" />
+                            <p:menuitem value="Thêm tác giả" actionListener="#{authorController.newAuthor()}" 
+                                        oncomplete="PF('addAuthorDialog').show()"  icon="ui-icon-plus" />
                         </p:submenu>
                         <p:submenu label="Quản lý thể loại">
-                            <p:menuitem value="List thể loại" actionListener="#{menuView.save}" icon="ui-icon-list" />
+                            <p:menuitem value="List thể loại" actionListener="#{adminController.setView(adminController.CATEGORY)}" update="optionPanel" icon="ui-icon-list" />
                             <p:menuitem value="Thêm thể loại" actionListener="#{menuView.update}"  icon="ui-icon-plus" />
                         </p:submenu>
                     </p:panelMenu>
                 </h:form>
             </p:layoutUnit>
             <p:layoutUnit position="center" class="container">
-                <h:form id="form">
-                    <p:growl id="message" showDetail="true" />
-                    <p:dataTable id="book" value = "#{bookController.books}" var = "book" binding="#{table}" 
-                                 rows="15"
-                                 paginator="true"
-                                 paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
-                                 lazy="true"
-                                 >
-                        <p:column> 
-                            <f:facet name = "header">STT</f:facet>
-                                #{table.rowIndex+1}
-                        </p:column>
-                        <p:column filterBy="#{book.name}">    				
-                            <f:facet name = "header" >Tên sách</f:facet>    				
-                                #{book.name}
-                        </p:column>
-                        <p:column>
-                            <f:facet name = "header">Thể loại</f:facet>
-                                #{book.category.name}
-                        </p:column>
-                        <p:column>
-                            <f:facet name = "header">Tác giả</f:facet>
-                                #{book.author.name}
-                        </p:column>
-                        <p:column>
-                            <f:facet name = "header">Thao tác</f:facet>
-                            <p:commandButton value="Chi tiết" actionListener="#{bookController.viewBook()}" update=":form:bookDetail" oncomplete="PF('bookDialog').show()"/>
-                            <p:commandButton value="Sửa" actionListener="#{bookController.viewBook()}" update=":form:editBookForm" oncomplete="PF('editbookDialog').show()"/>
-                            <p:commandButton value="Xóa" actionListener="#{bookController.deleteBook()}" update=":form:book">
-                                <p:confirm header="Xác nhận" message="Bạn có chắc muốn xóa " />
-                            </p:commandButton>
-                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                <p:commandButton value="Xóa" type="button" styleClass="ui-confirmdialog-yes" />
-                                <p:commandButton value="Hủy" type="button" styleClass="ui-confirmdialog-no"/>
-                            </p:confirmDialog>
-                        </p:column>
-                    </p:dataTable>
-                    <p:dialog header="Chi tiết sách" widgetVar="bookDialog" modal="false" showEffect="fade" hideEffect="fade" resizable="false">
-                        <p:outputPanel id="bookDetail" style="text-align:center;">
-                            <p:panelGrid  columns="2" rendered="#{not empty bookController.book}" columnClasses="label,value">
-                                <f:facet name="header">
-                                    <p:graphicImage name="demo/images/car/#{bookController.book}-big.gif"/> 
-                                </f:facet>
-                                <h:outputText value="Mã sách:" />
-                                <h:outputText value="#{bookController.book.id}" />
-                                <h:outputText value="Tên: " />
-                                <h:outputText value="#{bookController.book.name}" />
-                                <h:outputText value="Thể loại: " />
-                                <h:outputText value="#{bookController.book.category.name}"/>
-                                <h:outputText value="Tác giả: " />
-                                <h:outputText value="#{bookController.book.author.name}"/>
-                                <h:outputText value="Giá: " />
-                                <h:outputText value="#{bookController.book.price}"/>
-                                <h:outputText value="Thông tin chi tiết" />
-                                <h:outputText value="#{bookController.book.info}"/>
-                            </p:panelGrid>
-                        </p:outputPanel>
-                    </p:dialog>
-                    <p:dialog header="Thêm sách" widgetVar="addBookDialog" modal="false" showEffect="fade" hideEffect="fade" resizable="false">  
-                        <p:outputPanel id="addBookForm" style="text-align:center ;">
-                            <p:panelGrid columns="2" columnClasses="label,value">
-                                <p:outputLabel for="name" value="Tên sách:" />
-                                <p:inputText id="name" value="#{bookController.book.name}" required="true" style="width:250px"/>
-                                <p:outputLabel for="category" value="Thể loại " />
-                                <p:selectOneMenu id="category" value="#{bookController.book.category.id}" style="width:250px">
-                                    <f:selectItem itemLabel="Chọn thể loại" noSelectionOption="true" />
-                                    <f:selectItems value="#{categoryController.categories}" var="category" itemLabel="#{category.name}" itemValue="#{category.id}" />
-                                </p:selectOneMenu>
-                                <p:outputLabel for="author" value="Tác giả: " />
-                                <p:selectOneMenu id="author" value="#{bookController.book.author.id}" style="width:250px">
-                                    <f:selectItem itemLabel="Chọn tác giả" noSelectionOption="true" />
-                                    <f:selectItems value="#{authorController.authors}" var="author" itemLabel="#{author.name}" itemValue="#{author.id}" />
-                                </p:selectOneMenu>
-                                <p:outputLabel for="price" value="Giá: " />
-                                <p:inputText id="price" value="#{bookController.book.price}" required="true" style="width:250px" />
-                                <p:outputLabel for="info" value="Thông tin chi tiết " />
-                                <p:inputTextarea id="info" value="#{bookController.book.info}" required="true" style="width:250px"/>
-                            </p:panelGrid>
-                            <p:commandButton value="Thêm" action="#{bookController.addBook()}" update=":form:book :form:message" icon="ui-icon-check" />
-                        </p:outputPanel>
-                    </p:dialog> 
-                    <p:dialog header="Sửa sách" widgetVar="editBookDialog" modal="false" showEffect="fade" hideEffect="fade" resizable="false">  
-                        <p:outputPanel id="editBookForm" style="text-align:center ;">
-                            <p:panelGrid columns="2" columnClasses="label,value">
-                                <p:outputLabel  value="Tên sách:" />
-                                <p:inputText value="#{bookController.book.name}" required="true" style="width:250px"/>
-                                <p:outputLabel  value="Thể loại " />
-                                <p:selectOneMenu  value="#{bookController.book.category.id}" style="width:250px">
-                                    <f:selectItem itemLabel="Chọn thể loại" noSelectionOption="true" />
-                                    <f:selectItems value="#{categoryController.categories}" var="category" itemLabel="#{category.name}" itemValue="#{category.id}" />
-                                </p:selectOneMenu>
-                                <p:outputLabel value="Tác giả: " />
-                                <p:selectOneMenu  value="#{bookController.book.author.id}" style="width:250px">
-                                    <f:selectItem itemLabel="Chọn tác giả" noSelectionOption="true" />
-                                    <f:selectItems value="#{authorController.authors}" var="author" itemLabel="#{author.name}" itemValue="#{author.id}" />
-                                </p:selectOneMenu>
-                                <p:outputLabel value="Giá: " />
-                                <p:inputText  value="#{bookController.book.price}" required="true" style="width:250px" />
-                                <p:outputLabel  value="Thông tin chi tiết " />
-                                <p:inputTextarea  value="#{bookController.book.info}" required="true" style="width:250px"/>
-                            </p:panelGrid>
-                            <p:commandButton value="Sửa" action="#{bookController.editBook()}" update=":form:book :form:message" icon="ui-icon-check" />
-                        </p:outputPanel>
-                    </p:dialog> 
-                </h:form>
+                <p:panel id="optionPanel" class="panel">
+                    <h:form id="form">
+                        <p:growl id="message" showDetail="true" />
+                        <p:panel id="bookPanel" rendered="#{adminController.selectedMenu == adminController.BOOK}" class="panel">
+                            <p:dataTable id="book" value = "#{bookController.books}" var = "book" binding="#{table}" 
+                                         rows="10"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
+                                         lazy="true"
+                                         >
+                                <p:column> 
+                                    <f:facet name = "header">STT</f:facet>
+                                        #{table.rowIndex+1}
+                                </p:column>
+                                <p:column filterBy="#{book.name}">    				
+                                    <f:facet name = "header" >Tên sách</f:facet>    				
+                                        #{book.name}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name = "header">Thể loại</f:facet>
+                                        #{book.category.name}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name = "header">Tác giả</f:facet>
+                                        #{book.author.name}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name = "header">Thao tác</f:facet>
+                                    <p:commandButton value="Chi tiết"  actionListener="#{bookController.viewBook()}"  process="@this" update=":form:bookDetail" oncomplete="PF('bookDialog').show()"/>
+                                    <p:commandButton value="Sửa" actionListener="#{bookController.viewBook()}"  process="@this" update=":form:editBookForm :form:message" oncomplete="PF('editbookDialog').show()"/>
+                                    <p:commandButton value="Xóa" actionListener="#{bookController.deleteBook()}"  process="@this" update=":form:book :form:message">
+                                        <p:confirm header="Xác nhận" message="Bạn có chắc muốn xóa " />
+                                    </p:commandButton>
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Xóa" type="button" styleClass="ui-confirmdialog-yes" />
+                                        <p:commandButton value="Hủy" type="button" styleClass="ui-confirmdialog-no"/>
+                                    </p:confirmDialog>
+                                </p:column>
+                            </p:dataTable>
+                            <p:dialog header="Chi tiết sách" widgetVar="bookDialog" modal="false" showEffect="fade" hideEffect="fade" resizable="false">
+                                <p:outputPanel id="bookDetail" style="text-align:center;">
+                                    <p:panelGrid  columns="2" rendered="#{not empty bookController.book}" columnClasses="label,value">
+                                        <f:facet name="header">
+                                            <p:graphicImage /> 
+                                        </f:facet>
+                                        <h:outputText value="Mã sách:" />
+                                        <h:outputText value="#{bookController.book.id}" />
+                                        <h:outputText value="Tên: " />
+                                        <h:outputText value="#{bookController.book.name}" />
+                                        <h:outputText value="Thể loại: " />
+                                        <h:outputText value="#{bookController.book.category.name}"/>
+                                        <h:outputText value="Tác giả: " />
+                                        <h:outputText value="#{bookController.book.author.name}"/>
+                                        <h:outputText value="Giá: " />
+                                        <h:outputText value="#{bookController.book.price}"/>
+                                        <h:outputText value="Thông tin chi tiết" />
+                                        <h:outputText value="#{bookController.book.info}"/>
+                                    </p:panelGrid>
+                                </p:outputPanel>
+                            </p:dialog>
+                            <p:dialog header="Sửa sách" widgetVar="editbookDialog" modal="false" showEffect="fade" hideEffect="fade" resizable="false">  
+                                <p:outputPanel id="editBookForm" style="text-align:center ;">
+                                    <p:panelGrid columns="2" columnClasses="label,value">
+                                        <p:outputLabel for="e_name" value="Tên sách:" />
+                                        <p:inputText id="e_name" value="#{bookController.book.name}" style="width:250px"/>
+                                        <p:outputLabel  value="Thể loại " />
+                                        <p:selectOneMenu  value="#{bookController.book.category.id}" style="width:250px">
+                                            <f:selectItem itemLabel="Chọn thể loại" noSelectionOption="true" />
+                                            <f:selectItems value="#{categoryController.categories}" var="category" itemLabel="#{category.name}" itemValue="#{category.id}" />
+                                        </p:selectOneMenu>
+                                        <p:outputLabel value="Tác giả: " />
+                                        <p:selectOneMenu  value="#{bookController.book.author.id}" style="width:250px">
+                                            <f:selectItem itemLabel="Chọn tác giả" noSelectionOption="true" />
+                                            <f:selectItems value="#{authorController.authors}" var="author" itemLabel="#{author.name}" itemValue="#{author.id}" />
+                                        </p:selectOneMenu>
+                                        <p:outputLabel value="Giá: " />
+                                        <p:inputText  value="#{bookController.book.price}" style="width:250px" />
+                                        <p:outputLabel for="e_info" value="Thông tin chi tiết " />
+                                        <p:inputTextarea id="e_info" value="#{bookController.book.info}"  style="width:250px"/>
+                                    </p:panelGrid>
+                                    <p:commandButton value="Sửa" action="#{bookController.editBook()}" 
+                                                     update=":form:book :form:message" icon="ui-icon-check" oncomplete="PF('editbookDialog').hide()" />
+                                </p:outputPanel>
+                            </p:dialog> 
+                        </p:panel>
+                        <p:panel rendered="#{adminController.selectedMenu == adminController.AUTHOR}" class="panel">
+                            <p:dataTable id="author" value = "#{authorController.model}" 
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
+                                         lazy="true"
+                                         rows="10"
+                                         var = "author" binding="#{index}" >
+                                <p:column> 
+                                    <f:facet name = "header">STT</f:facet>
+                                        #{index.rowIndex+1}
+                                </p:column>
+                                <p:column>    				
+                                    <f:facet name = "header" >Tác giả</f:facet>    				
+                                        #{author.name}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Thao tác</f:facet>
+                                    <p:commandButton value="Xóa" actionListener="#{authorController.delete()}"  process="@this" update=":form:author :form:message">
+                                        <p:confirm header="Xác nhận" message="Bạn có chắc muốn xóa " />
+                                    </p:commandButton>
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Xóa" type="button" styleClass="ui-confirmdialog-yes" />
+                                        <p:commandButton value="Hủy" type="button" styleClass="ui-confirmdialog-no"/>
+                                    </p:confirmDialog>
+                                </p:column>
+                            </p:dataTable>
+                        </p:panel>
+                        <p:panel rendered="#{adminController.selectedMenu == adminController.CATEGORY}" class="panel">
+                            <p:dataTable id="category" value = "#{categoryController.categories}" 
+                                         var = "category" binding="#{indexx}" >
+                                <p:column> 
+                                    <f:facet name = "header">STT</f:facet>
+                                        #{indexx.rowIndex+1}
+                                </p:column>
+                                <p:column>    				
+                                    <f:facet name = "header" >Thể loại</f:facet>    				
+                                        #{category.name}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Thao tác</f:facet>
+                                </p:column>
+                            </p:dataTable>
+                        </p:panel>
+
+                        <p:dialog header="Thêm sách" widgetVar="addBookDialog" modal="false" showEffect="fade" hideEffect="fade" resizable="false">  
+                            <p:outputPanel id="addBookForm" style="text-align:center ;">
+                                <p:panelGrid columns="2" columnClasses="label,value">
+                                    <p:outputLabel for="a_name" value="Tên sách:" />
+                                    <p:inputText id="a_name" value="#{bookController.book.name}"  style="width:250px"/>
+                                    <p:outputLabel for="a_category" value="Thể loại " />
+                                    <p:selectOneMenu id="a_category" value="#{bookController.book.category.id}" style="width:250px">
+                                        <f:selectItem itemLabel="Chọn thể loại" noSelectionOption="true" />
+                                        <f:selectItems value="#{categoryController.categories}" var="category" itemLabel="#{category.name}" itemValue="#{category.id}" />
+                                    </p:selectOneMenu>
+                                    <p:outputLabel for="a_author" value="Tác giả: " />
+                                    <p:selectOneMenu id="a_author" value="#{bookController.book.author.id}" style="width:250px">
+                                        <f:selectItem itemLabel="Chọn tác giả" noSelectionOption="true" />
+                                        <f:selectItems value="#{authorController.authors}" var="author" itemLabel="#{author.name}" itemValue="#{author.id}" />
+                                    </p:selectOneMenu>
+                                    <p:outputLabel for="a_price" value="Giá: " />
+                                    <p:inputText id="a_price" value="#{bookController.book.price}" style="width:250px" />
+                                    <p:outputLabel for="a_info" value="Thông tin chi tiết " />
+                                    <p:inputTextarea id="a_info" value="#{bookController.book.info}" style="width:250px"/>
+                                </p:panelGrid>
+                                <p:commandButton value="Thêm" action="#{bookController.addBook()}" update=":form:book :form:message" icon="ui-icon-check" oncomplete="PF('addBookDialog').hide()"/>
+                            </p:outputPanel>
+                        </p:dialog>
+
+                        <p:dialog header="Thêm tác giả" widgetVar="addAuthorDialog" modal="false" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel style="text-align:center;">
+                                <p:panelGrid  columns="2" rendered="#{not empty authorController.author}" columnClasses="label,value">
+                                    <h:outputText value="Tên: " />
+                                    <p:inputText  value="#{authorController.author.name}" style="width: 250px;" />
+                                </p:panelGrid>
+                                <p:commandButton value="Thêm" action="#{authorController.addAuthor()}" 
+                                                 update=":form:author :form:message" icon="ui-icon-check" oncomplete="PF('addAuthorDialog').hide()" />
+                            </p:outputPanel>
+                        </p:dialog>
+                    </h:form>
+                </p:panel>
             </p:layoutUnit>
         </p:layout>
     </h:body>

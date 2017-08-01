@@ -130,6 +130,10 @@ public class BookController implements Serializable {
         }
         return false;
     }
+    
+    public void newBook(){
+        book = new Product();
+    }
 
     public void addBook() {
         if (validate()) {
@@ -162,12 +166,13 @@ public class BookController implements Serializable {
 
     public void deleteBook() {
         try {
+            book = books.getRowData();
             ProductModel.getInstance().delete(book);
             ((ProductDataModel) books).removeBook(book);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Xóa thành công"));
         } catch (SQLException ex) {
+            ex.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Không thể xóa được"));
         }
     }
-
 }

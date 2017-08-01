@@ -147,8 +147,19 @@ body{
     width: 170px;
 }
 .main{
-    min-height: 550px;
+    min-height: 600px;
 }
 .container{
     border: none;
+}
+.panel{
+    border: none;
+    padding: 0px!important;
+}
+.panel div{
+    border: none;
+    padding: 0px!important;
+}
+form{
+    padding: 0px;
 }
