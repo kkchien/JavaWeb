@@ -23,32 +23,43 @@ import persistence.Slide;
 @ViewScoped
 public class SlideController implements Serializable {
 
-    ArrayList<Slide> arr;
-    private List<String> images;
-    SlideModel slmd = new SlideModel();
-
-     @PostConstruct
-    public void init() {
-        arr = slmd.getAll();
-        images = new ArrayList<>();
-        Slide sl ;
-        String name;
-         for (int i = 0; i < arr.size(); i++) {
-           sl = arr.get(i);
-           name = sl.getName();
-           images.add(name);
-         }
+      private ArrayList<String> arr;
+    public SlideController() {
+        arr = new ArrayList<>();
+        for (int i = 1; i <=3; i++) {
+            arr.add("slide"+i+".png");
+        }
     }
-
-    public List<String> getImages() {
-//        for (int i = 0; i < arr.size(); i++) {
-//          System.out.println("ten slide: "+ images.get(i));
-//        }
-//            
-        return images;
-        
+    public ArrayList<String> getArr()
+    {
+        return arr;
     }
-    
+//    ArrayList<Slide> arr;
+//    private List<String> images;
+//    SlideModel slmd = new SlideModel();
+//
+//     @PostConstruct
+//    public void init() {
+//        arr = slmd.getAll();
+//        images = new ArrayList<>();
+//        Slide sl ;
+//        String name;
+//         for (int i = 0; i < arr.size(); i++) {
+//           sl = arr.get(i);
+//           name = sl.getName();
+//           images.add(name);
+//         }
+//    }
+//
+//    public List<String> getImages() {
+////        for (int i = 0; i < arr.size(); i++) {
+////          System.out.println("ten slide: "+ images.get(i));
+////        }
+////            
+//        return images;
+//        
+//    }
+//    
     
 //    public static void main(String[] args) {
 //        SlideController s = new SlideController();

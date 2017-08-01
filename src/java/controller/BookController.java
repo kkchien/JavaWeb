@@ -56,10 +56,26 @@ public class BookController implements Serializable {
         return "detailProduct.jsf?faces-redirect=true";
     }
 
+    public String ProductListCart(Product book)
+    {
+        this.arrBuyBook.add(book);
+        return "cartProduct.xhtml?faces-redirect=true";
+    }
+    public String ChuyenTrangTheoLoai(int loaisach)
+    {
+        try {
+            this.arr = ProductModel.getInstance().findAllCategory(loaisach);
+            this.book = arr.get(0);
+        } catch (SQLException ex) {
+            Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "home.jsf?faces-redirect=true";
+    }
     public String ProductListCart() {
         //this.arrBuyBook.add(book);
-        return "/page/cartProduct.jsf?faces-redirect=true";
+        return "cartProduct.xhtml?faces-redirect=true";
     }
+
 
     public ArrayList<Product> getArr() {
         return arr;

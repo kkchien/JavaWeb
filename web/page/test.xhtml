@@ -12,11 +12,12 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+        <h:outputStylesheet library="css" name="stylehome.css" />
     </h:head>
     <h:body>
-
+        <h2>trang chu</h2>
         <ui:composition template="../newTemplate.xhtml">
            <ui:define name="content">
                
@@ -46,7 +47,7 @@ and open the template in the editor.
                                 <h:outputText value="#{bookController.book.category.name}" /></p>
                         </div>
                         <div class="cot" >
-                            <p:panel id="basic1" header="Thông tin kèm theo." style="margin-bottom:20px;border: 0; background-color: #e6ffe6">
+                            <p:panel id="basic" header="Thông tin kèm theo." style="margin-bottom:20px;border: 0; background-color: #e6ffe6">
                                 <h:panelGrid columns="1" cellpadding="10">
                                     <h:outputText
                                         value="  -Có dịch vụ bọc sách plastic cao cấp cho sách này " />
@@ -56,7 +57,7 @@ and open the template in the editor.
                             </p:panel>
                         </div>
                         <div class="cot">
-                            <p:panel id="basic2" header="Thông tin thanh toán." style="margin-bottom:20px; border: 0; background-color: #e6ffe6; font-size: 16px;">
+                            <p:panel id="basic" header="Thông tin thanh toán." style="margin-bottom:20px; border: 0; background-color: #e6ffe6; font-size: 16px;">
 
                                 <h:panelGrid columns="2" cellpadding="10">
 
@@ -83,5 +84,5 @@ and open the template in the editor.
                 
             </ui:define>
         </ui:composition>
-    </h:body>
+        </h:body>
 </html>
