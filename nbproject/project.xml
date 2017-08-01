@@ -26,6 +26,7 @@
                     <file>${file.reference.primefaces-6.1.jar}</file>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
@@ -34,6 +35,8 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.jstl-1.2.jar}</file>
+=======
+>>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
 =======
 >>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
 =======
