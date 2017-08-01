@@ -54,7 +54,7 @@ public class BookController implements Serializable {
         return "detailProduct.jsf?faces-redirect=true";
     }
 
-    public void chuyenTrangTheoLoai(int loaisach){
+    public String chuyenTrangTheoLoai(int loaisach){
         try {
             this.arr = ProductModel.getInstance().findAllCategory(loaisach);
             this.book = arr.get(0);
@@ -63,6 +63,7 @@ public class BookController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Không có sách thuộc thể loại này"));
         }
+        return "/page/home.jsf?faces-redirect=true";
     }
 
     public String ProductListCart() {

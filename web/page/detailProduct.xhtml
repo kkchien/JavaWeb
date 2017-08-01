@@ -13,23 +13,17 @@ and open the template in the editor.
     <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
     </h:head>
     <h:body>
-
         <ui:composition template="../newTemplate.xhtml">
-           <ui:define name="content">
-               
-
+            <ui:define name="content">
+                <h:form>
                     <p:breadCrumb>
                         <p:menuitem value="Categories" url="" />
-                        <p:menuitem value="#{bookController.book.category.name}" url="#" action="#{bookController.ChuyenTrangTheoLoai(bookController.book.category.id)}"/>
-                        <p:menuitem value="#{bookController.book.name}" url="#" />
-
+                        <p:menuitem value="#{bookController.book.category.name}"/>
+                        <p:menuitem value="#{bookController.book.name}"/>
                     </p:breadCrumb>
-
                     <div class="chiacot" >
-
                         <div class="cot" >
                             <p:panelGrid columns="1" style="background-color: #fff">
                                 <f:facet name="header">
@@ -45,7 +39,7 @@ and open the template in the editor.
                             <p> <h:outputText value="Thể loại: " />
                                 <h:outputText value="#{bookController.book.category.name}" /></p>
                         </div>
-                        <div class="cot" >
+                        <div class="cot">
                             <p:panel id="basic1" header="Thông tin kèm theo." style="margin-bottom:20px;border: 0; background-color: #e6ffe6">
                                 <h:panelGrid columns="1" cellpadding="10">
                                     <h:outputText
@@ -57,28 +51,24 @@ and open the template in the editor.
                         </div>
                         <div class="cot">
                             <p:panel id="basic2" header="Thông tin thanh toán." style="margin-bottom:20px; border: 0; background-color: #e6ffe6; font-size: 16px;">
-
                                 <h:panelGrid columns="2" cellpadding="10">
-
                                     <h:outputText value="Giá bán: "/>
                                     <h:outputText
                                         value="#{bookController.book.price} đ" />
                                     <h:outputText value="Tình trạng: "/>
                                     <h:outputText style="color: green" value="Còn hàng" />
-
-                                    <p:commandButton type ="submit" action ="#{bookController.ProductListCart(bookController.book)}" id="btna" immediate="true" value="Mua ngay"/>
-                                  
+                                    <p:commandButton type ="submit" id="btna" immediate="true" value="Mua ngay"/>
                                 </h:panelGrid>
                             </p:panel>
                         </div> 
                     </div>
-                    
+
                     <p:panel id="basic" header="Giới thiệu sách" footer="Mời bạn đón đọc" style="margin-bottom:20px">
                         <h:panelGrid columns="1" cellpadding="10">
                             <h:outputText value="#{bookController.book.info}" />
                         </h:panelGrid>
                     </p:panel>
-                
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
