@@ -6,6 +6,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/M4700/Documents/GitHub/JavaWeb/web/page/home.xhtml</file>
             <file>file:/C:/Users/M4700/Documents/GitHub/JavaWeb/src/java/controller/BookController.java</file>
@@ -13,6 +14,9 @@
             <file>file:/C:/Users/M4700/Documents/GitHub/JavaWeb/web/newTemplate.xhtml</file>
             <file>file:/C:/Users/M4700/Documents/GitHub/JavaWeb/web/page/detailProduct.xhtml</file>
         </group>
+=======
+        <group/>
+>>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
 =======
         <group/>
 >>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
