@@ -18,21 +18,22 @@ import persistence.Slide;
  *
  * @author M4700
  */
-@ManagedBean(name="slideControlle")
+@ManagedBean(name = "slideControlle")
 //@RequestScoped
 @ViewScoped
 public class SlideController implements Serializable {
 
-      private ArrayList<String> arr;
+    private ArrayList<String> images;
+
     public SlideController() {
-        arr = new ArrayList<>();
-        for (int i = 1; i <=3; i++) {
-            arr.add("slide"+i+".png");
+        images = new ArrayList<>();
+        for (int i = 1; i <= 3; i++) {
+            images.add("slide" + i + ".png");
         }
     }
-    public ArrayList<String> getArr()
-    {
-        return arr;
+
+    public ArrayList<String> getImages() {
+        return images;
     }
 //    ArrayList<Slide> arr;
 //    private List<String> images;
@@ -60,7 +61,7 @@ public class SlideController implements Serializable {
 //        
 //    }
 //    
-    
+
 //    public static void main(String[] args) {
 //        SlideController s = new SlideController();
 //        s.init();

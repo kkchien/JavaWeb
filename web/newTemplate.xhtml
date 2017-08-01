@@ -38,12 +38,12 @@
                         <p:layout>
                             <p:layoutUnit position="west" class="panel menu">
                                 <h:form>
-                                    <p:menu model="#{categoryController.model}" triggerEvent="#{bookController.ChuyenTrangTheoLoai(1)}" >
+                                    <p:menu model="#{categoryController.model}" >
                                     </p:menu>
                                 </h:form>
                             </p:layoutUnit>
                             <p:layoutUnit position="center" class="panel">
-                                <p:galleria class="slide" value="#{slideControlle.arr}"  var="image" effectSpeed="1000" effect="fade" autoPlay="true" >
+                                <p:galleria class="slide" value="#{slideControlle.images}"  var="image" effectSpeed="1000" effect="fade" autoPlay="true" >
                                     <p:commandLink>
                                         <p:graphicImage value="../image/image_slide/#{image}" alt="Image Description for #{image}" title="#{image}"/>          
                                     </p:commandLink>

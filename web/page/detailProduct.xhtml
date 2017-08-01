@@ -66,15 +66,13 @@ and open the template in the editor.
                                     <h:outputText value="Tình trạng: "/>
                                     <h:outputText style="color: green" value="Còn hàng" />
 
-                                    <p:commandButton type ="submit" action ="#{bookController.ProductListCart()}" id="btna" immediate="true" value="Mua ngay"/>
-                                    <!--<h:commandButton action="#{bookController.ProductListCart()}" value="Mua ngay2" id="btnb"/>-->
-
-
+                                    <p:commandButton type ="submit" action ="#{bookController.ProductListCart(bookController.book)}" id="btna" immediate="true" value="Mua ngay"/>
+                                  
                                 </h:panelGrid>
                             </p:panel>
                         </div> 
                     </div>
-                    <!--<p:commandButton action="#{bookController.ProductListCart()}" value="chuyen"/>-->
+                    
                     <p:panel id="basic" header="Giới thiệu sách" footer="Mời bạn đón đọc" style="margin-bottom:20px">
                         <h:panelGrid columns="1" cellpadding="10">
                             <h:outputText value="#{bookController.book.info}" />
