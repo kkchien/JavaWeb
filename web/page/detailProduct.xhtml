@@ -16,11 +16,8 @@ and open the template in the editor.
 
     </h:head>
     <h:body>
-
         <ui:composition template="../newTemplate.xhtml">
            <ui:define name="content">
-               
-
                     <p:breadCrumb>
                         <p:menuitem value="Categories" url="" />
                         <p:menuitem value="#{bookController.book.category.name}" url="#" action="#{bookController.ChuyenTrangTheoLoai(bookController.book.category.id)}"/>

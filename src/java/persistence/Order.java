@@ -22,6 +22,7 @@ public class Order implements Serializable {
     private int status;
 
     public Order() {
+        orderProducts = new ArrayList<>();
     }
 
     public Order(Integer id) {
