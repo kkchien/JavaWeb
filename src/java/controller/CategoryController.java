@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import model.CategoryModel;
+import org.primefaces.model.menu.DefaultMenuItem;
+import org.primefaces.model.menu.DefaultMenuModel;
+import org.primefaces.model.menu.MenuModel;
 import persistence.Category;
 
 /**
@@ -24,6 +27,7 @@ public class CategoryController implements Serializable {
      * Creates a new instance of CategoryController
      */
     private ArrayList<Category> categories;
+    private MenuModel model;
 
     public CategoryController() {
         try {
@@ -32,14 +36,18 @@ public class CategoryController implements Serializable {
         } catch (Exception ex) {
             categories = new ArrayList<>();
         }
+        model = new DefaultMenuModel();
+        categories.stream().forEach((item) -> {
+            model.addElement(new DefaultMenuItem(item));
+        });
     }
 
     public ArrayList<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(ArrayList<Category> categories) {
-        this.categories = categories;
+    public MenuModel getModel() {
+        return model;
     }
 
 }
