@@ -39,6 +39,8 @@ public class CategoryController implements Serializable {
         model = new DefaultMenuModel();
         categories.stream().forEach((item) -> {
             DefaultMenuItem defaultMenuItem = new DefaultMenuItem(item);
+            defaultMenuItem.setCommand("#{bookController.chuyenTrangTheoLoai("+item.getId()+")}");
+            defaultMenuItem.setUpdate(":form:book");
             model.addElement(defaultMenuItem);
         });
     }

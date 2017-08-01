@@ -20,16 +20,14 @@ and open the template in the editor.
         <h2>Trang chủ</h2>
         <ui:composition template="../newTemplate.xhtml">
             <ui:define name="content">
-                 <h:form id="form">
-                <p:breadCrumb>
-                    <p:menuitem value="Categories" url="#" />
-                    <p:menuitem value="#{bookController.book.category.name}"/>
-                </p:breadCrumb>
-
-               
+                <h:form id="form">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories" url="#" />
+                        <p:menuitem value="#{bookController.book.category.name}"/>
+                    </p:breadCrumb>
                     <p:dataGrid var="arbook" value="#{bookController.arr}" columns="4" layout="grid" rows="16" paginator="true" id="book"
-                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                rowsPerPageTemplate="6,12,16">
+                                paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink} "
+                                rowsPerPageTemplate="6,12,16" >
                         <p:panel class ="display_book" style="text-align: center">
                             <h:panelGrid columns="1" style="width:100%">
                                 <p:commandLink action="#{bookController.ProductDetail(arbook)}">

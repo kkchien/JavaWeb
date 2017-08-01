@@ -32,7 +32,6 @@ public class BookController implements Serializable {
 
     private Product book;
     private ArrayList<Product> arr;
-    private ArrayList<Product> arrBuyBook;
     private LazyDataModel<Product> books;
 
     public BookController() {
@@ -44,7 +43,6 @@ public class BookController implements Serializable {
                     new FacesMessage("Lỗi kết nối tới cơ sở dữ liệu"));
             arr = new ArrayList<>();
         }
-        arrBuyBook = new ArrayList<>();
         book = new Product();
         books = new ProductDataModel(arr);
     }
@@ -56,26 +54,21 @@ public class BookController implements Serializable {
         return "detailProduct.jsf?faces-redirect=true";
     }
 
-    public String ProductListCart(Product book)
-    {
-        this.arrBuyBook.add(book);
-        return "cartProduct.xhtml?faces-redirect=true";
-    }
-    public String ChuyenTrangTheoLoai(int loaisach)
-    {
+    public void chuyenTrangTheoLoai(int loaisach){
         try {
             this.arr = ProductModel.getInstance().findAllCategory(loaisach);
             this.book = arr.get(0);
         } catch (SQLException ex) {
-            Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
+            this.arr = new ArrayList<>();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Không có sách thuộc thể loại này"));
         }
-        return "home.jsf?faces-redirect=true";
     }
+
     public String ProductListCart() {
         //this.arrBuyBook.add(book);
         return "cartProduct.xhtml?faces-redirect=true";
     }
-
 
     public ArrayList<Product> getArr() {
         return arr;
@@ -101,14 +94,6 @@ public class BookController implements Serializable {
         this.books = books;
     }
 
-    public ArrayList<Product> getArrBuyBook() {
-        return arrBuyBook;
-    }
-
-    public void setArrBuyBook(ArrayList<Product> arrBuyBook) {
-        this.arrBuyBook = arrBuyBook;
-    }
-
     private boolean validate() {
         if (book.getAuthor() == null && book.getAuthor().getId() == null) {
             FacesContext.getCurrentInstance().addMessage(null,
@@ -130,8 +115,8 @@ public class BookController implements Serializable {
         }
         return false;
     }
-    
-    public void newBook(){
+
+    public void newBook() {
         book = new Product();
     }
 
