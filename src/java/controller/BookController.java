@@ -19,8 +19,6 @@ import javax.faces.context.FacesContext;
 import model.ProductModel;
 import model.table.ProductDataModel;
 import org.primefaces.model.LazyDataModel;
-import persistence.Author;
-import persistence.Category;
 import persistence.Product;
 
 /**
@@ -38,31 +36,26 @@ public class BookController implements Serializable {
     private LazyDataModel<Product> books;
 
     public BookController() {
-        
         try {
-           
             arr = ProductModel.getInstance().findAll();
         } catch (SQLException ex) {
-            Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Lỗi kết nối tới cơ sở dữ liệu"));
+            arr = new ArrayList<>();
         }
         arrBuyBook = new ArrayList<>();
         book = new Product();
-        book.setCategory(new Category());
-        book.setAuthor(new Author());
-        try {
-            books = new ProductDataModel(ProductModel.getInstance().findAll());
-        } catch (SQLException ex) {
-            books = new ProductDataModel(new ArrayList<>());
-        }
+        books = new ProductDataModel(arr);
     }
-    
-    public String ProductDetail(Product book)
-    {
-        this.book= book;
+
+    public String ProductDetail(Product book) {
+        this.book = book;
         this.book.setCategory(book.getCategory());
         this.book.setAuthor(book.getAuthor());
-       return "detailProduct.xhtml?faces-redirect=true";
+        return "detailProduct.jsf?faces-redirect=true";
     }
+
     public String ProductListCart(Product book)
     {
         this.arrBuyBook.add(book);
@@ -76,10 +69,14 @@ public class BookController implements Serializable {
         } catch (SQLException ex) {
             Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "home.xhtml?faces-redirect=true";
+        return "home.jsf?faces-redirect=true";
     }
-    
-   
+    public String ProductListCart() {
+        //this.arrBuyBook.add(book);
+        return "cartProduct.xhtml?faces-redirect=true";
+    }
+
+
     public ArrayList<Product> getArr() {
         return arr;
     }
@@ -87,6 +84,7 @@ public class BookController implements Serializable {
     public void setArr(ArrayList<Product> arr) {
         this.arr = arr;
     }
+
     public Product getBook() {
         return book;
     }
@@ -111,7 +109,7 @@ public class BookController implements Serializable {
         this.arrBuyBook = arrBuyBook;
     }
 
-    public String addBook() {
+    private boolean validate() {
         if (book.getAuthor() == null && book.getAuthor().getId() == null) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Phải chọn tác giả"));
@@ -128,15 +126,34 @@ public class BookController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Phải nhập giá sách"));
         } else {
+            return true;
+        }
+        return false;
+    }
+
+    public void addBook() {
+        if (validate()) {
             try {
                 ProductModel.getInstance().add(book);
-                return "/admin/admin-home-page.jsf?faces-redirect=true";
+                ((ProductDataModel) books).addBook(book);
             } catch (SQLException ex) {
                 FacesContext.getCurrentInstance().addMessage(null,
                         new FacesMessage("Không thể thêm sách, vui lòng thử lại sau"));
             }
         }
-        return "";
+    }
+
+    public void editBook() {
+        if (validate()) {
+            try {
+                ProductModel.getInstance().edit(book);
+                ((ProductDataModel) books).editBook(book);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage("Không thể thêm sách, vui lòng thử lại sau"));
+            }
+        }
     }
 
     public void viewBook() {
@@ -149,8 +166,7 @@ public class BookController implements Serializable {
             ((ProductDataModel) books).removeBook(book);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Xóa thành công"));
         } catch (SQLException ex) {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Không thể xóa được"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Không thể xóa được"));
         }
     }
 
