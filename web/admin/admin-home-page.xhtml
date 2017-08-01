@@ -39,10 +39,11 @@
                         </p:submenu>
                         <p:submenu label="Quản lý tác giả">
                             <p:menuitem value="List tác giả" actionListener="#{adminController.setView(adminController.AUTHOR)}" update="optionPanel"  icon="ui-icon-list" />
-                            <p:menuitem value="Thêm tác giả" actionListener="#{menuView.update}"  icon="ui-icon-plus" />
+                            <p:menuitem value="Thêm tác giả" actionListener="#{authorController.newAuthor()}" 
+                                        oncomplete="PF('addAuthorDialog').show()"  icon="ui-icon-plus" />
                         </p:submenu>
                         <p:submenu label="Quản lý thể loại">
-                            <p:menuitem value="List thể loại" actionListener="#{menuView.save}" icon="ui-icon-list" />
+                            <p:menuitem value="List thể loại" actionListener="#{adminController.setView(adminController.CATEGORY)}" update="optionPanel" icon="ui-icon-list" />
                             <p:menuitem value="Thêm thể loại" actionListener="#{menuView.update}"  icon="ui-icon-plus" />
                         </p:submenu>
                     </p:panelMenu>
@@ -135,7 +136,11 @@
                             </p:dialog> 
                         </p:panel>
                         <p:panel rendered="#{adminController.selectedMenu == adminController.AUTHOR}" class="panel">
-                            <p:dataTable id="author" value = "#{authorController.authors}" 
+                            <p:dataTable id="author" value = "#{authorController.model}" 
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
+                                         lazy="true"
+                                         rows="10"
                                          var = "author" binding="#{index}" >
                                 <p:column> 
                                     <f:facet name = "header">STT</f:facet>
@@ -147,7 +152,7 @@
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">Thao tác</f:facet>
-                                    <p:commandButton value="Xóa" actionListener="#{authorController.delete()}" process="@this" update=":form:author :form:message">
+                                    <p:commandButton value="Xóa" actionListener="#{authorController.delete()}"  process="@this" update=":form:author :form:message">
                                         <p:confirm header="Xác nhận" message="Bạn có chắc muốn xóa " />
                                     </p:commandButton>
                                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -157,6 +162,23 @@
                                 </p:column>
                             </p:dataTable>
                         </p:panel>
+                        <p:panel rendered="#{adminController.selectedMenu == adminController.CATEGORY}" class="panel">
+                            <p:dataTable id="category" value = "#{categoryController.categories}" 
+                                         var = "category" binding="#{indexx}" >
+                                <p:column> 
+                                    <f:facet name = "header">STT</f:facet>
+                                        #{indexx.rowIndex+1}
+                                </p:column>
+                                <p:column>    				
+                                    <f:facet name = "header" >Thể loại</f:facet>    				
+                                        #{category.name}
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">Thao tác</f:facet>
+                                </p:column>
+                            </p:dataTable>
+                        </p:panel>
+
                         <p:dialog header="Thêm sách" widgetVar="addBookDialog" modal="false" showEffect="fade" hideEffect="fade" resizable="false">  
                             <p:outputPanel id="addBookForm" style="text-align:center ;">
                                 <p:panelGrid columns="2" columnClasses="label,value">
@@ -180,8 +202,19 @@
                                 <p:commandButton value="Thêm" action="#{bookController.addBook()}" update=":form:book :form:message" icon="ui-icon-check" oncomplete="PF('addBookDialog').hide()"/>
                             </p:outputPanel>
                         </p:dialog>
+
+                        <p:dialog header="Thêm tác giả" widgetVar="addAuthorDialog" modal="false" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel style="text-align:center;">
+                                <p:panelGrid  columns="2" rendered="#{not empty authorController.author}" columnClasses="label,value">
+                                    <h:outputText value="Tên: " />
+                                    <p:inputText  value="#{authorController.author.name}" style="width: 250px;" />
+                                </p:panelGrid>
+                                <p:commandButton value="Thêm" action="#{authorController.addAuthor()}" 
+                                                 update=":form:author :form:message" icon="ui-icon-check" oncomplete="PF('addAuthorDialog').hide()" />
+                            </p:outputPanel>
+                        </p:dialog>
                     </h:form>
-                    </p:panel>
+                </p:panel>
             </p:layoutUnit>
         </p:layout>
     </h:body>

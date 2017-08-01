@@ -4,8 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/IT/JAVA/JavaWeb/web/admin/admin-home-page.xhtml</file>
-            <file>file:/E:/IT/JAVA/JavaWeb/src/java/common/util/StringUtil.java</file>
-            <file>file:/E:/IT/JAVA/JavaWeb/src/java/controller/BookController.java</file>
+            <file>file:/E:/IT/JAVA/JavaWeb/src/java/controller/AdminController.java</file>
+            <file>file:/E:/IT/JAVA/JavaWeb/src/java/controller/AuthorController.java</file>
         </group>
     </open-files>
 </project-private>
