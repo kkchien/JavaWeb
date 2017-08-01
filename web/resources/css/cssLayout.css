@@ -169,7 +169,14 @@ element.style{
 .followus img,.pay p img{
     margin: 5px;
 }
-
+.panel{
+    border: none;
+    padding: 0px!important;
+}
+.panel div{
+    border: none;
+    padding: 0px!important;
+}
 
 
 

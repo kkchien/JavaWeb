@@ -14,7 +14,7 @@ public class AdminController {
     /**
      * Creates a new instance of AdminController
      */
-    private int selectedMenu;
+    private int selectedMenu = 1;
     private final int BOOK = 1;
     private final int ORDER = 2;
     private final int CATEGORY = 3;
@@ -40,9 +40,7 @@ public class AdminController {
         return AUTHOR;
     }
 
-
     public void setView(int view) {
         this.selectedMenu = view;
     }
-
 }

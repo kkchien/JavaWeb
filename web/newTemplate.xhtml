@@ -44,14 +44,14 @@
             </div>
         </div>
         <p:layout>
-            <p:layoutUnit position="north">
+            <p:layoutUnit position="north" class="panel">
                 <p:layout>
-                    <p:layoutUnit position="west" >
+                    <p:layoutUnit position="west" class="panel menu" style="height: 300px;">
                         <h:form>
                             <p:menu model="#{categoryController.model}" />
                         </h:form>
                     </p:layoutUnit>
-                    <p:layoutUnit position="center">
+                    <p:layoutUnit position="center" class="panel">
                         <p:galleria class="slide" value="#{slideControlle.images}"  var="image" showCaption="true">
                             <p:commandLink>
                                 <p:graphicImage value="../image/image_slide/#{image}" alt="Image Description for #{image}" title="#{image}"/>          
@@ -60,8 +60,9 @@
                     </p:layoutUnit>
                 </p:layout>
             </p:layoutUnit>
-            <p:layoutUnit position="south">
-                <div class ="about">
+            <p:layoutUnit position="south" >
+                <p:outputLabel value="2434" />
+<!--                <div class ="about">
                     <ul><h4>Về công ty</h4>
                         <li><p:commandLink>
                                 <h:outputText value="Giới thiệu về công ty"/>
@@ -145,11 +146,10 @@
                             <h:graphicImage url="/image/image_payment/mastercard.png" width="30" alt="twitter"></h:graphicImage>
                         </f:view>                
                     </p>
-                </div>
+                </div>-->
             </p:layoutUnit>
             <p:layoutUnit position="center" style="height: 2000px">
                 <ui:insert name="content">
-
                 </ui:insert>
             </p:layoutUnit>
         </p:layout>

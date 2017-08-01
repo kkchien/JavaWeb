@@ -3,7 +3,7 @@ body{
 }
 .main-display{
     width: 100%;
-   
+
 }
 .info_product
 {
@@ -21,7 +21,7 @@ body{
     margin: 10px;
     /*height:70%;*/
     width: 23%;
-    
+
     /*border: 1px solid orange;*/
     float:left;
 }
@@ -35,4 +35,25 @@ body{
 .ui-widget-header
 {
     background: #fff;
+}
+.menu ul{
+    border: none;
+}
+.menu ul li{
+    background-color: white;
+    color: black;
+    font-size: 18px;
+}
+.menu ul li a span{
+    background-color: white;
+    color: black;
+    font-size: 20px;
+}
+.menu ul li:hover{
+    background-color: black;
+    color: white;
+}
+.menu ul li a:hover{
+    background-color: black;
+    color: white;
 }
