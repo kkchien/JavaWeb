@@ -25,7 +25,7 @@ import persistence.Product;
  *
  * @author Administrator
  */
-@ManagedBean
+@ManagedBean(name = "bookController")
 //@ViewScoped
 @SessionScoped
 public class BookController implements Serializable {

@@ -14,312 +14,149 @@
         <title>Facelets Template</title>
     </h:head>
     <h:body>
-        <div>
-            <h:form>
-                <div id="top">
-                    <div class="banner">
-                        <p:commandLink>
-                            <f:view>
-                                <h:graphicImage url="/image/image_logo/logo.png" width="200" alt="vinabook"></h:graphicImage>
-                            </f:view>
-                        </p:commandLink>
-                    </div>
-                    <div class="function_bar">
-                        <div class = "search">
-                            <p:inputText id="input_search" />
-                            <p:button value="Search" class="btn_search" icon="ui-icon-search"/>
-
-                        </div>
-                        <div class ="cart_login">
-                            <div class="cart">
-                                <!--<h:outputText  value="Giỏ hàng 0"/>-->
-                            </div>
-                            <div class="login">
-                                <p:commandLink >
-                                    <h:outputText value="Đăng nhập"  />
-                                </p:commandLink> - 
-                                <p:commandLink>
-                                    <h:outputText value="Đăng kí" />
-                                </p:commandLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-<<<<<<< HEAD
-                <div id =" center">
-                    <div id="center_top">
-                        <div id="left">
-                            <ul><h3>DANH MỤC SẢN PHẨM</h3>
-                                <li><p:commandLink action="#{bookController.ChuyenTrangTheoLoai(1)}">
-                                        <h:outputText value="Sách Văn Học" />
-                                    </p:commandLink>
-                                </li>
-                                <li><p:commandLink action="#{bookController.ChuyenTrangTheoLoai(2)}">
-                                        <h:outputText value="Sách Kỹ Năng - Sống Đẹp" />
-                                    </p:commandLink>
-                                </li>
-                                <li><p:commandLink action="#{bookController.ChuyenTrangTheoLoai(3)}">
-                                        <h:outputText value="Sách Thiếu Nhi" />
-                                    </p:commandLink>
-                                </li>
-                                <li><p:commandLink action="#{bookController.ChuyenTrangTheoLoai(4)}">
-                                        <h:outputText value="Sách Giáo Khoa" />
-                                    </p:commandLink>
-                                </li>
-                                <li><p:commandLink action="#{bookController.ChuyenTrangTheoLoai(5)}">
-                                        <h:outputText value="Sách Kinh Tế" />
-                                    </p:commandLink>
-                                </li>
-                                <li><p:commandLink action="#{bookController.ChuyenTrangTheoLoai(6)}">
-                                        <h:outputText value="Sách Lịch Sử" />
-                                    </p:commandLink>
-                                </li>
-                                <li><p:commandLink action="#{bookController.ChuyenTrangTheoLoai(7)}">
-                                        <h:outputText value="Sách Khoa Học - Kỹ Thuật" />
-                                    </p:commandLink>
-                                </li>
-                                <li><p:commandLink action="#{bookController.ChuyenTrangTheoLoai(8)}">
-                                        <h:outputText value="Sách Tổng Hợp" />
-                                    </p:commandLink>
-                                </li>
-                                <li><p:commandLink action="#{bookController.ChuyenTrangTheoLoai(9)}">
-                                        <h:outputText value="Sách Quân Sự" />
-                                    </p:commandLink>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="right" class="left_content">
-                            <p:galleria class="slide" value="#{slideControlle.arr}"  var="image" showCaption="true">
-                                <p:commandLink>
-                                    <p:graphicImage value="../image/image_slide/#{image}" alt="Image Description for #{image}" title="#{image}"/>          
-                                </p:commandLink>
-                            </p:galleria>
-                        </div>
-                    </div>
-                    <div id ="center_bottom">
-
-                        <ui:insert name="content">
-
-                        </ui:insert>
-                    </div>
-                </div>
-                <div id="bottom">
-                    <div class ="about">
-                        <ul><h4>Về công ty</h4>
-                            <li><p:commandLink>
-                                    <h:outputText value="Giới thiệu về công ty"/>
-                                </p:commandLink></li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Tuyển dụng"/>
-                                </p:commandLink></li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Góc báo chí"/>
-                                </p:commandLink></li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Chương trình đại lý"/>
-                                </p:commandLink></li>
-                        </ul>
-                    </div>
-                    <div class ="help">
-                        <ul><h4>Trợ giúp</h4>
-                            <li><p:commandLink>
-                                    <h:outputText value="Quy định sử dụng"/>
-                                </p:commandLink></li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Hướng dẫn mua hàng"/>
-                                </p:commandLink></li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Phương thức thanh toán"/>
-                                </p:commandLink></li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Phương thức vận chuyển"/>
-                                </p:commandLink></li>
-                        </ul>
-                    </div>
-                    <div class ="infor_book">
-                        <ul><h4>Tin tức sách</h4>
-                            <li><p:commandLink>
-                                    <h:outputText value="Tin tức"/>
-                                </p:commandLink></li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Chân dung"/>
-                                </p:commandLink></li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Điểm sách"/>
-                                </p:commandLink></li>
-                            <li><p:commandLink>
-                                    <h:outputText value="Phê bình"/>
-                                </p:commandLink></li>
-
-                        </ul>
-
-
-
-
-                    </div>
-                    <div class ="followus">
-                        <h4>Follow us</h4>
-                        <p:commandLink>
-                            <f:view>
-                                <h:graphicImage url="/image/image_follow/facebook.png" width="25" alt="facebook"></h:graphicImage>
-                            </f:view>
-                        </p:commandLink>
-                        <p:commandLink>
-                            <f:view>
-                                <h:graphicImage url="/image/image_follow/google.png" width="25" alt="google+"></h:graphicImage>
-                            </f:view>
-                        </p:commandLink>
-                        <p:commandLink>
-                            <f:view>
-                                <h:graphicImage url="/image/image_follow/twitter.png" width="25" alt="twitter"></h:graphicImage>
-                            </f:view>
-                        </p:commandLink>
-                    </div>
-                    <div class ="pay">
-                        <h4>Thanh toán</h4>
-                        <p>
-                            <f:view>
-                                <h:graphicImage url="/image/image_payment/atm.png" width="30" alt="twitter"></h:graphicImage>
-                            </f:view>
-                            <f:view>
-                                <h:graphicImage url="/image/image_payment/jcb.png" width="30" alt="twitter"></h:graphicImage>
-                            </f:view>
-                        </p>
-                        <p>
-                            <f:view>
-                                <h:graphicImage url="/image/image_payment/visa.png" width="30" alt="twitter"></h:graphicImage>
-                            </f:view>
-                            <f:view>
-                                <h:graphicImage url="/image/image_payment/mastercard.png" width="30" alt="twitter"></h:graphicImage>
-                            </f:view>                
-                        </p>
-                    </div>
-                </div>
-            </h:form>
-        </div>
-
-=======
-            </div>
-        </div>
         <p:layout>
             <p:layoutUnit position="north" class="panel">
-                <p:layout>
-                    <p:layoutUnit position="west" class="panel menu" style="height: 300px;">
-                        <h:form>
-                            <p:menu model="#{categoryController.model}" />
-                        </h:form>
+                <h:form>
+                    <p:commandLink>
+                        <f:view>
+                            <h:graphicImage url="/image/image_logo/logo.png" width="200" alt="vinabook"></h:graphicImage>
+                        </f:view>
+                    </p:commandLink>
+                    <p:inputText id="input_search" />
+                    <p:button value="Search" class="btn_search" icon="ui-icon-search"/>
+                    <p:commandLink >
+                        <h:outputText value="Đăng nhập"  />
+                    </p:commandLink> - 
+                    <p:commandLink>
+                        <h:outputText value="Đăng kí" />
+                    </p:commandLink>
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="center"  class="panel">
+                <p:layout >
+                    <p:layoutUnit position="north" class="panel" size="350">
+                        <p:layout>
+                            <p:layoutUnit position="west" class="panel menu">
+                                <h:form>
+                                    <p:menu model="#{categoryController.model}" triggerEvent="#{bookController.ChuyenTrangTheoLoai(1)}" >
+                                    </p:menu>
+                                </h:form>
+                            </p:layoutUnit>
+                            <p:layoutUnit position="center" class="panel">
+                                <p:galleria class="slide" value="#{slideControlle.arr}"  var="image" effectSpeed="1000" effect="fade" autoPlay="true" >
+                                    <p:commandLink>
+                                        <p:graphicImage value="../image/image_slide/#{image}" alt="Image Description for #{image}" title="#{image}"/>          
+                                    </p:commandLink>
+                                </p:galleria>
+                            </p:layoutUnit>
+                        </p:layout>
                     </p:layoutUnit>
-                    <p:layoutUnit position="center" class="panel">
-                        <p:galleria class="slide" value="#{slideControlle.images}"  var="image" showCaption="true">
-                            <p:commandLink>
-                                <p:graphicImage value="../image/image_slide/#{image}" alt="Image Description for #{image}" title="#{image}"/>          
-                            </p:commandLink>
-                        </p:galleria>
+                    <p:layoutUnit position="south" size="300"  >
+                        <h:form>
+                            <p:panel class ="display_book" style="text-align: center">
+                                <p:panelGrid columns="3">
+                                    <p:menu>
+                                        <p:menuitem value="Giới thiệu về công ty" />
+                                        <p:menuitem value="Giới thiệu về công ty" />
+                                        <p:menuitem value="Giới thiệu về công ty" />
+                                    </p:menu>>
+                                </p:panelGrid>
+                            </p:panel>
+                        </h:form>
+                        <!--                        <div class ="about">
+                                                    <ul><h4>Về công ty</h4>
+                                                        <li><p:commandLink>
+                                                                <h:outputText value="Giới thiệu về công ty"/>
+                                                            </p:commandLink></li>
+                                                        <li><p:commandLink>
+                                                                <h:outputText value="Tuyển dụng"/>
+                                                            </p:commandLink></li>
+                                                        <li><p:commandLink>
+                                                                <h:outputText value="Góc báo chí"/>
+                                                            </p:commandLink></li>
+                                                        <li><p:commandLink>
+                                                                <h:outputText value="Chương trình đại lý"/>
+                                                            </p:commandLink></li>
+                                                    </ul>
+                                                </div>
+                                                <div class ="help">
+                                                    <ul><h4>Trợ giúp</h4>
+                                                        <li><p:commandLink>
+                                                                <h:outputText value="Quy định sử dụng"/>
+                                                            </p:commandLink></li>
+                                                        <li><p:commandLink>
+                                                                <h:outputText value="Hướng dẫn mua hàng"/>
+                                                            </p:commandLink></li>
+                                                        <li><p:commandLink>
+                                                                <h:outputText value="Phương thức thanh toán"/>
+                                                            </p:commandLink></li>
+                                                        <li><p:commandLink>
+                                                                <h:outputText value="Phương thức vận chuyển"/>
+                                                            </p:commandLink></li>
+                                                    </ul>
+                                                </div>
+                                                <div class ="infor_book">
+                                                    <ul><h4>Tin tức sách</h4>
+                                                        <li><p:commandLink>
+                                                                <h:outputText value="Tin tức"/>
+                                                            </p:commandLink></li>
+                                                        <li><p:commandLink>
+                                                                <h:outputText value="Chân dung"/>
+                                                            </p:commandLink></li>
+                                                        <li><p:commandLink>
+                                                                <h:outputText value="Điểm sách"/>
+                                                            </p:commandLink></li>
+                                                        <li><p:commandLink>
+                                                                <h:outputText value="Phê bình"/>
+                                                            </p:commandLink></li>
+                                                    </ul>
+                                                </div>
+                                                <div class ="followus">
+                                                    <h4>Follow us</h4>
+                                                    <p:commandLink>
+                                                        <f:view>
+                                                            <h:graphicImage url="/image/image_follow/facebook.png" width="25" alt="facebook"></h:graphicImage>
+                                                        </f:view>
+                                                    </p:commandLink>
+                                                    <p:commandLink>
+                                                        <f:view>
+                                                            <h:graphicImage url="/image/image_follow/google.png" width="25" alt="google+"></h:graphicImage>
+                                                        </f:view>
+                                                    </p:commandLink>
+                                                    <p:commandLink>
+                                                        <f:view>
+                                                            <h:graphicImage url="/image/image_follow/twitter.png" width="25" alt="twitter"></h:graphicImage>
+                                                        </f:view>
+                                                    </p:commandLink>
+                                                </div>
+                                                <div class ="pay">
+                                                    <h4>Thanh toán</h4>
+                                                    <p>
+                                                        <f:view>
+                                                            <h:graphicImage url="/image/image_payment/atm.png" width="30" alt="twitter"></h:graphicImage>
+                                                        </f:view>
+                                                        <f:view>
+                                                            <h:graphicImage url="/image/image_payment/jcb.png" width="30" alt="twitter"></h:graphicImage>
+                                                        </f:view>
+                                                    </p>
+                                                    <p>
+                                                        <f:view>
+                                                            <h:graphicImage url="/image/image_payment/visa.png" width="30" alt="twitter"></h:graphicImage>
+                                                        </f:view>
+                                                        <f:view>
+                                                            <h:graphicImage url="/image/image_payment/mastercard.png" width="30" alt="twitter"></h:graphicImage>
+                                                        </f:view>                
+                                                    </p>
+                                                </div>-->
+                    </p:layoutUnit>
+                    <p:layoutUnit position="center" size="2000">
+                        <ui:insert name="content">
+                        </ui:insert>
                     </p:layoutUnit>
                 </p:layout>
             </p:layoutUnit>
-            <p:layoutUnit position="south" >
-                <p:outputLabel value="2434" />
-<!--                <div class ="about">
-                    <ul><h4>Về công ty</h4>
-                        <li><p:commandLink>
-                                <h:outputText value="Giới thiệu về công ty"/>
-                            </p:commandLink></li>
-                        <li><p:commandLink>
-                                <h:outputText value="Tuyển dụng"/>
-                            </p:commandLink></li>
-                        <li><p:commandLink>
-                                <h:outputText value="Góc báo chí"/>
-                            </p:commandLink></li>
-                        <li><p:commandLink>
-                                <h:outputText value="Chương trình đại lý"/>
-                            </p:commandLink></li>
-                    </ul>
-                </div>
-                <div class ="help">
-                    <ul><h4>Trợ giúp</h4>
-                        <li><p:commandLink>
-                                <h:outputText value="Quy định sử dụng"/>
-                            </p:commandLink></li>
-                        <li><p:commandLink>
-                                <h:outputText value="Hướng dẫn mua hàng"/>
-                            </p:commandLink></li>
-                        <li><p:commandLink>
-                                <h:outputText value="Phương thức thanh toán"/>
-                            </p:commandLink></li>
-                        <li><p:commandLink>
-                                <h:outputText value="Phương thức vận chuyển"/>
-                            </p:commandLink></li>
-                    </ul>
-                </div>
-                <div class ="infor_book">
-                    <ul><h4>Tin tức sách</h4>
-                        <li><p:commandLink>
-                                <h:outputText value="Tin tức"/>
-                            </p:commandLink></li>
-                        <li><p:commandLink>
-                                <h:outputText value="Chân dung"/>
-                            </p:commandLink></li>
-                        <li><p:commandLink>
-                                <h:outputText value="Điểm sách"/>
-                            </p:commandLink></li>
-                        <li><p:commandLink>
-                                <h:outputText value="Phê bình"/>
-                            </p:commandLink></li>
-                    </ul>
-                </div>
-                <div class ="followus">
-                    <h4>Follow us</h4>
-                    <p:commandLink>
-                        <f:view>
-                            <h:graphicImage url="/image/image_follow/facebook.png" width="25" alt="facebook"></h:graphicImage>
-                        </f:view>
-                    </p:commandLink>
-                    <p:commandLink>
-                        <f:view>
-                            <h:graphicImage url="/image/image_follow/google.png" width="25" alt="google+"></h:graphicImage>
-                        </f:view>
-                    </p:commandLink>
-                    <p:commandLink>
-                        <f:view>
-                            <h:graphicImage url="/image/image_follow/twitter.png" width="25" alt="twitter"></h:graphicImage>
-                        </f:view>
-                    </p:commandLink>
-                </div>
-                <div class ="pay">
-                    <h4>Thanh toán</h4>
-                    <p>
-                        <f:view>
-                            <h:graphicImage url="/image/image_payment/atm.png" width="30" alt="twitter"></h:graphicImage>
-                        </f:view>
-                        <f:view>
-                            <h:graphicImage url="/image/image_payment/jcb.png" width="30" alt="twitter"></h:graphicImage>
-                        </f:view>
-                    </p>
-                    <p>
-                        <f:view>
-                            <h:graphicImage url="/image/image_payment/visa.png" width="30" alt="twitter"></h:graphicImage>
-                        </f:view>
-                        <f:view>
-                            <h:graphicImage url="/image/image_payment/mastercard.png" width="30" alt="twitter"></h:graphicImage>
-                        </f:view>                
-                    </p>
-                </div>-->
-            </p:layoutUnit>
-            <p:layoutUnit position="center" style="height: 2000px">
-                <ui:insert name="content">
-                </ui:insert>
-            </p:layoutUnit>
         </p:layout>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
-=======
->>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
-=======
->>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
-=======
->>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
+
+
     </h:body>
 </html>

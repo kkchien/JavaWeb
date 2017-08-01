@@ -38,7 +38,8 @@ public class CategoryController implements Serializable {
         }
         model = new DefaultMenuModel();
         categories.stream().forEach((item) -> {
-            model.addElement(new DefaultMenuItem(item));
+            DefaultMenuItem defaultMenuItem = new DefaultMenuItem(item);
+            model.addElement(defaultMenuItem);
         });
     }
 
@@ -49,5 +50,4 @@ public class CategoryController implements Serializable {
     public MenuModel getModel() {
         return model;
     }
-
 }
