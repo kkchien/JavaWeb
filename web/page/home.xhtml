@@ -10,13 +10,13 @@ and open the template in the editor.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <head>
+    <h:head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet library="css" name="stylehome.css" />
-    </head>
-    <body>
+    </h:head>
+    <h:body>
         <h2>trang chu</h2>
         <ui:composition template="../newTemplate.xhtml">
             <ui:define name="content">
@@ -35,7 +35,6 @@ and open the template in the editor.
                                 <p:commandLink action="#{bookController.ProductDetail(arbook)}">
                                     <p:graphicImage width="240" height="380" class="display_image" value="../image/image_produce/#{arbook.image}"/> 
                                 </p:commandLink>
-
                                 <h:outputText style="color: red" value="#{arbook.price} đ" />
                                 <p:commandLink action="#{bookController.ProductDetail(arbook)}">
                                     <h:outputText  value="#{arbook.name}" style="margin:0 auto; font-size: 18px" />
@@ -52,5 +51,5 @@ and open the template in the editor.
 
         </ui:composition>
 
-    </body>
+    </h:body>
 </html>

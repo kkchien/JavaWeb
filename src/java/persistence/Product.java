@@ -23,6 +23,8 @@ public class Product implements Serializable {
     protected String image;
 
     public Product() {
+        category = new Category();
+        author = new Author();
     }
 
     public Integer getId() {
@@ -56,7 +58,7 @@ public class Product implements Serializable {
     public void setCategory(Category category) {
         this.category = category;
     }
-    
+
     public String getInfo() {
         return info;
     }

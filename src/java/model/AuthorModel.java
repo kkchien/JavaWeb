@@ -7,6 +7,8 @@ package model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import persistence.Author;
 
 /**
@@ -19,33 +21,44 @@ public class AuthorModel extends AbstractModel<Author> {
     }
 
     public Author find(int id) throws SQLException {
-        String sql = "SELECT * FROM authors WHERE id = ?";
-        stmt = getConnection().prepareStatement(sql);
-        stmt.setInt(1, id);
-        rs = stmt.executeQuery();
-        Author p = new Author();
-        while (rs.next()) {
-            p.setId(rs.getInt(rs.findColumn("id")));
-            p.setName(rs.getString(rs.findColumn("name")));
+        try {
+            String sql = "SELECT * FROM authors WHERE id = ?";
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            Author p = new Author();
+            while (rs.next()) {
+                p.setId(rs.getInt(rs.findColumn("id")));
+                p.setName(rs.getString(rs.findColumn("name")));
+            }
+            return p;
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            closeConnection();
+
         }
-        closeConnection();
-        return p;
     }
 
     public ArrayList<Author> findAll() throws Exception {
-        String sql = "SELECT * FROM authors";
-        stmt = getConnection().prepareStatement(sql);
-        rs = stmt.executeQuery();
-        ArrayList<Author> arr = new ArrayList<>();
-        Author p;
-        while (rs.next()) {
-            p = new Author();
-            p.setId(rs.getInt(rs.findColumn("id")));
-            p.setName(rs.getString(rs.findColumn("name")));
-            arr.add(p);
+        try {
+            String sql = "SELECT * FROM authors";
+            stmt = getConnection().prepareStatement(sql);
+            rs = stmt.executeQuery();
+            ArrayList<Author> arr = new ArrayList<>();
+            Author p;
+            while (rs.next()) {
+                p = new Author();
+                p.setId(rs.getInt(rs.findColumn("id")));
+                p.setName(rs.getString(rs.findColumn("name")));
+                arr.add(p);
+            }
+            return arr;
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            closeConnection();
         }
-        closeConnection();
-        return arr;
     }
 
     public static AuthorModel getInstance() {

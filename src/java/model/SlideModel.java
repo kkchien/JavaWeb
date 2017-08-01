@@ -19,22 +19,18 @@ public class SlideModel extends AbstractModel<Slide> {
 
     public SlideModel() {
     }
-  
+
     public ArrayList<Slide> getAll() {
-
         ArrayList<Slide> arr = new ArrayList<>();
-
         try {
             String sql = "select * from slide";
             stmt = getConnection().prepareStatement(sql);
             rs = stmt.executeQuery();
             Slide sl;
-            while(rs.next())
-            {
+            while (rs.next()) {
                 sl = new Slide();
                 sl.setId(rs.getInt(rs.findColumn("id")));
                 sl.setName(rs.getString(rs.findColumn("name")));
-                
                 arr.add(sl);
             }
         } catch (SQLException ex) {
