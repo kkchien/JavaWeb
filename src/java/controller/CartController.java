@@ -5,6 +5,7 @@
  */
 package controller;
 
+import common.Constant;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import persistence.Order;
@@ -23,24 +24,11 @@ public class CartController {
      * Creates a new instance of CartController
      */
     private Order o;
-    private OrderProduct op;
 
     public CartController() {
         o = new Order();
-
+        o.setStatus(Constant.ORDER_STATUS.DAT_HANG);
     }
-
-    public String AddProductInCart(Product book, int quantity) {
-        op = new OrderProduct();
-        op.setOrderId(o.getId());
-        op.setProduct(book);
-        op.setQuantity(quantity);
-        o.getOrderProducts().add(op);
-        
-      
-        return "/page/cartProduct.jsf?faces-redirect=true";
-    }
-
     public Order getO() {
         return o;
     }
@@ -48,5 +36,11 @@ public class CartController {
     public void setO(Order o) {
         this.o = o;
     }
-
+    public void addTocart(Product book){
+        OrderProduct orderProduct = new OrderProduct();
+        orderProduct.setProduct(book);
+        orderProduct.setQuantity(1);
+        o.getOrderProducts().add(orderProduct);
+    }
+    
 }
