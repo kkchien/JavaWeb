@@ -6,8 +6,10 @@
 package controller;
 
 import common.Constant;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import persistence.Order;
 import persistence.OrderProduct;
 import persistence.Product;
@@ -49,6 +51,15 @@ public class CartController {
             orderProduct.setQuantity(1);
             order.getOrderProducts().add(orderProduct);
         }
+        messageAddProduct("Đã thêm sản phẩm vào giỏ hàng");
+        
+    }
+    
+    public  void messageAddProduct(String text)
+    {
+        FacesMessage mes = new FacesMessage(FacesMessage.SEVERITY_INFO, text, null);
+        FacesContext.getCurrentInstance().addMessage(null, mes);
+        
     }
 
 //    public void update(OrderProduct orderProduct) {

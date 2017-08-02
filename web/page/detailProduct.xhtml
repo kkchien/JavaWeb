@@ -17,14 +17,14 @@ and open the template in the editor.
     <h:body>
         <ui:composition template="../newTemplate.xhtml">
             <ui:define name="content">
-                <h:form id="detail_form">
+                <h:form id="detail_form" style="margin-top: 20px">
                     <p:growl id="message" showDetail="true" />
                     <p:breadCrumb>
-                            <p:menuitem value="Home"/>
-                            <p:menuitem value="#{bookController.book.category.name}" action="#{bookController.chuyenTrangTheoLoai(bookController.book.category.id)}"/>
-                            <p:menuitem value="#{bookController.book.name}"/>
+                        <p:menuitem value="Home"/>
+                        <p:menuitem value="#{bookController.book.category.name}" action="#{bookController.chuyenTrangTheoLoai(bookController.book.category.id)}"/>
+                        <p:menuitem value="#{bookController.book.name}"/>
                     </p:breadCrumb>
-                    <p:panelGrid columns="3" style="background-color: #fff;" class="panel" >
+                    <p:panelGrid columns="4" style="background-color: #fff; margin-top: 20px" class="panel" >
                         <p:panelGrid columns="1" style="background-color: #fff" class="panel">
                             <f:facet name="header">
                                 <p:graphicImage value="../image/image_produce/#{bookController.book.image}" />
@@ -32,7 +32,7 @@ and open the template in the editor.
                         </p:panelGrid>
                         <p:panelGrid columns="2" class="panel">
                             <h:outputText value="Tên sách" />
-                            <h:outputText value="#{bookController.book.name}" />
+                            <h:outputText value="#{bookController.book.name}" style="font-size: 14px; font-weight: bold"/>
                             <h:outputText value="Tác Giả: " />
                             <h:outputText value="#{bookController.book.author.name}" />
                             <h:outputText value="Giá: " />
@@ -40,31 +40,37 @@ and open the template in the editor.
                             <h:outputText value="Thể loại: " />
                             <h:outputText value="#{bookController.book.category.name}" />
                         </p:panelGrid>
-                        <p:panel id="basic" header="Giới thiệu sách" class="panel" footer="Mời bạn đón đọc" style="margin-bottom:20px">
-                            <h:panelGrid columns="1" cellpadding="10">
-                                <h:outputText value="#{bookController.book.info}" />
-                            </h:panelGrid>
-                        </p:panel>
-                        <p:panel id="basic1" header="Thông tin kèm theo" class="panel" style="margin-bottom:20px;border: 0; background-color: #e6ffe6">
-                            <h:panelGrid columns="1" cellpadding="10">
-                                <h:outputText
-                                    value="  -Có dịch vụ bọc sách plastic cao cấp cho sách này " />
-                                <h:outputText
-                                    value="  -Miễn phí giao hàng toàn quốc cho Đơn hàng từ 250.000đ (Áp dụng từ 1/2/2015. " />
-                            </h:panelGrid>
-                        </p:panel>
-                        <p:panel id="basic2" header="Thông tin thanh toán" class="panel" style="margin-bottom:20px; border: 0; background-color: #e6ffe6; font-size: 16px;">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <h:outputText value="Giá bán: "/>
-                                <h:outputText
-                                    value="#{bookController.book.price} đ" />
-                                <h:outputText value="Tình trạng: "/>
-                                <h:outputText style="color: green" value="Còn hàng" />
-                                <p:commandButton id="btna" immediate="true" value="Mua ngay"
-                                                 update=":detail_form:message" actionListener="#{cartController.addTocart(bookController.book, 1)}"/>
-                            </h:panelGrid>
-                        </p:panel>
+                        <p:panelGrid columns="1" class="panel">
+                            <p:panel id="basic1" header="Thông tin kèm theo" class="panel" style="margin-bottom:20px;border: 0; background-color: #e6ffe6">
+                                <h:panelGrid columns="1" cellpadding="10">
+                                    <h:outputText
+                                        value="  -Có dịch vụ bọc sách plastic cao cấp cho sách này " />
+                                    <h:outputText
+                                        value="  -Miễn phí giao hàng toàn quốc cho Đơn hàng từ 250.000đ (Áp dụng từ 1/2/2015. " />
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:panelGrid>
+                        <p:panelGrid class="panel" columns="1">
+                            <p:panel id="basic2" header="Thông tin thanh toán" class="panel" style="margin-bottom:20px; border: 0; background-color: #e6ffe6; font-size: 16px;">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <h:outputText value="Giá bán: "/>
+                                    <h:outputText
+                                        value="#{bookController.book.price} đ" />
+                                    <h:outputText value="Tình trạng: "/>
+                                    <h:outputText style="color: green" value="Còn hàng" />
+                                    <p:commandButton id="btna" immediate="true" value="Mua ngay"
+                                                     update=":detail_form:message" actionListener="#{cartController.addTocart(bookController.book, 1)}"/>
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:panelGrid>
+7
                     </p:panelGrid>
+                    <p:panel id="basic" header="Giới thiệu sách" class="panel" footer="Mời bạn đón đọc" style="margin-top:30px">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputText value="#{bookController.book.info}" />
+                        </h:panelGrid>
+                    </p:panel>
+
                 </h:form>
             </ui:define>
         </ui:composition>
