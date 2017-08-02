@@ -23,6 +23,7 @@ public class Order implements Serializable {
 
     public Order() {
         orderProducts = new ArrayList<>();
+        user = new User();
     }
 
     public Order(Integer id) {

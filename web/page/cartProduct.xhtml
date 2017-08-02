@@ -17,8 +17,13 @@ and open the template in the editor.
     <body>
         <ui:composition template="../newTemplate.xhtml">
             <ui:define name="content">
+<<<<<<< HEAD
                 <h:form id="formlistcart">
                     <h3>Các sản phẩm bạn muốn mua</h3>
+=======
+                <h:form id="form">
+                    <p:growl id="message" showDetail="true" />
+>>>>>>> f037fe680a3e89d4ca24c5d1038eef3710ac5a18
                     <p:dataTable id="order" var="book" value="#{cartController.order.orderProducts}">
                         <p:column headerText="Tên sách">
                             <h:outputText value="#{book.product.name}" />
@@ -33,10 +38,21 @@ and open the template in the editor.
                              <h:outputText value="#{book.product.price * book.quantity} đ" />
                         </p:column>
                     </p:dataTable>
-                    <p:panelGrid>
-                        
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="Họ và tên:" />
+                        <h:inputText value="#{cartController.order.user.name}" required="true" />
+                        <h:outputLabel value="Email:" />
+                        <h:inputText value="#{cartController.order.user.email}" />
+                        <h:outputLabel value="Số điện thoại:" />
+                        <h:inputText value="#{cartController.order.user.phone}" required="true" />
+                        <h:outputLabel value="Địa chỉ:" />
+                        <h:inputText value="#{cartController.order.user.address}" />
                     </p:panelGrid>
+<<<<<<< HEAD
                     <p:commandButton value="Tiếp tục mua hàng" action="#{cartController.buy()}" update="order" />
+=======
+                    <p:commandButton value="Mua sách" action="#{cartController.buy()}" update=":form:message :form:order" />
+>>>>>>> f037fe680a3e89d4ca24c5d1038eef3710ac5a18
                 </h:form>
             </ui:define>
         </ui:composition>
