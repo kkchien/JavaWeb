@@ -16,15 +16,11 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <ui:composition template="../newTemplate.xhtml">
-<<<<<<< HEAD
-           <ui:define name="content">
-=======
             <ui:define name="content">
                 <h:form>
->>>>>>> 8cef2ed576b59108b9468a63c6ac91a5b0285fd7
                     <p:breadCrumb>
-                        <p:menuitem value="Categories" url="" />
-                        <p:menuitem value="#{bookController.book.category.name}"/>
+                        <p:menuitem value="Home"/>
+                        <p:menuitem value="#{bookController.book.category.name}" action="#{bookController.chuyenTrangTheoLoai(bookController.book.category.id)}"/>
                         <p:menuitem value="#{bookController.book.name}"/>
                     </p:breadCrumb>
                     <div class="chiacot" >
@@ -61,7 +57,7 @@ and open the template in the editor.
                                         value="#{bookController.book.price} đ" />
                                     <h:outputText value="Tình trạng: "/>
                                     <h:outputText style="color: green" value="Còn hàng" />
-                                    <p:commandButton type ="submit" id="btna" immediate="true" value="Mua ngay"/>
+                                    <p:commandButton action="#{cartController.AddProductInCart(bookController.book, 1)}" type ="submit" id="btna" immediate="true" value="Mua ngay"/>
                                 </h:panelGrid>
                             </p:panel>
                         </div> 

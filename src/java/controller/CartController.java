@@ -8,6 +8,8 @@ package controller;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import persistence.Order;
+import persistence.OrderProduct;
+import persistence.Product;
 
 /**
  *
@@ -20,12 +22,23 @@ public class CartController {
     /**
      * Creates a new instance of CartController
      */
-    private Order o; 
-    
-    
+    private Order o;
+    private OrderProduct op;
+
     public CartController() {
         o = new Order();
-        o.getOrderProducts();
+
+    }
+
+    public String AddProductInCart(Product book, int quantity) {
+        op = new OrderProduct();
+        op.setOrderId(o.getId());
+        op.setProduct(book);
+        op.setQuantity(quantity);
+        o.getOrderProducts().add(op);
+        
+      
+        return "/page/cartProduct.jsf?faces-redirect=true";
     }
 
     public Order getO() {
@@ -35,5 +48,5 @@ public class CartController {
     public void setO(Order o) {
         this.o = o;
     }
-    
+
 }

@@ -16,7 +16,7 @@ public class OrderProduct implements Serializable {
     private Product product;
     private Integer orderId;
     private int quantity;
-
+    
     public OrderProduct() {
     }
 

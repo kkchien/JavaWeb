@@ -66,10 +66,6 @@ public class BookController implements Serializable {
         return "/page/home.jsf?faces-redirect=true";
     }
 
-    public String ProductListCart() {
-        //this.arrBuyBook.add(book);
-        return "cartProduct.xhtml?faces-redirect=true";
-    }
 
     public ArrayList<Product> getArr() {
         return arr;
