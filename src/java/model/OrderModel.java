@@ -60,7 +60,7 @@ public class OrderModel extends AbstractModel<Order> {
 
     public ArrayList<Order> findAll() throws SQLException {
         try {
-            String sql = "SELECT * FROM users";
+            String sql = "SELECT * FROM orders";
             stmt = getConnection().prepareStatement(sql);
             rs = stmt.executeQuery();
             ArrayList<Order> arr = new ArrayList<>();
