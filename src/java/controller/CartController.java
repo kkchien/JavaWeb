@@ -5,9 +5,12 @@
  */
 package controller;
 
+import common.Constant;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import persistence.Order;
+import persistence.OrderProduct;
+import persistence.Product;
 
 /**
  *
@@ -25,7 +28,7 @@ public class CartController {
     
     public CartController() {
         o = new Order();
-        o.getOrderProducts();
+        o.setStatus(Constant.ORDER_STATUS.DAT_HANG);
     }
 
     public Order getO() {
@@ -34,6 +37,13 @@ public class CartController {
 
     public void setO(Order o) {
         this.o = o;
+    }
+    
+    public void addTocart(Product book){
+        OrderProduct orderProduct = new OrderProduct();
+        orderProduct.setProduct(book);
+        orderProduct.setQuantity(1);
+        o.getOrderProducts().add(orderProduct);
     }
     
 }
