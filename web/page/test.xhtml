@@ -20,7 +20,19 @@ and open the template in the editor.
         <h2>trang chu</h2>
         <ui:composition template="../newTemplate.xhtml">
            <ui:define name="content">
-               
+                <h2>Thanh toán đơn hàng</h2>
+                <p:dataTable var="book" value="#{bookController.arrBuyBook}" style="text-align: center">
+                    <p:column headerText="Tên sách">
+                        <h:outputText value="#{book.name}" />
+                    </p:column>
+                    <p:column headerText="Giá sách">
+                        <h:outputText value="#{book.price}" />
+                    </p:column>
+                    <p:column headerText="Số lượng">
+                        <h:outputText value="#{book.price}" />
+                    </p:column>
+                </p:dataTable>
+                <h3 fload="right">Tổng tiền: </h3>
 
                     <p:breadCrumb>
                         <p:menuitem value="Categories" url="" />
