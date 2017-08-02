@@ -6,8 +6,15 @@
 package controller;
 
 import common.Constant;
+import common.util.StringUtil;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import model.OrderModel;
 import persistence.Order;
 import persistence.OrderProduct;
 import persistence.Product;
@@ -23,7 +30,7 @@ public class CartController {
     /**
      * Creates a new instance of CartController
      */
-    private final Order order;
+    private Order order;
 
     public CartController() {
         order = new Order();
@@ -51,19 +58,40 @@ public class CartController {
         }
     }
 
-//    public void update(OrderProduct orderProduct) {
+//    public void update(int id) {
 //        for (OrderProduct item : order.getOrderProducts()) {
-//            if (item.getProduct().getId().equals(orderProduct.getProduct().getId())) {
-//                item.setQuantity(orderProduct.getQuantity());
+//            if (item.getProduct().getId().equals(id)) {
+//                item.setQuantity(quantity);
 //                break;
 //            }
 //        }
+//        FacesContext.getCurrentInstance().addMessage(null,
+//                    new FacesMessage("Cập nhật thành công"));
 //    }
-
     public String buy() {
-        for (OrderProduct item : order.getOrderProducts()) {
-            System.out.println(item);
+        if (order.getOrderProducts().size() <= 0) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Bạn không có sản phẩm nào trong giỏ hàng"));
+        } else {
+            if (StringUtil.isBlank(order.getUser().getName())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage("Phải nhập họ tên"));
+            } else if (StringUtil.isBlank(order.getUser().getPhone())) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage("Phải nhập số điện thoại"));
+            } else {
+                try {
+                    OrderModel.getInstance().add(order);
+                    order = new Order();
+                    order.setStatus(Constant.ORDER_STATUS.DAT_HANG);
+                    return "/page/home.jsf?faces-redirect=true";
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    FacesContext.getCurrentInstance().addMessage(null,
+                            new FacesMessage("Lỗi kết nối, vui lòng thử lại sau"));
+                }
+            }
         }
-        return "/page/home.jsf?faces-redirect=true";
+        return "";
     }
 }

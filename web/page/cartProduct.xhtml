@@ -17,7 +17,8 @@ and open the template in the editor.
     <body>
         <ui:composition template="../newTemplate.xhtml">
             <ui:define name="content">
-                <h:form>
+                <h:form id="form">
+                    <p:growl id="message" showDetail="true" />
                     <p:dataTable id="order" var="book" value="#{cartController.order.orderProducts}">
                         <p:column headerText="Tên sách">
                             <h:outputText value="#{book.product.name}" />
@@ -26,10 +27,17 @@ and open the template in the editor.
                             <h:inputText value="#{book.quantity}" />
                         </p:column>
                     </p:dataTable>
-                    <p:panelGrid>
-                        
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="Họ và tên:" />
+                        <h:inputText value="#{cartController.order.user.name}" required="true" />
+                        <h:outputLabel value="Email:" />
+                        <h:inputText value="#{cartController.order.user.email}" />
+                        <h:outputLabel value="Số điện thoại:" />
+                        <h:inputText value="#{cartController.order.user.phone}" required="true" />
+                        <h:outputLabel value="Địa chỉ:" />
+                        <h:inputText value="#{cartController.order.user.address}" />
                     </p:panelGrid>
-                    <p:commandButton value="Mua sách" action="#{cartController.buy()}" update="order" />
+                    <p:commandButton value="Mua sách" action="#{cartController.buy()}" update=":form:message :form:order" />
                 </h:form>
             </ui:define>
         </ui:composition>
