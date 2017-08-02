@@ -23,25 +23,47 @@ public class CartController {
     /**
      * Creates a new instance of CartController
      */
-    private Order o;
-    private OrderProduct op;
+    private final Order order;
 
     public CartController() {
-        o = new Order();
-        o.setStatus(Constant.ORDER_STATUS.DAT_HANG);
-    }
-    public Order getO() {
-        return o;
+        order = new Order();
+        order.setStatus(Constant.ORDER_STATUS.DAT_HANG);
     }
 
-    public void setO(Order o) {
-        this.o = o;
+    public Order getOrder() {
+        return order;
     }
-    public void addTocart(Product book){
-        OrderProduct orderProduct = new OrderProduct();
-        orderProduct.setProduct(book);
-        orderProduct.setQuantity(1);
-        o.getOrderProducts().add(orderProduct);
+
+    public void addTocart(Product book, int quantity) {
+        boolean old = false;
+        for (OrderProduct item : order.getOrderProducts()) {
+            if (item.getProduct().getId().equals(book.getId())) {
+                item.setQuantity(item.getQuantity() + 1);
+                old = true;
+                break;
+            }
+        }
+        if (!old) {
+            OrderProduct orderProduct = new OrderProduct();
+            orderProduct.setProduct(book);
+            orderProduct.setQuantity(1);
+            order.getOrderProducts().add(orderProduct);
+        }
     }
-    
+
+//    public void update(OrderProduct orderProduct) {
+//        for (OrderProduct item : order.getOrderProducts()) {
+//            if (item.getProduct().getId().equals(orderProduct.getProduct().getId())) {
+//                item.setQuantity(orderProduct.getQuantity());
+//                break;
+//            }
+//        }
+//    }
+
+    public String buy() {
+        for (OrderProduct item : order.getOrderProducts()) {
+            System.out.println(item);
+        }
+        return "/page/home.jsf?faces-redirect=true";
+    }
 }

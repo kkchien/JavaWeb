@@ -25,16 +25,17 @@ and open the template in the editor.
                         <p:menuitem value="Categories" url="#" />
                         <p:menuitem value="#{bookController.book.category.name}"/>
                     </p:breadCrumb>
-                    <p:dataGrid var="arbook" value="#{bookController.arr}" columns="4" layout="grid" rows="16" paginator="true" id="book"
+                    <p:dataGrid var="arbook" value="#{bookController.books}" columns="4" layout="grid" rows="16" paginator="true" id="book"
                                 paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink} "
-                                rowsPerPageTemplate="6,12,16" >
+                                rowsPerPageTemplate="6,12,16"
+                                lazy="true">
                         <p:panel class ="display_book" style="text-align: center">
                             <h:panelGrid columns="1" style="width:100%">
-                                <p:commandLink action="#{bookController.ProductDetail(arbook)}">
+                                <p:commandLink action="#{bookController.ProductDetail()}">
                                     <p:graphicImage width="240" height="380" class="display_image" value="../image/image_produce/#{arbook.image}"/> 
                                 </p:commandLink>
                                 <h:outputText style="color: red" value="#{arbook.price} đ" />
-                                <p:commandLink action="#{bookController.ProductDetail(arbook)}">
+                                <p:commandLink action="#{bookController.ProductDetail()}">
                                     <h:outputText  value="#{arbook.name}" style="margin:0 auto; font-size: 18px" />
                                     <f:setPropertyActionListener value="#{arbook}" target="#{dataGridView.book}" />
                                 </p:commandLink>

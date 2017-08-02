@@ -24,12 +24,7 @@
                     </p:commandLink>
                     <p:inputText id="input_search" style="margin-left: 100px" />
                     <p:button value="Search" class="btn_search" icon="ui-icon-search"/>
-                    <p:commandLink style="margin-left: 100px">
-                        <h:outputText value="Đăng nhập"  />
-                    </p:commandLink> - 
-                    <p:commandLink>
-                        <h:outputText value="Đăng kí" />
-                    </p:commandLink>
+                    <p:link value="Giỏ hàng" outcome="/page/cartProduct.jsf" />
                 </h:form>
             </p:layoutUnit>
             <p:layoutUnit position="center" class="panel">
@@ -78,7 +73,7 @@
                             </p:panelGrid>
                         </h:form>
                     </p:layoutUnit>
-                    <p:layoutUnit position="center" size="2000">
+                    <p:layoutUnit position="center" style="height: 2000px">
                         <ui:insert name="content">
                         </ui:insert>
                     </p:layoutUnit>

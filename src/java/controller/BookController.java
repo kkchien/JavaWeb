@@ -47,10 +47,8 @@ public class BookController implements Serializable {
         books = new ProductDataModel(arr);
     }
 
-    public String ProductDetail(Product book) {
-        this.book = book;
-        this.book.setCategory(book.getCategory());
-        this.book.setAuthor(book.getAuthor());
+    public String ProductDetail() {
+        this.book = books.getRowData();
         return "detailProduct.jsf?faces-redirect=true";
     }
 
@@ -66,21 +64,8 @@ public class BookController implements Serializable {
         return "/page/home.jsf?faces-redirect=true";
     }
 
-
-    public ArrayList<Product> getArr() {
-        return arr;
-    }
-
-    public void setArr(ArrayList<Product> arr) {
-        this.arr = arr;
-    }
-
     public Product getBook() {
         return book;
-    }
-
-    public void setBook(Product book) {
-        this.book = book;
     }
 
     public LazyDataModel<Product> getBooks() {
