@@ -20,8 +20,8 @@ and open the template in the editor.
                 <h:form id="form">
                     <p:growl id="message" showDetail="true" />
                     <p:breadCrumb>
-                        <p:menuitem value="Categories" url="" />
-                        <p:menuitem value="#{bookController.book.category.name}"/>
+                        <p:menuitem value="Home"/>
+                        <p:menuitem value="#{bookController.book.category.name}" action="#{bookController.chuyenTrangTheoLoai(bookController.book.category.id)}"/>
                         <p:menuitem value="#{bookController.book.name}"/>
                     </p:breadCrumb>
                     <div class="chiacot" >

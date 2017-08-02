@@ -16,8 +16,8 @@
     <h:body>
         <p:layout>
             <p:layoutUnit position="north" class="panel" size="50">
-                <h:form>
-                    <p:commandLink>
+                <h:form id ="formbaner">
+                    <p:commandLink action="#{bookController.chuyenTrangTheoLoai(0)}">
                         <f:view>
                             <h:graphicImage url="/image/image_logo/logo.png" width="200" alt="vinabook"></h:graphicImage>
                         </f:view>
@@ -34,9 +34,9 @@
             </p:layoutUnit>
             <p:layoutUnit position="center" class="panel">
                 <p:layout>
-                    <p:layoutUnit position="north" class="panel" size="350">
-                        <p:layout>
-                            <p:layoutUnit position="west" class="panel menu">
+                    <p:layoutUnit position="north" class="panel" size="400" resizable="true" style="width: 250px">
+                        <p:layout >
+                            <p:layoutUnit position="west" class="panel menu" >
                                 <h:form>
                                     <p:menu model="#{categoryController.model}" >
                                     </p:menu>

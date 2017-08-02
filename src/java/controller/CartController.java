@@ -23,14 +23,13 @@ public class CartController {
     /**
      * Creates a new instance of CartController
      */
-    private Order o; 
-    
-    
+    private Order o;
+    private OrderProduct op;
+
     public CartController() {
         o = new Order();
         o.setStatus(Constant.ORDER_STATUS.DAT_HANG);
     }
-
     public Order getO() {
         return o;
     }
@@ -38,7 +37,6 @@ public class CartController {
     public void setO(Order o) {
         this.o = o;
     }
-    
     public void addTocart(Product book){
         OrderProduct orderProduct = new OrderProduct();
         orderProduct.setProduct(book);

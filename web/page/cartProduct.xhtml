@@ -17,7 +17,21 @@ and open the template in the editor.
     <body>
         <ui:composition template="../newTemplate.xhtml">
             <ui:define name="content">
-               
+                <p:dataTable var="book" value="#{cartController.o.orderProducts}">
+                    <p:column headerText="Mã hóa đơn">
+                        <h:outputText value="#{book.orderId}" />
+                    </p:column>
+
+                    <p:column headerText="Tên sách">
+                        <h:outputText value="#{book.product.name}" />
+                    </p:column>
+
+                    <p:column headerText="Số lượng">
+                        <h:outputText value="#{book.quantity}" />
+                    </p:column>
+
+                  
+                </p:dataTable>
             </ui:define>
         </ui:composition>
     </body>
