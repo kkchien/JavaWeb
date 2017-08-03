@@ -90,11 +90,6 @@ public class BookController implements Serializable {
         return books;
     }
 
-    public ArrayList<Product> getArr() {
-        return arr;
-    }
-
-    
 
     private boolean validate() {
         if (book.getAuthor() == null && book.getAuthor().getId() == null) {
