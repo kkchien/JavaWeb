@@ -9,12 +9,9 @@ import common.util.StringUtil;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import model.ProductModel;
 import model.table.ProductDataModel;
@@ -93,9 +90,11 @@ public class BookController implements Serializable {
         return books;
     }
 
-    public void setBooks(LazyDataModel<Product> books) {
-        this.books = books;
+    public ArrayList<Product> getArr() {
+        return arr;
     }
+
+    
 
     private boolean validate() {
         if (book.getAuthor() == null && book.getAuthor().getId() == null) {
