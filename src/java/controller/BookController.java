@@ -60,15 +60,7 @@ public class BookController implements Serializable {
         }
         return "/page/home.jsf?faces-redirect=true";
     }
-    public String chuyenTrangTuGioHang(int loaisach){
-        try {
-            this.arr = ProductModel.getInstance().findAllCategory(loaisach);
-            this.book = arr.get(0);
-        } catch (SQLException ex) {
-            this.arr = new ArrayList<>();
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Không có sách thuộc thể loại này"));
-        }
+    public String chuyenTrangTuGioHang(){
         return "home.jsf?faces-redirect=true";
     }
     

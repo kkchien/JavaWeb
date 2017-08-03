@@ -230,8 +230,9 @@
                                     <p:inputText id="a_price" value="#{bookController.book.price}" style="width:250px" />
                                     <p:outputLabel for="a_info" value="Thông tin chi tiết " />
                                     <p:inputTextarea id="a_info" value="#{bookController.book.info}" style="width:250px"/>
+                                    
                                 </p:panelGrid>
-                                <p:commandButton value="Thêm" action="#{bookController.addBook()}" update=":form:book :form:message" icon="ui-icon-check" oncomplete="PF('addBookDialog').hide()"/>
+                              
                             </p:outputPanel>
                         </p:dialog>
 

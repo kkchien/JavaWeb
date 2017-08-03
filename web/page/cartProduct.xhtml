@@ -36,10 +36,10 @@ and open the template in the editor.
                     </p:dataTable>
                     <br/>
                     <br/>
-                <hr/>
-<!--                </h:form>
-                <h:form id="formthanhtoan">-->
-                <h2 style="color: #045491;padding:10px 0 10px 0; text-align: center">Thông tin người nhận</h2>
+                    <hr/>
+                    <!--                </h:form>
+                                    <h:form id="formthanhtoan">-->
+                    <h2 style="color: #045491;padding:10px 0 10px 0; text-align: center">Thông tin người nhận</h2>
                     <p:panelGrid columns="4">
                         <h:outputLabel value="Họ và tên:" />
                         <h:inputText value="#{cartController.order.user.name}" style="width: 300px; height:30px" />
@@ -50,8 +50,8 @@ and open the template in the editor.
                         <h:outputLabel value="Địa chỉ:" />
                         <h:inputText value="#{cartController.order.user.address}" style="width: 300px; height:30px"/>
                     </p:panelGrid>
-                    <p:commandLink value="Tiếp tục mua hàng" action="#{bookController.chuyenTrangTuGioHang(0)}"/>
-                    <p:commandButton value="Mua sách" immediate="true" id="btnmuangay" action="#{cartController.buy()}" update=":formcartbuy:message :formcartbuy:order" />
+                    <p:commandButton value="Tiếp tục mua hàng" action="#{bookController.chuyenTrangTuGioHang()}" style="padding-right: 10px"/>
+                    <p:commandButton value="Mua sách" immediate="true" action="#{cartController.buy()}" update=":formcartbuy:message :formcartbuy:order" />
                 </h:form>
             </ui:define>
         </ui:composition>
