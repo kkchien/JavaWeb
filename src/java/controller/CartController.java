@@ -6,21 +6,18 @@
 package controller;
 
 import common.Constant;
-<<<<<<< HEAD
-=======
+
 import common.util.StringUtil;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
->>>>>>> f037fe680a3e89d4ca24c5d1038eef3710ac5a18
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-<<<<<<< HEAD
-=======
+
 import model.OrderModel;
->>>>>>> f037fe680a3e89d4ca24c5d1038eef3710ac5a18
 import persistence.Order;
 import persistence.OrderProduct;
 import persistence.Product;
@@ -72,6 +69,11 @@ public class CartController {
         FacesContext.getCurrentInstance().addMessage(null, mes);
         
     }
+    public void messageCheckErrorCart(String text )
+    {
+        FacesMessage mess = new FacesMessage(FacesMessage.SEVERITY_ERROR,text,null);
+        FacesContext.getCurrentInstance().addMessage(null, mess);
+    }
 
 //    public void update(int id) {
 //        for (OrderProduct item : order.getOrderProducts()) {
@@ -85,15 +87,12 @@ public class CartController {
 //    }
     public String buy() {
         if (order.getOrderProducts().size() <= 0) {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Bạn không có sản phẩm nào trong giỏ hàng"));
+           messageCheckErrorCart("Bạn không có sản phẩm nào trong giỏ hàng");
         } else {
             if (StringUtil.isBlank(order.getUser().getName())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage("Phải nhập họ tên"));
+                messageCheckErrorCart("Phải nhập họ tên "+order.getUser().getName() );
             } else if (StringUtil.isBlank(order.getUser().getPhone())) {
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage("Phải nhập số điện thoại"));
+               messageCheckErrorCart("Phải nhập số điện thoại");
             } else {
                 try {
                     OrderModel.getInstance().add(order);
@@ -102,8 +101,7 @@ public class CartController {
                     return "/page/home.jsf?faces-redirect=true";
                 } catch (SQLException ex) {
                     ex.printStackTrace();
-                    FacesContext.getCurrentInstance().addMessage(null,
-                            new FacesMessage("Lỗi kết nối, vui lòng thử lại sau"));
+                    messageCheckErrorCart("Lỗi kết nối, vui lòng thử lại sau");
                 }
             }
         }

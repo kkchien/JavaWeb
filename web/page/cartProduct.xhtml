@@ -17,13 +17,9 @@ and open the template in the editor.
     <body>
         <ui:composition template="../newTemplate.xhtml">
             <ui:define name="content">
-<<<<<<< HEAD
-                <h:form id="formlistcart">
-                    <h3>Các sản phẩm bạn muốn mua</h3>
-=======
-                <h:form id="form">
+                <h3>Các sản phẩm bạn muốn mua</h3>
+                <h:form id="formcartbuy">
                     <p:growl id="message" showDetail="true" />
->>>>>>> f037fe680a3e89d4ca24c5d1038eef3710ac5a18
                     <p:dataTable id="order" var="book" value="#{cartController.order.orderProducts}">
                         <p:column headerText="Tên sách">
                             <h:outputText value="#{book.product.name}" />
@@ -34,25 +30,29 @@ and open the template in the editor.
                         <p:column headerText="Giá">
                             <h:outputText value="#{book.product.price} đ" />
                         </p:column>
-                         <p:column headerText="Thành tiền" id="thanhtien">
-                             <h:outputText value="#{book.product.price * book.quantity} đ" />
+                        <p:column headerText="Thành tiền">
+                            <h:outputText id="thanhtien" value="#{book.product.price * book.quantity} đ" />
                         </p:column>
                     </p:dataTable>
-                    <p:panelGrid columns="2">
+                    <p:commandButton value="Cập nhật" update=":formcartbuy:order:thanhtien" />
+                    <br/>
+                    <br/>
+                <hr/>
+<!--                </h:form>
+                <h:form id="formthanhtoan">-->
+                <h2 style="color: #045491;padding:10px 0 10px 0; text-align: center">Thông tin người nhận</h2>
+                    <p:panelGrid columns="4">
                         <h:outputLabel value="Họ và tên:" />
-                        <h:inputText value="#{cartController.order.user.name}" required="true" />
+                        <h:inputText value="#{cartController.order.user.name}" required="true" style="width: 300px; height:30px" />
                         <h:outputLabel value="Email:" />
-                        <h:inputText value="#{cartController.order.user.email}" />
+                        <h:inputText value="#{cartController.order.user.email}" style="width: 300px; height:30px"/>
                         <h:outputLabel value="Số điện thoại:" />
-                        <h:inputText value="#{cartController.order.user.phone}" required="true" />
+                        <h:inputText value="#{cartController.order.user.phone}" required="true" style="width: 300px; height:30px"/>
                         <h:outputLabel value="Địa chỉ:" />
-                        <h:inputText value="#{cartController.order.user.address}" />
+                        <h:inputText value="#{cartController.order.user.address}" style="width: 300px; height:30px"/>
                     </p:panelGrid>
-<<<<<<< HEAD
-                    <p:commandButton value="Tiếp tục mua hàng" action="#{cartController.buy()}" update="order" />
-=======
-                    <p:commandButton value="Mua sách" action="#{cartController.buy()}" update=":form:message :form:order" />
->>>>>>> f037fe680a3e89d4ca24c5d1038eef3710ac5a18
+                    <p:commandLink value="Tiếp tục mua hàng" action="#{bookController.chuyenTrangTuGioHang(0)}"/>
+                    <p:commandButton value="Mua sách" immediate="true" id="btnmuangay" action="#{cartController.buy()}" update=":formcartbuy:message :formcartbuy:order" />
                 </h:form>
             </ui:define>
         </ui:composition>

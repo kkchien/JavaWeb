@@ -47,8 +47,8 @@ public class BookController implements Serializable {
         books = new ProductDataModel(arr);
     }
 
-    public String ProductDetail() {
-        this.book = books.getRowData();
+    public String ProductDetail( Product book) {
+        this.book = book;
         return "detailProduct.jsf?faces-redirect=true";
     }
 
@@ -63,7 +63,28 @@ public class BookController implements Serializable {
         }
         return "/page/home.jsf?faces-redirect=true";
     }
+    public String chuyenTrangTuGioHang(int loaisach){
+        try {
+            this.arr = ProductModel.getInstance().findAllCategory(loaisach);
+            this.book = arr.get(0);
+        } catch (SQLException ex) {
+            this.arr = new ArrayList<>();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Không có sách thuộc thể loại này"));
+        }
+        return "home.jsf?faces-redirect=true";
+    }
+    
 
+    public ArrayList<Product> getArr() {
+        return arr;
+    }
+
+    public void setArr(ArrayList<Product> arr) {
+        this.arr = arr;
+    }
+
+    
     public Product getBook() {
         return book;
     }
