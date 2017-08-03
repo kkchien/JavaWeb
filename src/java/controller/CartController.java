@@ -6,21 +6,13 @@
 package controller;
 
 import common.Constant;
-<<<<<<< HEAD
-=======
 import common.util.StringUtil;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
->>>>>>> f037fe680a3e89d4ca24c5d1038eef3710ac5a18
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-<<<<<<< HEAD
-=======
 import model.OrderModel;
->>>>>>> f037fe680a3e89d4ca24c5d1038eef3710ac5a18
 import persistence.Order;
 import persistence.OrderProduct;
 import persistence.Product;

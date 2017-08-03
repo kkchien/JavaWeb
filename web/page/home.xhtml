@@ -25,7 +25,7 @@ and open the template in the editor.
                         <p:menuitem value="Categories" url="#" />
                         <p:menuitem value="#{bookController.book.category.name}"/>
                     </p:breadCrumb>
-                    <p:dataGrid var="arbook" value="#{bookController.books}" columns="4" layout="grid" rows="16" paginator="true" id="book"
+                    <p:dataGrid var="arbook" value="#{bookController.arr}" columns="4" layout="grid" rows="16" paginator="true" id="book"
                                 paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink} "
                                 rowsPerPageTemplate="6,12,16"
                                 lazy="true">
