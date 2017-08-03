@@ -24,7 +24,7 @@ import persistence.Product;
  *
  * @author M4700
  */
-@ManagedBean
+@ManagedBean(name = "cartController")
 @SessionScoped
 public class CartController {
 
@@ -58,18 +58,17 @@ public class CartController {
             order.getOrderProducts().add(orderProduct);
         }
         messageAddProduct("Đã thêm sản phẩm vào giỏ hàng");
-        
+
     }
-    
-    public  void messageAddProduct(String text)
-    {
+
+    public void messageAddProduct(String text) {
         FacesMessage mes = new FacesMessage(FacesMessage.SEVERITY_INFO, text, null);
         FacesContext.getCurrentInstance().addMessage(null, mes);
-        
+
     }
-    public void messageCheckErrorCart(String text )
-    {
-        FacesMessage mess = new FacesMessage(FacesMessage.SEVERITY_ERROR,text,null);
+
+    public void messageCheckErrorCart(String text) {
+        FacesMessage mess = new FacesMessage(FacesMessage.SEVERITY_ERROR, text, null);
         FacesContext.getCurrentInstance().addMessage(null, mess);
     }
 
@@ -85,12 +84,12 @@ public class CartController {
 //    }
     public String buy() {
         if (order.getOrderProducts().size() <= 0) {
-           messageCheckErrorCart("Bạn không có sản phẩm nào trong giỏ hàng");
+            messageCheckErrorCart("Bạn không có sản phẩm nào trong giỏ hàng");
         } else {
             if (StringUtil.isBlank(order.getUser().getName())) {
-                messageCheckErrorCart("Phải nhập họ tên "+order.getUser().getName() );
+                messageCheckErrorCart("Phải nhập họ tên");
             } else if (StringUtil.isBlank(order.getUser().getPhone())) {
-               messageCheckErrorCart("Phải nhập số điện thoại");
+                messageCheckErrorCart("Phải nhập số điện thoại");
             } else {
                 try {
                     OrderModel.getInstance().add(order);

@@ -30,28 +30,28 @@ and open the template in the editor.
                         <p:column headerText="Giá">
                             <h:outputText value="#{book.product.price} đ" />
                         </p:column>
-                        <p:column headerText="Thành tiền">
-                            <h:outputText id="thanhtien" value="#{book.product.price * book.quantity} đ" />
-                        </p:column>
+
                     </p:dataTable>
                     <br/>
                     <br/>
                     <hr/>
-                    <!--                </h:form>
-                                    <h:form id="formthanhtoan">-->
+
                     <h2 style="color: #045491;padding:10px 0 10px 0; text-align: center">Thông tin người nhận</h2>
-                    <p:panelGrid columns="4">
+                    <p:panelGrid columns="2">
                         <h:outputLabel value="Họ và tên:" />
-                        <h:inputText value="#{cartController.order.user.name}" style="width: 300px; height:30px" />
+                        <h:inputText value="#{cartController.order.user.name}" required="true" />
                         <h:outputLabel value="Email:" />
-                        <h:inputText value="#{cartController.order.user.email}" style="width: 300px; height:30px"/>
+                        <h:inputText value="#{cartController.order.user.email}" />
                         <h:outputLabel value="Số điện thoại:" />
-                        <h:inputText value="#{cartController.order.user.phone}"  style="width: 300px; height:30px"/>
+                        <h:inputText value="#{cartController.order.user.phone}" required="true" />
                         <h:outputLabel value="Địa chỉ:" />
-                        <h:inputText value="#{cartController.order.user.address}" style="width: 300px; height:30px"/>
+                        <h:inputText value="#{cartController.order.user.address}" />
                     </p:panelGrid>
+
                     <p:commandButton value="Tiếp tục mua hàng" action="#{bookController.chuyenTrangTuGioHang()}" style="padding-right: 10px"/>
-                    <p:commandButton value="Mua sách" immediate="true" action="#{cartController.buy()}" update=":formcartbuy:message :formcartbuy:order" />
+                    
+                    <p:commandButton value="Mua sách" action="#{cartController.buy()}" update=":formcartbuy:message :formcartbuy:order" />
+
                 </h:form>
             </ui:define>
         </ui:composition>
