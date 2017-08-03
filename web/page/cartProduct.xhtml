@@ -43,11 +43,11 @@ and open the template in the editor.
                 <h2 style="color: #045491;padding:10px 0 10px 0; text-align: center">Thông tin người nhận</h2>
                     <p:panelGrid columns="4">
                         <h:outputLabel value="Họ và tên:" />
-                        <h:inputText value="#{cartController.order.user.name}" required="true" style="width: 300px; height:30px" />
+                        <h:inputText value="#{cartController.order.user.name}" style="width: 300px; height:30px" />
                         <h:outputLabel value="Email:" />
                         <h:inputText value="#{cartController.order.user.email}" style="width: 300px; height:30px"/>
                         <h:outputLabel value="Số điện thoại:" />
-                        <h:inputText value="#{cartController.order.user.phone}" required="true" style="width: 300px; height:30px"/>
+                        <h:inputText value="#{cartController.order.user.phone}"  style="width: 300px; height:30px"/>
                         <h:outputLabel value="Địa chỉ:" />
                         <h:inputText value="#{cartController.order.user.address}" style="width: 300px; height:30px"/>
                     </p:panelGrid>
