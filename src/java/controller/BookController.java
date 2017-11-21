@@ -43,6 +43,8 @@ public class BookController implements Serializable {
         book = new Product();
         books = new ProductDataModel(arr);
     }
+    //Dịnh dạng money
+   // public
 
     public String ProductDetail( Product book) {
         this.book = book;

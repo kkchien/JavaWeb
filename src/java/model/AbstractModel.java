@@ -25,7 +25,7 @@ public abstract class AbstractModel<E> {
     public static final int ITEM_PER_PAGE = 5;
 
     protected Connection getConnection() {
-        return DatabaseUtil.connectSQL("//localhost\\SQLEXPRESS", "java_web", "sa", "1234$");
+        return DatabaseUtil.connectSQL("//localhost\\SQLEXPRESS", "java_website", "sa", "1234$");
     }
 
     protected void closeConnection() {

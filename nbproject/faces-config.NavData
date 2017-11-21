@@ -6,10 +6,9 @@
         <Node id="admin/admin-home-page.xhtml" x="370" y="75" zoom="false"/>
         <Node id="page/detailProduct.xhtml" x="150" y="150" zoom="true"/>
         <Node id="admin/login.jsf" x="900" y="150" zoom="true"/>
-        <Node id="admin/admin-view-book.xhtml" x="400" y="150" zoom="true"/>
         <Node id="admin/add-book.jsf" x="400" y="300" zoom="true"/>
-        <Node id="page/cartProduct.xhtml" x="150" y="300" zoom="true"/>
         <Node id="admin/login.xhtml" x="108" y="245" zoom="false"/>
+        <Node id="page/cartProduct.xhtml" x="150" y="300" zoom="true"/>
         <Node id="admin/admin-home-page.jsf" x="150" y="450" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>

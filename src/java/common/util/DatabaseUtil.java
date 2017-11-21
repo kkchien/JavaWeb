@@ -55,7 +55,7 @@ public class DatabaseUtil {
         return connection;
     }
 
-//    public static void main(String[] args) {
-//        connectSQL("//localhost\\SQLEXPRESS", "java_website", "sa", "1234$");
-//    }
+    public static void main(String[] args) {
+        connectSQL("//localhost\\SQLEXPRESS", "baithi", "sa", "1234$");
+    }
 }

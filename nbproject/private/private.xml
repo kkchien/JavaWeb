@@ -2,32 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         <group>
-            <file>file:/C:/Users/M4700/Documents/GitHub/JavaWeb/web/page/home.xhtml</file>
-            <file>file:/C:/Users/M4700/Documents/GitHub/JavaWeb/src/java/controller/BookController.java</file>
-            <file>file:/C:/Users/M4700/Documents/GitHub/JavaWeb/web/page/test.xhtml</file>
-            <file>file:/C:/Users/M4700/Documents/GitHub/JavaWeb/web/newTemplate.xhtml</file>
-            <file>file:/C:/Users/M4700/Documents/GitHub/JavaWeb/web/page/detailProduct.xhtml</file>
+            <file>file:/C:/Users/M4700/Documents/GitHub/JavaWeb/src/java/persistence/Product.java</file>
+            <file>file:/C:/Users/M4700/Documents/GitHub/JavaWeb/src/java/model/ProductModel.java</file>
+            <file>file:/C:/Users/M4700/Documents/GitHub/JavaWeb/src/java/model/CategoryModel.java</file>
         </group>
-=======
-        <group/>
->>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
-=======
-        <group/>
->>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
-=======
-        <group/>
->>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
-=======
-        <group/>
->>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
-=======
-        <group/>
->>>>>>> e2c38e458ef67ca0c84b387465b87202917e2522
     </open-files>
 </project-private>

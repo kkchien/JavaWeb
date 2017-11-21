@@ -32,7 +32,7 @@
                         <p:submenu label="Quản lý sách">
                             <p:menuitem value="List sách" icon="ui-icon-list" actionListener="#{adminController.setView(adminController.BOOK)}" update="optionPanel" />
                             <p:menuitem value="Thêm sách" actionListener="#{bookController.newBook()}"
-                                        oncomplete="PF('addBookDialog').show()"  icon="ui-icon-plus" />
+                                        update=":form:addBookForm"    oncomplete="PF('addBookDialog').show()"  icon="ui-icon-plus" />
                         </p:submenu>
                         <p:submenu label="Quản lý đơn hàng">
                             <p:menuitem value="List đơn hàng"  actionListener="#{adminController.setView(adminController.ORDER)}" update="optionPanel" icon="ui-icon-list" />
@@ -80,7 +80,7 @@
                                     <f:facet name = "header">Thao tác</f:facet>
                                     <p:commandButton value="Chi tiết"  actionListener="#{bookController.viewBook()}"  process="@this" update=":form:bookDetail" oncomplete="PF('bookDialog').show()"/>
                                     <p:commandButton value="Sửa" actionListener="#{bookController.viewBook()}"  process="@this" update=":form:editBookForm :form:message" oncomplete="PF('editbookDialog').show()"/>
-                                    <p:commandButton value="Xóa" actionListener="#{bookController.deleteBook()}"  process="@this" update=":form:book :form:message">
+                                    <p:commandButton value="Xóa" actionListener="#{bookController.deleteBook()}" process="@this" update=":form:book :form:message">
                                         <p:confirm header="Xác nhận" message="Bạn có chắc muốn xóa " />
                                     </p:commandButton>
                                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
@@ -229,10 +229,8 @@
                                     <p:outputLabel for="a_price" value="Giá: " />
                                     <p:inputText id="a_price" value="#{bookController.book.price}" style="width:250px" />
                                     <p:outputLabel for="a_info" value="Thông tin chi tiết " />
-                                    <p:inputTextarea id="a_info" value="#{bookController.book.info}" style="width:250px"/>
-                                    
-                                </p:panelGrid>
-                              
+                                    <p:inputTextarea id="a_info" value="#{bookController.book.info}" style="width:250px"/>                                </p:panelGrid>
+                               <p:commandButton value="Thêm" action="#{bookController.addBook()}" update=":form:book :form:message" icon="ui-icon-check" oncomplete="PF('addBookDialog').hide()"/>-->
                             </p:outputPanel>
                         </p:dialog>
 

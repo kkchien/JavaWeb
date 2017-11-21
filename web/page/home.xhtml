@@ -11,13 +11,13 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>TODO supply a title</title>
+        <title>Trang chủ 1</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet library="css" name="stylehome.css" />
     </h:head>
     <h:body>
-        <h2>Trang chủ</h2>
+        <h2>Trang chủ 2</h2>
         <ui:composition template="../newTemplate.xhtml">
             <ui:define name="content">
                 <h:form id="form">
@@ -35,7 +35,7 @@ and open the template in the editor.
                                     <p:graphicImage width="240" height="380" class="display_image" value="../image/image_produce/#{arbook.image}"/> 
                                 </p:commandLink>
                                 <h:outputText style="color: red" value="#{arbook.price} đ" />
-                                <p:commandLink action="#{bookController.ProductDetail()}">
+                                <p:commandLink action="#{bookController.ProductDetail}">
                                     <h:outputText  value="#{arbook.name}" style="margin:0 auto; font-size: 18px" />
                                     <f:setPropertyActionListener value="#{arbook}" target="#{dataGridView.book}" />
                                 </p:commandLink>

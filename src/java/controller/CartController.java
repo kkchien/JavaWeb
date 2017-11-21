@@ -90,7 +90,11 @@ public class CartController {
                 messageCheckErrorCart("Phải nhập họ tên");
             } else if (StringUtil.isBlank(order.getUser().getPhone())) {
                 messageCheckErrorCart("Phải nhập số điện thoại");
-            } else {
+            }else if(!StringUtil.validatePhone(order.getUser().getPhone())) 
+            {
+                 messageCheckErrorCart("Số điện thoại sai!!");
+            }
+            else {
                 try {
                     OrderModel.getInstance().add(order);
                     order = new Order();
